@@ -1,14 +1,17 @@
 import logo from './logo.svg';
 import './App.css';
+import BookingPage from './BookingPage/BookingPage';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
+        <BookingPage />
+
+
         <a
           className="App-link"
           href="https://reactjs.org"
