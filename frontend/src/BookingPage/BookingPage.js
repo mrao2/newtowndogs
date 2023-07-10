@@ -22,17 +22,20 @@ const BookingPage = () => {
         <>
             <h1>Booking Page</h1>
 
-            <p>Please select the date(s) you need a dog sitter.</p>
+
             <Form>
-                <div id="appDatePicker">
-                    <DatePicker className="appDatePicker" selected={startDate} onChange={handleChange} startDate={startDate} endDate={endDate} selectsRange />
-                </div>
                 <div className="clientEmail">
+                    <p>Please enter your contact email.</p>
                     <Form.Group className="clientEmail" controlId="clientEmail">
                         <Form.Label>Email address: </Form.Label>
                         <Form.Control type="email" placeholder="name@example.com" />
                     </Form.Group>
                 </div>
+                <p>Please select the date(s) you need a dog sitter.</p>
+                <div id="appDatePicker">
+                    <DatePicker className="appDatePicker" selected={startDate} onChange={handleChange} startDate={startDate} endDate={endDate} selectsRange />
+                </div>
+
                 <div className="appSpecialRequirements">
                     <Form.Group className="appSpecialRequirements" controlId="appSpecialRequirements">
                         <Form.Label>Special Requirements: </Form.Label>
