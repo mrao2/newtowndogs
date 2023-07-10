@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import React from 'react';
 import DatePicker from "react-datepicker";
+import 'react-datepicker/dist/react-datepicker.css';
 import './BookingPage.css';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
@@ -8,14 +9,23 @@ import Button from 'react-bootstrap/Button';
 const BookingPage = () => {
 
     const [date, setDate] = useState(new Date());
+    const [startDate, setStartDate] = useState();
+    const [endDate, setEndDate] = useState();
+
+    const handleChange = (range) => {
+        const [startDate, endDate] = range;
+        setStartDate(startDate);
+        setEndDate(endDate);
+    }
+
     return (
         <>
             <h1>Booking Page</h1>
 
-            <p>Please select the date you need a dog sitter.</p>
+            <p>Please select the date(s) you need a dog sitter.</p>
             <Form>
                 <div id="appDatePicker">
-                    <DatePicker className="appDatePicker" selected={date} onChange={(date) => setDate(date)} />
+                    <DatePicker className="appDatePicker" selected={startDate} onChange={handleChange} startDate={startDate} endDate={endDate} selectsRange />
                 </div>
                 <div className="clientEmail">
                     <Form.Group className="clientEmail" controlId="clientEmail">
