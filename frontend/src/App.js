@@ -1,5 +1,5 @@
 import './App.css';
-import BookingPage from './BookingPage/BookingPage';
+import BookingPage from './Components/pages/BookingPage/BookingPage';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
