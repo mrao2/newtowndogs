@@ -14,7 +14,7 @@ function App() {
         <Navbar />
         <div className="content">
           <Switch>
-          <Route exact path="/">
+            <Route exact path="/">
               <Homepage />
             </Route>
             <Route exact path="/BlogHome">
@@ -24,7 +24,7 @@ function App() {
               <Create />
             </Route>
             <Route exact path="/blogs/:id">
-              <BlogDetails/>
+              <BlogDetails />
             </Route>
             <Route path="*">
               <NotFound />
