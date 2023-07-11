@@ -39,10 +39,12 @@ const BookingPage = () => {
                 <div className="appSpecialRequirements">
                     <Form.Group className="appSpecialRequirements" controlId="appSpecialRequirements">
                         <Form.Label>Special Requirements: </Form.Label>
+
                         <Form.Control as="textarea" rows={3} />
                     </Form.Group>
                 </div>
-                <Button variant="outline-primary">Submit Appointment Request</Button>
+                <br />
+                <Button className="bookingSubmit" variant="outline-primary">Submit Appointment Request</Button>
 
             </Form>
         </>
