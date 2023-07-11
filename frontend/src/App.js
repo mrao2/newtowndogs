@@ -5,6 +5,7 @@ import Create from "./Components/pages/Blog/Create";
 import BlogDetails from "./Components/pages/Blog/BlogDetails";
 import NotFound from "./NotFound";
 import BlogHome from "./Components/pages/Blog/BlogHome";
+import Homepage from "./Components/pages/Homepage";
 
 function App() {
   return (
@@ -13,9 +14,9 @@ function App() {
         <Navbar />
         <div className="content">
           <Switch>
-          {/* <Route exact path="/">
+          <Route exact path="/">
               <Homepage />
-            </Route> */}
+            </Route>
             <Route exact path="/BlogHome">
               <BlogHome />
             </Route>
