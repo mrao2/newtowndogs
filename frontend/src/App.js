@@ -1,10 +1,10 @@
 import React from "react";
-import Navbar from "./Navbar";
+import Navbar from "./Components/Navbar";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import Create from "./Create";
-import BlogDetails from "./BlogDetails";
+import Create from "./Components/pages/Blog/Create";
+import BlogDetails from "./Components/pages/Blog/BlogDetails";
 import NotFound from "./NotFound";
-import BlogHome from "./BlogHome";
+import BlogHome from "./Components/pages/Blog/BlogHome";
 
 function App() {
   return (
@@ -13,10 +13,13 @@ function App() {
         <Navbar />
         <div className="content">
           <Switch>
-            <Route exact path="/blogHome">
+          <Route exact path="/Components/pages/Blog/BlogHome">
+              <Homepage />
+            </Route>
+            <Route exact path="/Components/pages/Blog/BlogHome">
               <BlogHome />
             </Route>
-            <Route exact path="/create">
+            <Route exact path="/Components/pages/Blog/create">
               <Create />
             </Route>
             <Route exact path="/blogs/:id">
