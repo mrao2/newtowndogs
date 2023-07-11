@@ -11,27 +11,26 @@ export const Profile = () => {
     const [ownerZip, setOwnerZip] = useState('00000');
     const [ownerEmail, setOwnerEmail] = useState('');
     const [ownerPhone, setOwnerPhone] = useState('');
-    const [petType, setPetType] = useState('');
-    const [petName, setpetName] = useState('');
-    const [petAge, setPetAge] = useState(0);
-    const [petGender, setPetGender] = useState('male');
-    const [petColor, setPetColor] = useState('');
-    const [petBirthdate, setPetBirthdate] = useState('');
-    const [petAllergies, setPetAllergies] = useState('');
-    const [petWeight, setPetWeight] = useState('');
-    const [petFriendly, setPetFriendly] = useState('yes');
+    const [dogName, setDogName] = useState('');
+    const [dogAge, setDogAge] = useState(0);
+    const [dogGender, setDogGender] = useState('male');
+    const [dogColor, setDogColor] = useState('');
+    const [dogBirthdate, setDogBirthdate] = useState('');
+    const [dogAllergies, setDogAllergies] = useState('');
+    const [dogWeight, setDogWeight] = useState('');
+    const [dogFriendly, setDogFriendly] = useState('yes');
     const [amtWalks, setAmtWalks] = useState('');
     const [amtMeals, setAmtMeals] = useState('');
     const [amtPerMeal, setAmtPerMeal] = useState('');
-    const [petPottyTrained, setPetPottyTrained] = useState('yes');
-    const [petFixed, setpetFixed] = useState('yes');
+    const [dogPottyTrained, setDogPottyTrained] = useState('yes');
+    const [dogFixed, setDogFixed] = useState('yes');
 
 
     const handleSubmit = () => {
         console.log(`The owner's first name is ${ownerFirstName}.`) 
     }
 
-    console.log('petgender :: ', petGender)
+    console.log('doggender :: ', dogGender)
 
     return (
         <div className="App">
@@ -118,42 +117,33 @@ export const Profile = () => {
                         onChange={(event) => { setOwnerPhone(event.target.value)}}
                     />
                 </div>
-                <h1>Pet Information</h1>
+                <h1>Dog Information</h1>
                 <div>
-                    <label>Pet Type</label>
+                    <label>Dog's Name</label>
                     <input
                         type="text"
-                        name="petType"
-                        value={petType}
-                        onChange={(event) => { setPetType(event.target.value)}}
+                        name="dogName"
+                        value={dogName}
+                        onChange={(event) => { setDogName(event.target.value)}}
                     />
                 </div>
                 <div>
-                    <label>Pet's Name</label>
+                    <label>Dog Age</label>
                     <input
                         type="text"
-                        name="petName"
-                        value={petName}
-                        onChange={(event) => { setpetName(event.target.value)}}
+                        name="dogAge"
+                        value={dogAge}
+                        onChange={(event) => { setDogAge(event.target.value)}}
                     />
                 </div>
                 <div>
-                    <label>Pet Age</label>
-                    <input
-                        type="text"
-                        name="petAge"
-                        value={petAge}
-                        onChange={(event) => { setPetAge(event.target.value)}}
-                    />
-                </div>
-                <div>
-                    <label>Pet Gender</label>
+                    <label>Dog Gender</label>
                     <label>
                         <input
                             type="radio"
                             value="male"
-                            checked={petGender === 'male'}
-                            onChange={(event) => { setPetGender(event.target.value)}}
+                            checked={dogGender === 'male'}
+                            onChange={(event) => { setDogGender(event.target.value)}}
                         />
                         Male
                     </label>
@@ -161,56 +151,56 @@ export const Profile = () => {
                         <input
                             type="radio"
                             value="female"
-                            checked={petGender === 'female'}
-                            onChange={(event) => { setPetGender(event.target.value)}}
+                            checked={dogGender === 'female'}
+                            onChange={(event) => { setDogGender(event.target.value)}}
                         />
                         Female
                     </label>
                 </div>
                 <div>
-                    <label>Pet Color</label>
+                    <label>Dog Color</label>
                     <input
                         type="text"
-                        name="petColor"
-                        value={petColor}
-                        onChange={(event) => { setPetColor(event.target.value)}}
+                        name="dogColor"
+                        value={dogColor}
+                        onChange={(event) => { setDogColor(event.target.value)}}
                     />
                 </div>
                 <div>
-                    <label>Pet Birthdate</label>
+                    <label>Dog Birthdate</label>
                     <input
                         type="text"
-                        name="petBirthdate"
-                        value={petBirthdate}
-                        onChange={(event) => { setPetBirthdate(event.target.value)}}
+                        name="dogBirthdate"
+                        value={dogBirthdate}
+                        onChange={(event) => { setDogBirthdate(event.target.value)}}
                     />
                 </div>
                 <div>
-                    <label>Pet Allergies</label>
+                    <label>Dog Allergies</label>
                     <input
                         type="text"
-                        name="petAllergies"
-                        value={petAllergies}
-                        onChange={(event) => { setPetAllergies(event.target.value)}}
+                        name="dogAllergies"
+                        value={dogAllergies}
+                        onChange={(event) => { setDogAllergies(event.target.value)}}
                     />
                 </div>
                 <div>
-                    <label>Pet Weight (lbs)</label>
+                    <label>Dog Weight (lbs)</label>
                     <input
                         type="text"
-                        name="petWeight"
-                        value={petWeight}
-                        onChange={(event) => { setPetWeight(event.target.value)}}
+                        name="dogWeight"
+                        value={dogWeight}
+                        onChange={(event) => { setDogWeight(event.target.value)}}
                     />
                 </div>
                 <div>
-                <label>Pet Friendly? </label>
+                <label>Dog Friendly? </label>
                     <label>
                         <input
                             type="radio"
                             value="yes"
-                            checked={petFriendly === 'yes'}
-                            onChange={(event) => { setPetFriendly(event.target.value)}}
+                            checked={dogFriendly === 'yes'}
+                            onChange={(event) => { setDogFriendly(event.target.value)}}
                         />
                         Yes
                     </label>
@@ -218,8 +208,8 @@ export const Profile = () => {
                         <input
                             type="radio"
                             value="no"
-                            checked={petFriendly === 'no'}
-                            onChange={(event) => { setPetFriendly(event.target.value)}}
+                            checked={dogFriendly === 'no'}
+                            onChange={(event) => { setDogFriendly(event.target.value)}}
                         />
                         No
                     </label>
@@ -227,8 +217,8 @@ export const Profile = () => {
                         <input
                             type="radio"
                             value="unknown"
-                            checked={petFriendly === 'unknown'}
-                            onChange={(event) => { setPetFriendly(event.target.value)}}
+                            checked={dogFriendly === 'unknown'}
+                            onChange={(event) => { setDogFriendly(event.target.value)}}
                         />
                         Unknown
                     </label>
@@ -237,7 +227,7 @@ export const Profile = () => {
                     <label>Amount of Walks Per Day</label>
                     <input
                         type="text"
-                        name="petAllergies"
+                        name=""
                         value={amtWalks}
                         onChange={(event) => { setAmtWalks(event.target.value)}}
                     />
@@ -246,7 +236,7 @@ export const Profile = () => {
                     <label>Amount of Meals Per Day</label>
                     <input
                         type="text"
-                        name="petAllergies"
+                        name="dogAllergies"
                         value={amtMeals}
                         onChange={(event) => { setAmtMeals(event.target.value)}}
                     />
@@ -255,19 +245,19 @@ export const Profile = () => {
                     <label>Amount of Food per Meal (cups)</label>
                     <input
                         type="text"
-                        name="petAllergies"
+                        name="dogAllergies"
                         value={amtPerMeal}
                         onChange={(event) => { setAmtPerMeal(event.target.value)}}
                     />
                 </div>
                 <div>
-                    <label>Pet Potty Trained?</label>
+                    <label>Dog Potty Trained?</label>
                     <label>
                         <input
                             type="radio"
                             value="yes"
-                            checked={petPottyTrained === 'yes'}
-                            onChange={(event) => { setPetPottyTrained(event.target.value)}}
+                            checked={dogPottyTrained === 'yes'}
+                            onChange={(event) => { setDogPottyTrained(event.target.value)}}
                         />
                         Yes
                     </label>
@@ -275,20 +265,20 @@ export const Profile = () => {
                         <input
                             type="radio"
                             value="no"
-                            checked={petPottyTrained === 'no'}
-                            onChange={(event) => { setPetPottyTrained(event.target.value)}}
+                            checked={dogPottyTrained === 'no'}
+                            onChange={(event) => { setDogPottyTrained(event.target.value)}}
                         />
                         No
                     </label>
                 </div>
                 <div>
-                    <label>Pet Fixed?</label>
+                    <label>Dog Fixed?</label>
                     <label>
                         <input
                             type="radio"
                             value="yes"
-                            checked={petFixed === 'yes'}
-                            onChange={(event) => { setpetFixed(event.target.value)}}
+                            checked={dogFixed === 'yes'}
+                            onChange={(event) => { setDogFixed(event.target.value)}}
                         />
                         Yes
                     </label>
@@ -296,8 +286,8 @@ export const Profile = () => {
                         <input
                             type="radio"
                             value="no"
-                            checked={petFixed === 'no'}
-                            onChange={(event) => { setpetFixed(event.target.value)}}
+                            checked={dogFixed === 'no'}
+                            onChange={(event) => { setDogFixed(event.target.value)}}
                         />
                         No
                     </label>
@@ -305,8 +295,8 @@ export const Profile = () => {
                         <input
                             type="radio"
                             value="not applicable"
-                            checked={petFixed === 'not applicable'}
-                            onChange={(event) => { setpetFixed(event.target.value)}}
+                            checked={dogFixed === 'not applicable'}
+                            onChange={(event) => { setDogFixed(event.target.value)}}
                         />
                         Not Applicable
                     </label>
