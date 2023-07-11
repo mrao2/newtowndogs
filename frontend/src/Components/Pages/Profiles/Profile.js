@@ -24,7 +24,7 @@ export const Profile = () => {
     const [amtMeals, setAmtMeals] = useState('');
     const [amtPerMeal, setAmtPerMeal] = useState('');
     const [petPottyTrained, setPetPottyTrained] = useState('yes');
-    const [petFixed, setpetFixed] = useState('neutered');
+    const [petFixed, setpetFixed] = useState('yes');
 
 
     const handleSubmit = () => {
@@ -35,6 +35,7 @@ export const Profile = () => {
 
     return (
         <div className="App">
+            <h1>Owner Information</h1>
             <form onSubmit={handleSubmit}>
                 <div>
                     <label>Owner First Name</label>
@@ -117,6 +118,7 @@ export const Profile = () => {
                         onChange={(event) => { setOwnerPhone(event.target.value)}}
                     />
                 </div>
+                <h1>Pet Information</h1>
                 <div>
                     <label>Pet Type</label>
                     <input
@@ -221,6 +223,15 @@ export const Profile = () => {
                         />
                         No
                     </label>
+                    <label>
+                        <input
+                            type="radio"
+                            value="unknown"
+                            checked={petFriendly === 'unknown'}
+                            onChange={(event) => { setPetFriendly(event.target.value)}}
+                        />
+                        Unknown
+                    </label>
                 </div>
                 <div>
                     <label>Amount of Walks Per Day</label>
@@ -251,12 +262,24 @@ export const Profile = () => {
                 </div>
                 <div>
                     <label>Pet Potty Trained?</label>
-                    <input
-                        type="text"
-                        name="petPottyTrained"
-                        value={petPottyTrained}
-                        onChange={(event) => { setPetPottyTrained(event.target.value)}}
-                    />
+                    <label>
+                        <input
+                            type="radio"
+                            value="yes"
+                            checked={petPottyTrained === 'yes'}
+                            onChange={(event) => { setPetPottyTrained(event.target.value)}}
+                        />
+                        Yes
+                    </label>
+                    <label>
+                        <input
+                            type="radio"
+                            value="no"
+                            checked={petPottyTrained === 'no'}
+                            onChange={(event) => { setPetPottyTrained(event.target.value)}}
+                        />
+                        No
+                    </label>
                 </div>
                 <div>
                     <label>Pet Fixed?</label>
@@ -265,7 +288,7 @@ export const Profile = () => {
                             type="radio"
                             value="yes"
                             checked={petFixed === 'yes'}
-                            onChange={(event) => { setPetFriendly(event.target.value)}}
+                            onChange={(event) => { setpetFixed(event.target.value)}}
                         />
                         Yes
                     </label>
@@ -274,7 +297,7 @@ export const Profile = () => {
                             type="radio"
                             value="no"
                             checked={petFixed === 'no'}
-                            onChange={(event) => { setPetFriendly(event.target.value)}}
+                            onChange={(event) => { setpetFixed(event.target.value)}}
                         />
                         No
                     </label>
@@ -283,7 +306,7 @@ export const Profile = () => {
                             type="radio"
                             value="not applicable"
                             checked={petFixed === 'not applicable'}
-                            onChange={(event) => { setPetFriendly(event.target.value)}}
+                            onChange={(event) => { setpetFixed(event.target.value)}}
                         />
                         Not Applicable
                     </label>
