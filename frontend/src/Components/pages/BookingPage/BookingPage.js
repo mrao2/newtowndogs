@@ -38,6 +38,31 @@ const BookingPage = () => {
 
 
             <Form className="isNotConsultation">
+                <div className="clientName">
+                    <div className="clientFirstName">
+
+                        <Form.Group className="clientFirstName" controlId="clientFirstName">
+                            <Form.Label>First Name: </Form.Label>
+                            <Form.Control type="text" placeholder="First Name" />
+                        </Form.Group>
+                    </div>
+                    <div className="clientLastName">
+
+                        <Form.Group className="clientLastName" controlId="clientLastName">
+                            <Form.Label>Last Name: </Form.Label>
+                            <Form.Control type="text" placeholder="Last Name" />
+                        </Form.Group>
+                    </div>
+                </div>
+
+
+                <div className="clientPhoneNumber">
+
+                    <Form.Group className="clientPhoneNumber" controlId="clientPhoneNumber">
+                        <Form.Label>Phone Number: </Form.Label>
+                        <Form.Control type="tel" placeholder="555-555-5555" pattern="[0-9]{10}" />
+                    </Form.Group>
+                </div>
                 <div className="clientEmail">
 
                     <Form.Group className="clientEmail" controlId="clientEmail">
@@ -45,8 +70,9 @@ const BookingPage = () => {
                         <Form.Control type="email" placeholder="name@example.com" />
                     </Form.Group>
                 </div>
-                <p>Please select the date(s) you need a dog sitter.</p>
+
                 <div id="appDatePicker">
+                    <p>Please select the date(s) you need a dog sitter.</p>
                     <DatePicker className="appDatePicker" selected={startDate} onChange={handleChange} startDate={startDate} endDate={endDate} selectsRange />
                 </div>
 

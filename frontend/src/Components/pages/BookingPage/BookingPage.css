@@ -14,7 +14,18 @@
     margin: 0 auto;
 }
 
-input {
-    max-width: 230px;
-    margin: 0px auto;
+.clientName {
+    display: inline-flex;
+    max-width: 530px;
+    justify-content: center;
+}
+
+.clientFirstName, .clientLastName {
+    max-width: 265px;
+    margin: 5px;
+}
+
+.clientPhoneNumber {
+    display: inline-flex;
+    max-width: 200px;
 }
