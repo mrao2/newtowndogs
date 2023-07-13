@@ -33,7 +33,7 @@ const BookingPage = () => {
                 Please check this box if this is your first visit.
             </div>
             <div className="result" >
-                {isChecked ? "First Visit" : "Returning Customer"}
+                {isChecked ? "This is your first visit." : "You are a returning customer."}
             </div>
 
 
