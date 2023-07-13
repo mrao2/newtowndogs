@@ -20,13 +20,24 @@ const BookingPage = () => {
         setStartDate(startDate);
         setEndDate(endDate);
     };
-
+    const [isChecked, setIsChecked] = useState(false);
+    const handleOnChange = () => {
+        setIsChecked(!isChecked);
+    };
 
     return (
         <>
             <h1>Booking Page</h1>
+            <div className="isConsultation">
+                <input type="checkbox" id="isConsultation" name="isConsultation" value="isConsultation" checked={isChecked} onChange={handleOnChange} />
+                Please check this box if this is your first visit.
+            </div>
+            <div className="result" >
+                {isChecked ? "First Visit" : "Returning Customer"}
+            </div>
 
-            <Form>
+
+            <Form className="isNotConsultation">
                 <div className="clientEmail">
 
                     <Form.Group className="clientEmail" controlId="clientEmail">
