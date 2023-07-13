@@ -5,6 +5,8 @@ import 'react-datepicker/dist/react-datepicker.css';
 import './BookingPage.css';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import TimePicker from './TimePicker';
+
 
 const BookingPage = () => {
 
@@ -34,6 +36,7 @@ const BookingPage = () => {
                 <p>Please select the date(s) you need a dog sitter.</p>
                 <div id="appDatePicker">
                     <DatePicker className="appDatePicker" selected={startDate} onChange={handleChange} startDate={startDate} endDate={endDate} selectsRange />
+                    <TimePicker />
                 </div>
 
                 <div className="appSpecialRequirements">
