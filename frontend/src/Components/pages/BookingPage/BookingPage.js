@@ -5,7 +5,9 @@ import 'react-datepicker/dist/react-datepicker.css';
 import './BookingPage.css';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-
+import TimePicker from 'react-time-picker';
+import 'react-time-picker/dist/TimePicker.css';
+import 'react-clock/dist/Clock.css';
 
 
 const BookingPage = () => {
@@ -13,6 +15,8 @@ const BookingPage = () => {
     const [date, setDate] = useState(new Date());
     const [startDate, setStartDate] = useState();
     const [endDate, setEndDate] = useState();
+    const [startTime, setStartTime] = useState('09:00');
+    const [endTime, setEndTime] = useState();
 
 
     const handleChange = (range) => {
@@ -20,6 +24,13 @@ const BookingPage = () => {
         setStartDate(startDate);
         setEndDate(endDate);
     };
+
+    const handleStartTimeChange = () => {
+
+        setStartTime(startTime);
+
+    };
+
     const [isChecked, setIsChecked] = useState(false);
     const handleOnChange = () => {
         setIsChecked(!isChecked);
@@ -69,6 +80,16 @@ const BookingPage = () => {
                         <Form.Label>Email address: </Form.Label>
                         <Form.Control type="email" placeholder="name@example.com" />
                     </Form.Group>
+                </div>
+
+                <div>
+                    <label>Select Appointment Start Time: </label>
+                    <TimePicker value={startTime} onChange={handleStartTimeChange} />
+                </div>
+
+                <div>
+                    <label>Select Appointment End Time: </label>
+                    <TimePicker value={endTime} onChange={handleStartTimeChange} />
                 </div>
 
                 <div id="appDatePicker">
