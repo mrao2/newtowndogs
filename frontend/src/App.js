@@ -6,16 +6,26 @@ import BlogDetails from "./Components/pages/Blog/BlogDetails";
 import NotFound from "./NotFound";
 import BlogHome from "./Components/pages/Blog/BlogHome";
 import Homepage from "./Components/pages/Homepage";
-import './App.css';
+import "./App.css";
 
 function App() {
+  const [data, setData] = React.useState(null);
+
+  React.useEffect(() => {
+    fetch("/api")
+      .then((res) => res.json())
+      .then((data) => setData(data.message));
+  }, []);
+
+  console.log(data);
+
   return (
     <Router>
       <div className="App">
         <Navbar />
         <div className="content">
           <Switch>
-          <Route exact path="/">
+            <Route exact path="/">
               <Homepage />
             </Route>
             <Route exact path="/BlogHome">
@@ -25,7 +35,7 @@ function App() {
               <Create />
             </Route>
             <Route exact path="/blogs/:id">
-              <BlogDetails/>
+              <BlogDetails />
             </Route>
             <Route path="*">
               <NotFound />
