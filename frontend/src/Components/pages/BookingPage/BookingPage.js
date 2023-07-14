@@ -16,7 +16,7 @@ const BookingPage = () => {
     const [startDate, setStartDate] = useState();
     const [endDate, setEndDate] = useState();
     const [startTime, setStartTime] = useState('09:00');
-    const [endTime, setEndTime] = useState();
+    const [endTime, setEndTime] = useState('21:00');
 
 
     const handleChange = (range) => {
@@ -28,6 +28,13 @@ const BookingPage = () => {
     const handleStartTimeChange = () => {
 
         setStartTime(startTime);
+
+    };
+
+
+    const handleEndTimeChange = () => {
+
+        setEndTime(endTime);
 
     };
 
@@ -84,12 +91,12 @@ const BookingPage = () => {
 
                 <div>
                     <label>Select Appointment Start Time: </label>
-                    <TimePicker value={startTime} onChange={handleStartTimeChange} />
+                    <TimePicker value={startTime} onChange={handleStartTimeChange} disableClock={true} />
                 </div>
 
                 <div>
                     <label>Select Appointment End Time: </label>
-                    <TimePicker value={endTime} onChange={handleStartTimeChange} />
+                    <TimePicker value={endTime} onChange={handleEndTimeChange} disableClock={true} />
                 </div>
 
                 <div id="appDatePicker">
