@@ -7,6 +7,7 @@ import NotFound from "./NotFound";
 import BlogHome from "./Components/pages/Blog/BlogHome";
 import Homepage from "./Components/pages/Homepage";
 import './App.css';
+import Login from './Components/pages/Login';
 
 function App() {
   return (
@@ -26,6 +27,9 @@ function App() {
             </Route>
             <Route exact path="/blogs/:id">
               <BlogDetails />
+            </Route>
+            <Route exact path="/Login">
+              <Login />
             </Route>
             <Route path="*">
               <NotFound />
