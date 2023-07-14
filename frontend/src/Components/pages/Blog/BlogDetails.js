@@ -6,7 +6,7 @@ const BlogDetails = () => {
   const { id } = useParams();
   const history = useHistory();
   const { data: blog, isPending, error } = useFetch(
-    "http://localhost:8000/blogs/" + id
+    "/api/data/" + id
   );
 
   const [title, setTitle] = useState("");
@@ -30,7 +30,7 @@ const BlogDetails = () => {
 
     setIsPendingUpdate(true);
 
-    fetch("http://localhost:8000/blogs/" + id, {
+    fetch("/api/data/" + id, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(updatedBlog),
@@ -46,7 +46,7 @@ const BlogDetails = () => {
   };
 
   const handleClick = () => {
-    fetch("http://localhost:8000/blogs/" + blog.id, {
+    fetch("/api/data/" + blog.id, {
       method: "DELETE",
     })
       .then(() => {
