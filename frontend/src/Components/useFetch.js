@@ -30,16 +30,13 @@ const useFetch = (url) => {
         // if the response has been recieved, it then assigns the json file date into a object named data. isPending is set to false since its now loaded, and setError is null due to successful load.
         .then((data) => {
           setData(data);
-          console.log(data);
           setIsPending(false);
           setError(null);
         })
         .catch((err) => {
           if (err.name === "AbortError") {
             console.log("fetch aborted");
-          } else if (err.name === "SyntaxError"){
-            console.log("Some silly little reading on the first char is strange");
-          } else {
+           } else {
             setIsPending(false);
             setError(err.message);
           }

@@ -2,7 +2,7 @@ import React from "react";
 import BlogList from "./BlogList";
 import useFetch from "../../useFetch";
 
-const Home = () => {
+const BlogHome = () => {
 
 const {data: blogs, isPending, error} = useFetch('/api/data')
 
@@ -16,4 +16,4 @@ const {data: blogs, isPending, error} = useFetch('/api/data')
   );
 };
 
-export default Home;
+export default BlogHome;

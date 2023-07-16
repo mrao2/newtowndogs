@@ -9,16 +9,6 @@ import Homepage from "./Components/pages/Homepage";
 import "./App.css";
 
 function App() {
-  const [data, setData] = React.useState(null);
-
-  React.useEffect(() => {
-    fetch("/api")
-      .then((res) => res.json())
-      .then((data) => setData(data.message));
-  }, []);
-
-  console.log(data);
-
   return (
     <Router>
       <div className="App">
