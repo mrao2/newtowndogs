@@ -4,7 +4,7 @@ import useFetch from "../../useFetch";
 
 const Home = () => {
 
-const {data: blogs, isPending, error} = useFetch('api/data')
+const {data: blogs, isPending, error} = useFetch('/api/data')
 
 
   return (
