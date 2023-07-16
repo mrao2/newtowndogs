@@ -2,6 +2,7 @@ const express = require("express");
 const path = require('path');
 const jsonData = require('./data/db.json');
 const { writeFileSync } = require("fs");
+const crypto = require('crypto');
 
 
 const PORT = process.env.PORT || 3001;
@@ -21,10 +22,10 @@ app.get('/api/data', (req, res) => {
   });
 
 app.post('/api/data',(req, res) =>{
-    console.log(req.body);
+    req.body.id = crypto.randomUUID();
     jsonData.blogs.push(req.body);
-    console.log(jsonData);
-    writeFileSync('./data/db.json', JSON.stringify(jsonData));
+    writeFileSync('./data/db.json', JSON.stringify(jsonData, undefined, 2));
+    res.send(jsonData);
 })
 
 app.listen(PORT, () => {
