@@ -1,5 +1,6 @@
-import React from "react";
-import {Link} from 'react-router-dom'
+import "./Navbar.css";
+import { Link } from "react-router-dom";
+
 function Navbar() {
   return (
     <nav className="navbar">
@@ -32,15 +33,20 @@ function Navbar() {
           <Link to="/Login">Sign Up</Link>
 
           <Link to="/bloghome">Blog</Link>
-        <Link to="/create" style={{
-            color: "white",
-            backgroundColor: "#f1356d",
-            borderRadius: "8px"
-        }}>New Blog</Link>
+          <Link
+            to="/create"
+            style={{
+              color: "white",
+              backgroundColor: "#f1356d",
+              borderRadius: "8px",
+            }}
+          >
+            New Blog
+          </Link>
         </a>
       </div>
     </nav>
   );
-};
+}
 
 export default Navbar;
