@@ -53,7 +53,7 @@ const BookingPage = () => {
             <div className="result" >
                 {isChecked ? "This is your first visit." : "You are a returning customer."}
             </div>
-
+            <br />
 
             <Form className="isNotConsultation">
                 <div className="clientName">
@@ -73,7 +73,7 @@ const BookingPage = () => {
                     </div>
                 </div>
 
-
+                <br />
                 <div className="clientPhoneNumber">
 
                     <Form.Group className="clientPhoneNumber" controlId="clientPhoneNumber">
@@ -81,6 +81,7 @@ const BookingPage = () => {
                         <Form.Control type="tel" placeholder="555-555-5555" pattern="[0-9]{10}" />
                     </Form.Group>
                 </div>
+                <br />
                 <div className="clientEmail">
 
                     <Form.Group className="clientEmail" controlId="clientEmail">
@@ -88,7 +89,7 @@ const BookingPage = () => {
                         <Form.Control type="email" placeholder="name@example.com" />
                     </Form.Group>
                 </div>
-
+                <br />
                 <div>
                     <label>Select Appointment Start Time: </label>
                     <TimePicker value={startTime} onChange={handleStartTimeChange} disableClock={true} />
@@ -98,12 +99,12 @@ const BookingPage = () => {
                     <label>Select Appointment End Time: </label>
                     <TimePicker value={endTime} onChange={handleEndTimeChange} disableClock={true} />
                 </div>
-
+                <br />
                 <div id="appDatePicker">
                     <p>Please select the date(s) you need a dog sitter.</p>
                     <DatePicker className="appDatePicker" selected={startDate} onChange={handleChange} startDate={startDate} endDate={endDate} selectsRange />
                 </div>
-
+                <br />
                 <div className="appSpecialRequirements">
                     <Form.Group className="appSpecialRequirements" controlId="appSpecialRequirements">
                         <Form.Label>Special Requirements: </Form.Label>
