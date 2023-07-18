@@ -6,7 +6,7 @@ import BlogDetails from "./Components/pages/Blog/BlogDetails";
 import NotFound from "./NotFound";
 import BlogHome from "./Components/pages/Blog/BlogHome";
 import Homepage from "./Components/pages/Homepage";
-import './App.css';
+import "./App.css";
 import Login from './Components/pages/Login';
 
 function App() {

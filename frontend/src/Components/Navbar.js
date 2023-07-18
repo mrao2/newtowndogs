@@ -31,13 +31,14 @@ function Navbar() {
         >
           <Link to="/Login">Sign Up</Link>
 
-          <Link to="/bloghome">Blog</Link>
+          
+        </a>
+        <Link to="/bloghome">Blog</Link>
         <Link to="/create" style={{
             color: "white",
             backgroundColor: "#f1356d",
             borderRadius: "8px"
         }}>New Blog</Link>
-        </a>
       </div>
     </nav>
   );
