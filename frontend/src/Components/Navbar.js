@@ -29,7 +29,7 @@ function Navbar() {
             borderRadius: "8px",
           }}
         >
-          Sign In
+          <Link to="/Login">Sign Up</Link>
 
           
         </a>
