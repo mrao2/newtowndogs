@@ -32,7 +32,6 @@ function Navbar() {
         >
           <Link to="/Login">Sign Up</Link>
         </a>
-        <Link to="/bloghome">Blog</Link>
         <Link
           to="/BookingPage"
           style={{
@@ -43,6 +42,8 @@ function Navbar() {
         >
           Book Sitter
         </Link>
+        <Link to="/bloghome">Blog</Link>
+
         <Link
           to="/create"
           style={{

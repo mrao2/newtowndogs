@@ -46,7 +46,7 @@ const BookingPage = () => {
 
     return (
         <>
-            <h1>Booking Page</h1>
+            <h1>Book Your Dog Sitter</h1>
             <div className="isConsultation">
                 <input type="checkbox" id="isConsultation" name="isConsultation" value="isConsultation" checked={isChecked} onChange={handleOnChange} />
                 Please check this box if this is your first visit.

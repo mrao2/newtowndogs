@@ -1,6 +1,8 @@
 .clientEmail {
     display: inline-flex;
     justify-content: center;
+    max-width: 265px;
+    margin: 5px;
 }
 
 .appSpecialRequirements {
@@ -11,7 +13,9 @@
 
 .bookingSubmit {
     display: block;
-    margin: 0 auto;
+    margin: 10 auto;
+    max-width: 265px;
+    margin: 5px;
 }
 
 .clientName {
@@ -27,5 +31,6 @@
 
 .clientPhoneNumber {
     display: inline-flex;
-    max-width: 200px;
+    max-width: 265px;
+    margin: 5px;
 }
