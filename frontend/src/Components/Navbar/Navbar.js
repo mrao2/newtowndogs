@@ -34,7 +34,7 @@ function Navbar() {
         </a>
         <Link to="/bloghome">Blog</Link>
         <Link
-          to="/create"
+          to="/BookingPage"
           style={{
             color: "white",
             backgroundColor: "#f1356d",
