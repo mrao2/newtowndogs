@@ -41,8 +41,19 @@ function Navbar() {
             borderRadius: "8px",
           }}
         >
+          Book Sitter
+        </Link>
+        <Link
+          to="/create"
+          style={{
+            color: "white",
+            backgroundColor: "#f1356d",
+            borderRadius: "8px",
+          }}
+        >
           New Blog
         </Link>
+
       </div>
     </nav>
   );
