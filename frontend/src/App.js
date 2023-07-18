@@ -33,8 +33,14 @@ function App() {
             <Route exact path="/Login">
               <Login />
             </Route>
+            <Route exact path="/Login">
+              <Login />
+            </Route>
             <Route path="*">
               <NotFound />
+            </Route>
+            <Route exact path="/bookAppointment">
+              <Login />
             </Route>
           </Switch>
         </div>

@@ -21,6 +21,7 @@ function Navbar() {
         >
           About Us
         </a>
+
         <a
           href="/create"
           style={{
@@ -30,7 +31,6 @@ function Navbar() {
           }}
         >
           <Link to="/Login">Sign Up</Link>
-
           <Link to="/bloghome">Blog</Link>
           <Link to="/create" style={{
             color: "white",

@@ -22,6 +22,16 @@ function Navbar() {
         >
           About Us
         </a>
+        <Link
+          to="/bookAppointment"
+          style={{
+            color: "white",
+            backgroundColor: "#f1356d",
+            borderRadius: "8px",
+          }}
+        >
+          Book Sitter
+        </Link>
         <a
           href="/create"
           style={{
