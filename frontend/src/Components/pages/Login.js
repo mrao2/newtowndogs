@@ -1,15 +1,14 @@
-import React, { useState } from 'react';
-import './Login.css';
-
+import React, { useState } from "react";
+import "./Login.css";
 
 function Login() {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('')
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
     const [showPassword, setShowPassword] = useState(false);
 
     const handlePasswordVisiblity = () => {
         setShowPassword(!showPassword);
-    }
+    };
 
     function handleSubmit(event) {
         event.preventDefault();
@@ -22,7 +21,6 @@ function Login() {
         <div className="login-page">
             <h1>Login Page</h1>
             <form className="login-form" onSubmit={handleSubmit}>
-
                 <input
                     type="email"
                     placeholder="ILoveDogs@dogs.com"
@@ -41,9 +39,10 @@ function Login() {
                 <button type="button" onClick={handlePasswordVisiblity}>
                     {showPassword ? "Hide" : "Show"}
                 </button>
-                <button
-                    type="submit"
-                    className="login-button"> Login</button>
+                <button type="submit" className="login-button">
+                    {" "}
+                    Login
+                </button>
             </form>
         </div>
     );

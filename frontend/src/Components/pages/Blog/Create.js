@@ -1,10 +1,15 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 
+const authors = [
+  { value: "mario", label: "Mario" },
+  { value: "luigi", label: "Luigi" }
+]
+
 const Create = () => {
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
-  const [author, setAuthor] = useState("");
+  const [author, setAuthor] = useState(authors[0].value);
   const [isPending, setIsPending] = useState(false);
   const history = useHistory();
 
@@ -14,14 +19,13 @@ const Create = () => {
 
     setIsPending(true);
 
-    fetch("http://localhost:8000/blogs", {
+    fetch("/api/data", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(blog),
     }).then(() => {
-      console.log("new blog add");
       setIsPending(false);
-      history.push('/')
+      history.push('/BlogHome')
     });
 
   };
@@ -45,8 +49,11 @@ const Create = () => {
         ></textarea>
         <label>Blog author:</label>
         <select value={author} onChange={(e) => setAuthor(e.target.value)}>
-          <option value="mario">mario</option>
-          <option value="luigi">luigi</option>
+          {authors.map((author) => (
+            <option key={author.value} value={author.value}>
+              {author.label}
+            </option>
+          ))}
         </select>
         {!isPending && <button>Add Blog</button>}
         {isPending && <button disabled>Adding Blog...</button>}

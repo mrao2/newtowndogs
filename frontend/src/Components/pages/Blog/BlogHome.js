@@ -2,8 +2,10 @@ import React from "react";
 import BlogList from "./BlogList";
 import useFetch from "../../useFetch";
 
-const Home = () => {
-const {data: blogs, isPending, error} = useFetch('http://localhost:8000/blogs')
+const BlogHome = () => {
+
+  const { data: blogs, isPending, error } = useFetch('/api/data')
+
 
   return (
     <div className="home">
@@ -14,4 +16,4 @@ const {data: blogs, isPending, error} = useFetch('http://localhost:8000/blogs')
   );
 };
 
-export default Home;
+export default BlogHome;
