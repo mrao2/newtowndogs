@@ -8,6 +8,8 @@ import BlogHome from "./Components/pages/Blog/BlogHome";
 import Homepage from "./Components/pages/Homepage";
 import "./App.css";
 import Login from "./Components/pages/Login";
+import 'bootstrap/dist/css/bootstrap.css';
+
 
 function App() {
   return (
