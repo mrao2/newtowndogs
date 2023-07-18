@@ -8,6 +8,7 @@ import BlogHome from "./Components/pages/Blog/BlogHome";
 import Homepage from "./Components/pages/Homepage";
 import "./App.css";
 import Login from "./Components/pages/Login";
+import BookingPage from "./Components/pages/BookingPage/BookingPage";
 import 'bootstrap/dist/css/bootstrap.css';
 
 
@@ -39,7 +40,7 @@ function App() {
             <Route path="*">
               <NotFound />
             </Route>
-            <Route exact path="/bookAppointment">
+            <Route exact path="/bookAppointment" component={BookingPage}>
               <Login />
             </Route>
           </Switch>
