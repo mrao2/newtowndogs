@@ -70,13 +70,13 @@ const ConsultationForm = () => {
                 </div>
                 <br />
                 <div>
-                    <p className="consultationNotice">Please note, all first time consultation appointments are 1 hour long.</p>
+                    <p className="consultationNotice">Please note, all first-time consultation appointments are 1 hour long.</p>
                     <label>Select Appointment Start Time: </label>
                     <TimePicker value={startTime} onChange={handleStartTimeChange} disableClock={true} />
                 </div>
                 <br />
                 <div id="appDatePicker">
-                    <p>Please select the date(s) you need a dog sitter.</p>
+                    <p>Please select the date you would like to have your consultation.</p>
                     <DatePicker className="appDatePicker" selected={startDate} onChange={handleChange} />
                 </div>
                 <br />
