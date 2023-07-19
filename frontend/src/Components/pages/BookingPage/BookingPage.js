@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import React from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import 'react-datepicker/dist/react-datepicker.css';
 import './BookingPage.css';
 import 'react-time-picker/dist/TimePicker.css';
 import 'react-clock/dist/Clock.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import ReturnCustomerForm from './ReturnCustomerForm';
 import ConsultationForm from './ConsultationForm';
 
