@@ -99,7 +99,7 @@ const ReturnCustomerForm = () => {
                     </Form.Group>
                 </div>
                 <br />
-                <Button className="bookingSubmit" variant="outline-primary">Submit Appointment Request</Button>
+                <Button className="bookingSubmitButton" >Submit Appointment Request</Button>
 
             </Form>
         </>

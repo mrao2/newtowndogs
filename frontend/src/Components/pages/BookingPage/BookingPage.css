@@ -1,3 +1,8 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
 .clientEmail {
     display: inline-flex;
     justify-content: center;
@@ -34,3 +39,34 @@
     max-width: 265px;
     margin: 5px;
 }
+
+.pageHeader {
+    color: white;
+    background-color: #f1356d;
+    border-radius: 8px;
+    margin: auto;
+    margin-bottom: 20px;
+    text-align: center;
+    display: block;
+}
+
+.bookingSubmitButton {
+    color: white;
+    background-color: #f1356d;
+    border-radius: 8px;
+    border-color: #4b2732;
+    display: block;
+    margin: auto;
+}
+
+:hover.bookingSubmitButton {
+    background-color: #4b2732;
+   
+}
+
+.isConsultation, .result, .consultationNotice {
+    display: block;
+    text-align: center;
+    font-weight: 600;
+}
+

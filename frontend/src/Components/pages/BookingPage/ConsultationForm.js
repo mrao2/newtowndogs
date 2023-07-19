@@ -13,7 +13,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 const ConsultationForm = () => {
     const [date, setDate] = useState(new Date());
     const [startDate, setStartDate] = useState();
-
     const [startTime, setStartTime] = useState('09:00');
 
 
@@ -71,7 +70,7 @@ const ConsultationForm = () => {
                 </div>
                 <br />
                 <div>
-                    <p>Please note, all first time consultation appointments are 1 hour long.</p>
+                    <p className="consultationNotice">Please note, all first time consultation appointments are 1 hour long.</p>
                     <label>Select Appointment Start Time: </label>
                     <TimePicker value={startTime} onChange={handleStartTimeChange} disableClock={true} />
                 </div>
@@ -89,7 +88,7 @@ const ConsultationForm = () => {
                     </Form.Group>
                 </div>
                 <br />
-                <Button className="bookingSubmit" variant="outline-primary">Submit Appointment Request</Button>
+                <Button className="bookingSubmitButton" >Submit Appointment Request</Button>
 
             </Form>
         </>
