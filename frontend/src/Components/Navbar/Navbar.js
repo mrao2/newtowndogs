@@ -40,7 +40,7 @@ function Navbar() {
 
       <div class="smallScreenNav">
         <div className="dropdown">
-          <button class="dropbtn"></button>
+          <button class="dropbtn">Navigate the Website</button>
           <div class="dropdown-content">
             <div className="links">
               <a
