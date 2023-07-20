@@ -14,6 +14,7 @@
     display:inline-flex;
     padding: 10px;
     justify-content: center;
+    margin: 10px;
 }
 
 .bookingSubmit {
@@ -25,13 +26,15 @@
 
 .clientName {
     display: inline-flex;
-    max-width: 530px;
     justify-content: center;
+    flex-wrap: wrap;
 }
 
 .clientFirstName, .clientLastName {
     max-width: 265px;
     margin: 5px;
+    display: inline-flex;
+    justify-content: center;
 }
 
 .clientPhoneNumber {
@@ -70,3 +73,50 @@
     font-weight: 600;
 }
 
+.consultationNotice {
+    margin: 30px;
+}
+
+input[type='checkbox'] {
+    margin: 15px;
+}
+
+.appDatePicker {
+    text-align: center;
+    font-weight: 600;
+    border-radius: 5px;
+    border-width: 1px;
+    display:inline-flex;
+    font-size: 15px;
+    width: 200px;
+    border-color: rgba(173, 171, 171, 0.459);
+}
+
+#appDatePicker {
+    display: block;
+    margin: auto;
+    text-align: center;
+}
+
+.timePicker {
+ display: inline-block;
+ text-align: center;
+ margin: 10px;
+ border-radius: 5px;
+ border-width: 1px;
+ display:inline-flex;
+ font-size: 15px;
+ width: 200px;
+ border-color: rgba(173, 171, 171, 0.459);
+}
+
+.specialReqLabel {
+    margin: 10px;
+}
+
+.clientContactInfo {
+    display: inline-flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+}

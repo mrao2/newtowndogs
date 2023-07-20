@@ -53,26 +53,29 @@ const ConsultationForm = () => {
                 </div>
 
                 <br />
-                <div className="clientPhoneNumber">
+                <div className="clientContactInfo">
+                    <div className="clientPhoneNumber">
 
-                    <Form.Group className="clientPhoneNumber" controlId="clientPhoneNumber">
-                        <Form.Label>Phone Number: </Form.Label>
-                        <Form.Control type="tel" placeholder="555-555-5555" pattern="[0-9]{10}" />
-                    </Form.Group>
-                </div>
-                <br />
-                <div className="clientEmail">
+                        <Form.Group className="clientPhoneNumber" controlId="clientPhoneNumber">
+                            <Form.Label>Phone Number: </Form.Label>
+                            <Form.Control type="tel" placeholder="555-555-5555" pattern="[0-9]{10}" />
+                        </Form.Group>
+                    </div>
+                    <br />
+                    <div className="clientEmail">
 
-                    <Form.Group className="clientEmail" controlId="clientEmail">
-                        <Form.Label>Email address: </Form.Label>
-                        <Form.Control type="email" placeholder="name@example.com" />
-                    </Form.Group>
+                        <Form.Group className="clientEmail" controlId="clientEmail">
+                            <Form.Label>Email address: </Form.Label>
+                            <Form.Control type="email" placeholder="name@example.com" />
+                        </Form.Group>
+                    </div>
+
                 </div>
                 <br />
                 <div>
-                    <p className="consultationNotice">Please note, all first-time consultation appointments are 1 hour long.</p>
-                    <label>Select Appointment Start Time: </label>
-                    <TimePicker value={startTime} onChange={handleStartTimeChange} disableClock={true} />
+                    <p className="consultationNotice">Please note, all first-time consultation appointments are 1 hour.</p>
+                    <label className="timePicker">Select Appointment Start Time: </label>
+                    <TimePicker className="timePicker" value={startTime} onChange={handleStartTimeChange} disableClock={true} />
                 </div>
                 <br />
                 <div id="appDatePicker">
@@ -82,7 +85,7 @@ const ConsultationForm = () => {
                 <br />
                 <div className="appSpecialRequirements">
                     <Form.Group className="appSpecialRequirements" controlId="appSpecialRequirements">
-                        <Form.Label>Special Requirements: </Form.Label>
+                        <Form.Label className="specialReqLabel">Special Requirements: </Form.Label>
 
                         <Form.Control as="textarea" rows={3} />
                     </Form.Group>
