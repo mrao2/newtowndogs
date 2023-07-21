@@ -9,6 +9,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    margin: 10px 10px;
 }
 
 .login-form {
@@ -33,10 +34,21 @@
     color: white;
     border: none;
     cursor: pointer;
-    margin: auto;
+    margin: 7px 2px;
+    border-radius: 7px;
+    box-shadow: 0 0 2px 2px rgba(225, 49, 102, 0.825);
 }
 
 .login-show {
     padding: 10px;
     color: #f1356d;
+}
+
+.login-button:hover{
+    background-color: rgba(225, 49, 102, 0.5);
+    transition: 0.3s;
+}
+
+.login-title {
+   border: 10px 10px;
 }
