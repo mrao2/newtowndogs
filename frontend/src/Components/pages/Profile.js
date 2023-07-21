@@ -38,7 +38,7 @@ export const Profile = () => {
             <h1>Owner Information</h1>
             <form onSubmit={handleSubmit}>
                 <div>
-                    <label>Owner First Name</label>
+                    <label>First Name</label>
                     <input
                         type="text"
                         name="firstName"
@@ -47,7 +47,7 @@ export const Profile = () => {
                     />
                 </div>
                 <div>
-                    <label>Owner Last Name</label>
+                    <label>Last Name</label>
                     <input
                         type="text"
                         name="lastName"
@@ -56,7 +56,7 @@ export const Profile = () => {
                     />
                 </div>
                 <div>
-                    <label>Display Name</label>
+                    <label>Display Name (this will be displayed in blog posts)</label>
                     <input
                         type="text"
                         name="displayName"
@@ -138,7 +138,7 @@ export const Profile = () => {
                     />
                 </div>
                 <div>
-                    <label>Dog Age</label>
+                    <label>Dog Age (years)</label>
                     <input
                         type="text"
                         name="dogAge"
@@ -186,7 +186,7 @@ export const Profile = () => {
                     />
                 </div>
                 <div>
-                    <label>Dog Allergies</label>
+                    <label>Dog Allergies (if none, enter "n/a")</label>
                     <input
                         type="text"
                         name="dogAllergies"
