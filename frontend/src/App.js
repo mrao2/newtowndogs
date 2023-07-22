@@ -1,5 +1,5 @@
 import React from "react";
-import Navbar from "./Components/Navbar";
+import Navbar from "./Components/Navbar/Navbar";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Create from "./Components/pages/Blog/Create";
 import BlogDetails from "./Components/pages/Blog/BlogDetails";
@@ -7,6 +7,8 @@ import NotFound from "./NotFound";
 import BlogHome from "./Components/pages/Blog/BlogHome";
 import Homepage from "./Components/pages/Homepage";
 import "./App.css";
+import Login from "./Components/pages/Login";
+import BookingPage from "./Components/pages/BookingPage/BookingPage";
 
 function App() {
   return (
@@ -26,6 +28,13 @@ function App() {
             </Route>
             <Route exact path="/blogs/:BlogId">
               <BlogDetails />
+            </Route>
+            <Route exact path="/Login">
+              <Login />
+            </Route>
+            <Route exact path="/BookingPage">
+
+              <BookingPage />
             </Route>
             <Route path="*">
               <NotFound />
