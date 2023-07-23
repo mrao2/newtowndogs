@@ -1,6 +1,8 @@
 const read = require("./SqlFunctions/Read.js");
 const express = require("express");
 const path = require("path");
+const secretCode = require('dotenv').config();
+
 const { writeFileSync } = require("fs");
 const crypto = require("crypto");
 const { stringify } = require("querystring");
@@ -21,14 +23,24 @@ app.use(express.static(path.resolve(__dirname, "../frontend")));
 app.use(express.json());
 
 app.get("/api/data", async (req, res) => {
-  try {
-    const allBlogs = await read();
-    res.send(allBlogs);
-  } catch (err) {
-    // Handle errors here, if necessary
-    console.error("Error retrieving data:", err);
-    res.status(500).send("Error retrieving data");
-  }
+     let sql = `SELECT * FROM blogs`;
+    connection.query(sql, function(err, data, fields) {
+      if (err) throw err;
+      res.json({
+        status: 200,
+        data,
+        message: "User lists retrieved successfully"
+      })
+    })
+//   try {
+//     const sq = "SELECT * FROM blogs";
+//     const allBlogs = await read(req, res, sq);
+//     res.send(allBlogs);
+//   } catch (err) {
+//     // Handle errors here, if necessary
+//     console.error("Error retrieving data:", err);
+//     res.status(500).send("Error retrieving data");
+//   }
 });
 
 // API endpoint to fetch a specific blog by BlogId
@@ -46,19 +58,6 @@ app.get("/api/data/:BlogId", async (req, res) => {
     }
   }
 
-  // const selectQuery = 'SELECT * FROM blogs WHERE BlogId = ?';
-  // connection.query(selectQuery, [BlogId], (err, results) => {
-  //   if (err) {
-  //     console.error('Error fetching data:', err);
-  //     res.status(500).json({ error: 'Error fetching data' });
-  //   } else {
-  //     if (results.length === 0) {
-  //       res.status(404).json({ error: 'Blog not found' });
-  //     } else {
-  //       res.json(results[0]);
-  //     }
-  //   }
-  // });
 });
 
 // app.post('/api/data',(req, res) =>{
