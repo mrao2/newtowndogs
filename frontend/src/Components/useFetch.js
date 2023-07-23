@@ -30,7 +30,6 @@ const useFetch = (url) => {
         // if the response has been recieved, it then assigns the json file date into a object named data. isPending is set to false since its now loaded, and setError is null due to successful load.
         .then((data) => {
           setData(data);
-          console.log(data);
           setIsPending(false);
           setError(null);
         })
