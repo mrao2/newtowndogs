@@ -19,7 +19,7 @@ app.get("/api", (req, res) => {
 app.get('/api/data', (req, res) => {
     
     res.send(JSON.stringify(jsonData));
-  });
+    });
 
 app.post('/api/data',(req, res) =>{
     req.body.id = crypto.randomUUID();

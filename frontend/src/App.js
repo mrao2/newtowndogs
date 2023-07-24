@@ -8,6 +8,7 @@ import BlogHome from "./Components/pages/Blog/BlogHome";
 import Homepage from "./Components/pages/Homepage";
 import "./App.css";
 import Login from "./Components/pages/Login";
+import BookingPage from "./Components/pages/BookingPage/BookingPage";
 import { Profile } from "./Components/pages/Profile";
 
 function App() {
@@ -31,6 +32,10 @@ function App() {
             </Route>
             <Route exact path="/Login">
               <Login />
+            </Route>
+            <Route exact path="/BookingPage">
+
+              <BookingPage />
             </Route>
             <Route exact path="/Profile">
               <Profile />
