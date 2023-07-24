@@ -1,7 +1,7 @@
 const read = require("./SqlFunctions/Read.js");
 const express = require("express");
 const path = require("path");
-const secretCode = require('dotenv').config();
+require("dotenv").config();
 
 const { writeFileSync } = require("fs");
 const crypto = require("crypto");
@@ -9,10 +9,10 @@ const { stringify } = require("querystring");
 
 var mysql = require("mysql");
 var connection = mysql.createConnection({
-  host: "Dalton-Laptop",
-  user: "dogtownuser",
-  password: "admin",
-  database: "blogs",
+    host: process.env.Host,
+    user: process.env.User,
+    password: process.env.Password,
+    database: process.env.Database,
 });
 
 const PORT = process.env.PORT || 3001;
