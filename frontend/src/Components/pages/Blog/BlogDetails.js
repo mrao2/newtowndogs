@@ -3,10 +3,10 @@ import { useHistory, useParams } from "react-router-dom";
 import useFetch from "../../useFetch";
 
 const BlogDetails = () => {
-  const { id } = useParams();
+  const { BlogId } = useParams();
   const history = useHistory();
   const { data: blog, isPending, error } = useFetch(
-    "/api/data/" + id
+    `/api/data/${BlogId}`
   );
 
   const [title, setTitle] = useState("");
@@ -18,9 +18,9 @@ const BlogDetails = () => {
   // Update state with blog data once it is fetched
   useEffect(() => {
     if (blog) {
-      setTitle(blog.title);
-      setBody(blog.body);
-      setAuthor(blog.author);
+      setTitle(blog.Title);
+      setBody(blog.Body);
+      setAuthor(blog.Author);
     }
   }, [blog]);
 
@@ -30,7 +30,7 @@ const BlogDetails = () => {
 
     setIsPendingUpdate(true);
 
-    fetch("/api/data/" + id, {
+    fetch("/api/data/" + BlogId, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(updatedBlog),
@@ -46,7 +46,7 @@ const BlogDetails = () => {
   };
 
   const handleClick = () => {
-    fetch("/api/data/" + blog.id, {
+    fetch("/api/data/" + blog.BlogId, {
       method: "DELETE",
     })
       .then(() => {
@@ -63,9 +63,9 @@ const BlogDetails = () => {
       {error && <div>{error}</div>}
       {blog && (
         <article>
-          {!isEditing && <h2>{blog.title}</h2>}
-          {!isEditing && <p>Written by {blog.author}</p>}
-          {!isEditing && <div>{blog.body}</div>}
+          {!isEditing && <h2>{blog[0].Title}</h2>}
+          {!isEditing && <p>Written by {blog[0].Author}</p>}
+          {!isEditing && <div>{blog[0].Body}</div>}
 
           {isEditing && (
             <div className="create">
