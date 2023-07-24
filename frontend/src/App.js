@@ -9,7 +9,7 @@ import Homepage from "./Components/pages/Homepage";
 import "./App.css";
 import Login from "./Components/pages/Login";
 import BookingPage from "./Components/pages/BookingPage/BookingPage";
-import { Profile } from "./Components/pages/Profile";
+import Profile from "./Components/pages/Profile";
 
 function App() {
   return (
@@ -21,20 +21,22 @@ function App() {
             <Route exact path="/">
               <Homepage />
             </Route>
+            <Route exact path="/profile">
+              <Profile />
+            </Route>
             <Route exact path="/BlogHome">
               <BlogHome />
             </Route>
             <Route exact path="/create">
               <Create />
             </Route>
-            <Route exact path="/blogs/:id">
+            <Route exact path="/blogs/:BlogId">
               <BlogDetails />
             </Route>
             <Route exact path="/Login">
               <Login />
             </Route>
             <Route exact path="/BookingPage">
-
               <BookingPage />
             </Route>
             <Route exact path="/Profile">
