@@ -9,10 +9,10 @@ const { stringify } = require("querystring");
 
 var mysql = require("mysql");
 var connection = mysql.createConnection({
-    host: process.env.Host,
-    user: process.env.User,
-    password: process.env.Password,
-    database: process.env.Database,
+  host: process.env.Host,
+  user: process.env.User,
+  password: process.env.Password,
+  database: process.env.Database,
 });
 
 const PORT = process.env.PORT || 3001;
@@ -23,24 +23,24 @@ app.use(express.static(path.resolve(__dirname, "../frontend")));
 app.use(express.json());
 
 app.get("/api/data", async (req, res) => {
-     let sql = `SELECT * FROM blogs`;
-    connection.query(sql, function(err, data, fields) {
-      if (err) throw err;
-      res.json({
-        status: 200,
-        data,
-        message: "User lists retrieved successfully"
-      })
-    })
-//   try {
-//     const sq = "SELECT * FROM blogs";
-//     const allBlogs = await read(req, res, sq);
-//     res.send(allBlogs);
-//   } catch (err) {
-//     // Handle errors here, if necessary
-//     console.error("Error retrieving data:", err);
-//     res.status(500).send("Error retrieving data");
-//   }
+  let sql = `SELECT * FROM newtowndogs`;
+  connection.query(sql, function (err, data, fields) {
+    if (err) throw err;
+    res.json({
+      status: 200,
+      data,
+      message: "User lists retrieved successfully",
+    });
+  });
+  //   try {
+  //     const sq = "SELECT * FROM blogs";
+  //     const allBlogs = await read(req, res, sq);
+  //     res.send(allBlogs);
+  //   } catch (err) {
+  //     // Handle errors here, if necessary
+  //     console.error("Error retrieving data:", err);
+  //     res.status(500).send("Error retrieving data");
+  //   }
 });
 
 // API endpoint to fetch a specific blog by BlogId
@@ -57,7 +57,6 @@ app.get("/api/data/:BlogId", async (req, res) => {
       res.status(500).send("Error retrieving data");
     }
   }
-
 });
 
 // app.post('/api/data',(req, res) =>{
