@@ -24,14 +24,14 @@ const ReturnCustomerForm = () => {
         setEndDate(endDate);
     };
 
-    const handleStartTimeChange = () => {
+    const handleStartTimeChange = (startTime) => {
 
         setStartTime(startTime);
 
     };
 
 
-    const handleEndTimeChange = () => {
+    const handleEndTimeChange = (endTime) => {
 
         setEndTime(endTime);
 
