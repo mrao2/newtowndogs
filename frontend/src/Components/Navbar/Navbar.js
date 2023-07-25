@@ -10,9 +10,8 @@ function Navbar() {
         <a href="/">Home</a>
         <a href="/profile">Profile</a>
         <a href="/about">About Us</a>
-        <a href="/create">
-          <Link to="/Login">Sign Up</Link>
-        </a>
+        <Link to="/Login">Sign Up</Link>
+
         <Link to="/BookingPage">Book Sitter</Link>
         <Link to="/bloghome">Blog</Link>
 
@@ -27,9 +26,7 @@ function Navbar() {
               <a href="/">Home</a>
               <a href="/profile">Profile</a>
               <a href="/about">About Us</a>
-              <a href="/create">
-                <Link to="/Login">Sign Up</Link>
-              </a>
+              <Link to="/Login">Sign Up</Link>
               <Link to="/BookingPage">Book Sitter</Link>
               <Link to="/bloghome">Blog</Link>
 
