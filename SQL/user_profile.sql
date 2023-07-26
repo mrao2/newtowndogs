@@ -4,6 +4,7 @@ CREATE TABLE user_profile (
     FOREIGN KEY (last_name) REFERENCES login_app(last_name),
     FOREIGN KEY (email) REFERENCES login_app(email),
     FOREIGN KEY (username) REFERENCES login_app(username),
+    user_id INT PRIMARY KEY AUTO_INCREMENT,
     ownerAddress VARCHAR (100),
     ownerCity VARCHAR (30),
     ownerState VARCHAR (2),

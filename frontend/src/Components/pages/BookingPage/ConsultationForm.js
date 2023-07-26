@@ -10,11 +10,11 @@ import 'react-time-picker/dist/TimePicker.css';
 import 'react-clock/dist/Clock.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+
 const ConsultationForm = () => {
     const [date, setDate] = useState(new Date());
     const [startDate, setStartDate] = useState();
     const [startTime, setStartTime] = useState('09:00');
-
 
 
     const handleChange = (startDate) => {

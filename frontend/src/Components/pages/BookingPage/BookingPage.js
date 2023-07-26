@@ -7,6 +7,7 @@ import 'react-clock/dist/Clock.css';
 import ReturnCustomerForm from './ReturnCustomerForm';
 import ConsultationForm from './ConsultationForm';
 import './BookingPage.css';
+import MyFormValidator from './MyFormValidator';
 
 
 const BookingPage = () => {
@@ -15,6 +16,8 @@ const BookingPage = () => {
     const handleOnChange = () => {
         setIsChecked(!isChecked);
     };
+
+
     return (
         <>
             <h1 className="pageHeader">Book Your Dog Sitter</h1>
@@ -23,14 +26,14 @@ const BookingPage = () => {
                 <label for="isConsultation"> Please check this box if this is your first visit.</label>
             </div>
             <div className="result" >
-                {isChecked ? "This is your first visit." : "You are a returning customer."}
+                {isChecked ? `This is your first visit.` : "You are a returning customer."}
             </div>
             <br />
             <div>
                 {isChecked ? <ConsultationForm /> : <ReturnCustomerForm />}
             </div>
 
-
+            <MyFormValidator />
 
 
         </>
