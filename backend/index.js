@@ -7,8 +7,8 @@ const { writeFileSync } = require("fs");
 const crypto = require("crypto");
 const { stringify } = require("querystring");
 
-var mysql = require("mysql");
-var connection = mysql.createConnection({
+const mysql = require("mysql");
+const connection = mysql.createConnection({
   host: process.env.Host,
   user: process.env.User,
   password: process.env.Password,
@@ -66,6 +66,22 @@ app.get("/api/data/:BlogId", async (req, res) => {
 //     writeFileSync('./data/db.json', JSON.stringify(jsonData, undefined, 2));
 //     res.send(jsonData);
 // })
+
+
+app.post("/api/test_data", (req, res) => {
+  let sql = `INSERT INTO test_table (test_text) VALUES ('?')`;
+  connection.query(sql, function (err, data, fields) {
+    if (err) throw err;
+    res.json({
+      status: 200,
+      data,
+      message: "appointment submitted"
+    })
+  });
+});
+
+
+
 
 app.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`);

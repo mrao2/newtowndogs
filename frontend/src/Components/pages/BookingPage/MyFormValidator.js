@@ -1,21 +1,23 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Button from 'react-bootstrap/esm/Button';
-import { useForm } from "react-hook-form";
-import useFetch from "use-http";
+
 
 const MyFormValidator = () => {
-    const { register, handleSubmit } = useForm();
-    const { data, loading, error } = useFetch("/api/test_data");
 
-    const onSubmit = (data) => {
-        console.log(data);
-    };
+    const [test_text, setTest_text] = useState("");
+
+    const test_form = document.getElementById("test_form");
+
+    fetch("/api/appointments", {
+        method: "POST",
+        body: JSON.stringify(form.serializeArray()),
+    })
 
     return (
-        <form onSubmit={handleSubmit(onSubmit)}>
-            <input name="name" ref={register("name")} />
-            <input name="email" ref={register("email")} />
-            <Button type="submit">Submit</Button>
+        <form id="test_form">
+            <input type="text" name="test_text" className="form-control" />
+
+            <Button type="submit" >Submit</Button>
         </form>
     )
 
