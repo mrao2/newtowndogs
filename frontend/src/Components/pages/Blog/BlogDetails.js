@@ -63,9 +63,9 @@ const BlogDetails = () => {
       {error && <div>{error}</div>}
       {blog && (
         <article>
-          {!isEditing && <h2>{blog[0].Title}</h2>}
-          {!isEditing && <p>Written by {blog[0].Author}</p>}
-          {!isEditing && <div>{blog[0].Body}</div>}
+          {!isEditing && <h2>{blog.data[0].Title}</h2>}
+          {!isEditing && <p>Written by {blog.data[0].Author}</p>}
+          {!isEditing && <div>{blog.data[0].Body}</div>}
 
           {isEditing && (
             <div className="create">

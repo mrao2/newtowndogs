@@ -8,8 +8,8 @@ var connection = mysql.createConnection({
   database: process.env.Database,
 });
 
-const Read = async (req, res, query) => {
-        connection.query(query, function(err, data, fields) {
+const Read = async (req, res, query, TableId = "") => {
+        connection.query(query,[TableId], function(err, data, fields) {
             if (err) throw err;
             res.json({
                 data
