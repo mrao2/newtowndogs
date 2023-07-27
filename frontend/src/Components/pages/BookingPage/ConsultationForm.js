@@ -23,7 +23,7 @@ const ConsultationForm = () => {
 
     };
 
-    const handleStartTimeChange = () => {
+    const handleStartTimeChange = (startTime) => {
 
         setStartTime(startTime);
 
