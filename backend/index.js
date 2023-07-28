@@ -19,14 +19,14 @@ app.use(express.static(path.resolve(__dirname, "../frontend")));
 app.use(express.json());
 
 app.get("/api/data", async (req, res) => {
-  await read(req, res, "SELECT * FROM blogs");
+  await read(req, res, "SELECT * FROM newtowndogs");
 });
 
 // API endpoint to fetch a specific blog by BlogId
 app.get("/api/data/:BlogId", async (req, res) => {
   const { BlogId } = req.params;
 
-  await read(req, res, "SELECT * FROM blogs WHERE BlogId = ?", BlogId);
+  await read(req, res, "SELECT * FROM newtowndogs WHERE BlogId = ?", BlogId);
 });
 
 app.listen(PORT, () => {
