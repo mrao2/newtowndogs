@@ -11,12 +11,22 @@ import 'react-clock/dist/Clock.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const ReturnCustomerForm = () => {
-    const [date, setDate] = useState(new Date());
+    // const [date, setDate] = useState(new Date());
     const [startDate, setStartDate] = useState();
     const [endDate, setEndDate] = useState();
     const [startTime, setStartTime] = useState('09:00');
     const [endTime, setEndTime] = useState('21:00');
+    const [firstName, setFirstName] = useState("");
+    const [lastName, setLastName] = useState("");
+    const [phoneNum, setPhoneNum] = useState();
+    const [email, setEmail] = useState();
+    const [isConsultation, setIsConsultation] = useState(false);
 
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        const appointment = { startDate, endDate, startTime, endTime, firstName, lastName, email, phoneNum, isConsultation };
+    }
 
     const handleChange = (range) => {
         const [startDate, endDate] = range;

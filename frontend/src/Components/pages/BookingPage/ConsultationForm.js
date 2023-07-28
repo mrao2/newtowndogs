@@ -12,10 +12,16 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 const ConsultationForm = () => {
-    const [date, setDate] = useState(new Date());
+    // const [date, setDate] = useState(new Date());
     const [startDate, setStartDate] = useState();
     const [startTime, setStartTime] = useState('09:00');
 
+
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        const appointment = { startDate, startTime, firstName, lastName, email, phoneNum, isConsultation };
+    }
 
     const handleChange = (startDate) => {
 
