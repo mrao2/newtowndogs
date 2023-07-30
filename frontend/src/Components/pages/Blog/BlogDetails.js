@@ -5,32 +5,30 @@ import useFetch from "../../useFetch";
 const BlogDetails = () => {
   const { BlogId } = useParams();
   const history = useHistory();
-  const { data: blog, isPending, error } = useFetch(
-    `/api/data/${BlogId}`
-  );
+  const { data: blog, isPending, error } = useFetch(`/api/data/${BlogId}`);
   const authors = [
     { value: "mario", label: "Mario" },
-    { value: "luigi", label: "Luigi" }
-  ]
-
+    { value: "luigi", label: "Luigi" },
+  ];
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
-  const [author, setAuthor] = useState(authors[0].value);
+  const [author, setAuthor] = useState("");
+
   const [isPendingUpdate, setIsPendingUpdate] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
-  const [hasChanged, setHasChanged] = useState(false);
 
   // Update state with blog data once it is fetched
   useEffect(() => {
     if (blog) {
-      setTitle(blog.Title);
-      setBody(blog.Body);
-      setAuthor(blog.Author);
+      setTitle(blog.data[0].Title);
+      setBody(blog.data[0].Body);
+      setAuthor(blog.data[0].Author);
     }
   }, [blog]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
     const updatedBlog = { title, body, author };
 
     setIsPendingUpdate(true);
@@ -75,35 +73,35 @@ const BlogDetails = () => {
 
           {isEditing && (
             <div className="create">
-            <form onSubmit={handleSubmit}>
-              <label>Blog Title:</label>
-              <input
-                type="text"
-                required
-                value={blog.data[0].Title}
-                onChange={(e) => setTitle(e.target.value)}
-              />
-              <label>Blog body:</label>
-              <textarea
-                required
-                value={blog.data[0].Body}
-                onChange={(e) => setBody(e.target.value)}
-              ></textarea>
-              <label>Blog author:</label>
-              <select
-                value={blog.data[0].Author}
-                onChange={(e) => setAuthor(e.target.value)}
-              >
-                   {authors.map((author) => (
-              <option key={author.value} value={author.value}>
-                {author.label}
-              </option>
-          ))}
-              </select>
-              <button type="submit" disabled={isPendingUpdate}>
-                {isPendingUpdate ? "Updating..." : "Update"}
-              </button>
-            </form>
+              <form onSubmit={handleSubmit}>
+                <label>Blog Title:</label>
+                <input
+                  type="text"
+                  required
+                  value={blog.data[0].Title}
+                  onChange={(e) => setTitle(e.target.value)}
+                />
+                <label>Blog body:</label>
+                <textarea
+                  required
+                  value={blog.data[0].Body}
+                  onChange={(e) => setBody(e.target.value)}
+                ></textarea>
+                <label>Blog author:</label>
+                <select
+                  value={blog.data[0].Author}
+                  onChange={(e) => setAuthor(e.target.value)}
+                >
+                  {authors.map((author) => (
+                    <option key={author.value} value={author.value}>
+                      {author.label}
+                    </option>
+                  ))}
+                </select>
+                <button type="submit" disabled={isPendingUpdate}>
+                  {isPendingUpdate ? "Updating..." : "Update"}
+                </button>
+              </form>
             </div>
           )}
 
