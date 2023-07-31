@@ -23,7 +23,7 @@ app.use(express.static(path.resolve(__dirname, "../frontend")));
 app.use(express.json());
 
 app.get("/api/data", async (req, res) => {
-     let sql = `SELECT * FROM blogs`;
+     let sql = `SELECT * FROM blogs`;``
     connection.query(sql, function(err, data, fields) {
       if (err) throw err;
       res.json({
