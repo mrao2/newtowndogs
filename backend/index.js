@@ -8,10 +8,10 @@ require("dotenv").config();
 
 var mysql = require("mysql");
 var connection = mysql.createConnection({
-    host: process.env.Host,
-    user: process.env.User,
-    password: process.env.Password,
-    database: process.env.Database,
+  host: process.env.Host,
+  user: process.env.User,
+  password: process.env.Password,
+  database: process.env.Database,
 });
 
 const PORT = process.env.PORT || 3001;
@@ -24,36 +24,46 @@ app.use(express.json());
 
 // Blog Functions!
 app.get("/api/data", async (req, res) => {
-    await read(req,res,'SELECT * FROM blogs')
-    
+  await read(req, res, 'SELECT * FROM blogs')
+
 });
 
 app.get("/api/data/:BlogId", async (req, res) => {
   const { BlogId } = req.params;
 
-    await read(req,res, 'SELECT * FROM blogs WHERE BlogId = ?', BlogId)
+  await read(req, res, 'SELECT * FROM blogs WHERE BlogId = ?', BlogId)
 
 });
 
-app.post('/api/data', async(req, res) =>{
-   await create(req,res, 'INSERT INTO blogs SET ?')
+app.post('/api/data', async (req, res) => {
+  await create(req, res, 'INSERT INTO blogs SET ?')
 })
 
-app.delete('/api/data/:BlogId', async(req, res) =>{
-    const { BlogId } = req.params;
-    await deleteRow(req,res, 'DELETE FROM blogs WHERE BlogId = ?', BlogId)
- })
+app.delete('/api/data/:BlogId', async (req, res) => {
+  const { BlogId } = req.params;
+  await deleteRow(req, res, 'DELETE FROM blogs WHERE BlogId = ?', BlogId)
+})
 
- app.put('/api/data/:BlogId', async(req, res) =>{
-    console.log(req.body);
-    const { BlogId } = req.params;
-    const Title = req.body.title;
-    console.log(Title);
-    const Body = req.body.body;
-    const Author = req.body.author;
-    await update(req, res, 'UPDATE blogs SET Title = ?, Body = ?, Author = ? WHERE BlogId = ?', BlogId, Title, Body, Author)
- })
- 
+app.put('/api/data/:BlogId', async (req, res) => {
+  console.log(req.body);
+  const { BlogId } = req.params;
+  const Title = req.body.title;
+  console.log(Title);
+  const Body = req.body.body;
+  const Author = req.body.author;
+  await update(req, res, 'UPDATE blogs SET Title = ?, Body = ?, Author = ? WHERE BlogId = ?', BlogId, Title, Body, Author)
+})
+
+//appointment functions
+app.post('/api/appointments', async (req, res) => {
+  await create(req, res, 'INSERT INTO appointments SET ?')
+})
+
+app.delete('/api/appointments', async (req, res) => {
+  const { appointment_id } = req.params;
+  await deleteRow(req, res, 'DELETE FROM appointments WHERE appointment_id = ?', appointment_id);
+})
+
 
 app.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`);
