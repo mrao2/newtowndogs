@@ -1,11 +1,10 @@
 const read = require("./SqlFunctions/Read.js");
+const create = require("./SqlFunctions/Create.js");
+const deleteRow = require('./SqlFunctions/Delete.js')
+const update = require("./SqlFunctions/Update.js")
 const express = require("express");
 const path = require("path");
 require("dotenv").config();
-
-const { writeFileSync } = require("fs");
-const crypto = require("crypto");
-const { stringify } = require("querystring");
 
 var mysql = require("mysql");
 var connection = mysql.createConnection({
@@ -22,38 +21,49 @@ const app = express();
 app.use(express.static(path.resolve(__dirname, "../frontend")));
 app.use(express.json());
 
+
+// Blog Functions!
 app.get("/api/data", async (req, res) => {
-     let sql = `SELECT * FROM blogs`;``
-    connection.query(sql, function(err, data, fields) {
-      if (err) throw err;
-      res.json({
-        status: 200,
-        data,
-        message: "User lists retrieved successfully"
-      })
-    })
-//   try {
-//     const sq = "SELECT * FROM blogs";
-//     const allBlogs = await read(req, res, sq);
-//     res.send(allBlogs);
-//   } catch (err) {
-//     // Handle errors here, if necessary
-//     console.error("Error retrieving data:", err);
-//     res.status(500).send("Error retrieving data");
-//   }
+    await read(req,res,'SELECT * FROM blogs')
+    
 });
 
-app.get('/api/data', (req, res) => {
-    
-    res.send(JSON.stringify(jsonData));
-  });
+// API endpoint to fetch a specific blog by BlogId
+app.get("/api/data/:BlogId", async (req, res) => {
+  const { BlogId } = req.params;
+  try {
+    const singleBlog = await read(BlogId);
+    res.send(singleBlog);
+  } catch (err) {
+    if (err === "Blog Not Found") {
+      res.status(404).json({ error: "Blog not found" });
+    } else {
+      console.error("Error retrieving data:", err);
+      res.status(500).send("Error retrieving data");
+    }
+  }
 
-// app.post('/api/data',(req, res) =>{
-//     req.body.id = crypto.randomUUID();
-//     jsonData.blogs.push(req.body);
-//     writeFileSync('./data/db.json', JSON.stringify(jsonData, undefined, 2));
-//     res.send(jsonData);
-// })
+});
+
+app.post('/api/data', async(req, res) =>{
+   await create(req,res, 'INSERT INTO blogs SET ?')
+})
+
+app.delete('/api/data/:BlogId', async(req, res) =>{
+    const { BlogId } = req.params;
+    await deleteRow(req,res, 'DELETE FROM blogs WHERE BlogId = ?', BlogId)
+ })
+
+ app.put('/api/data/:BlogId', async(req, res) =>{
+    console.log(req.body);
+    const { BlogId } = req.params;
+    const Title = req.body.title;
+    console.log(Title);
+    const Body = req.body.body;
+    const Author = req.body.author;
+    await update(req, res, 'UPDATE blogs SET Title = ?, Body = ?, Author = ? WHERE BlogId = ?', BlogId, Title, Body, Author)
+ })
+ 
 
 app.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`);
