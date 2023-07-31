@@ -65,19 +65,39 @@ app.delete('/api/appointments', async (req, res) => {
 
 
 
-app.post("/api/test_data", (req, res) => {
-  let sql = `INSERT INTO test_table (test_text) VALUES ('?')`;
-  connection.query(sql, function (err, data, fields) {
-    if (err) throw err;
-    res.json({
-      status: 200,
-      data,
-      message: "appointment submitted"
-    })
-  });
+// app.post("/api/test_data", (req, res) => {
+//   let sql = `INSERT INTO test_table (test_text) VALUES ('?')`;
+//   connection.query(sql, function (err, data, fields) {
+//     if (err) throw err;
+//     res.json({
+//       status: 200,
+//       data,
+//       message: "appointment submitted"
+//     })
+//   });
+// });
+
+// connection.connect((err) => {
+//   if (err) {
+//     console.log("Error connecting to MySQL:", err);
+//     return;
+//   }
+
+//   // Execute a query against the database
+//   connection.query("SELECT * FROM appointments", (err, results) => {
+//     if (err) {
+//       console.log("Error querying MySQL:", err);
+//       return;
+//     }
+
+//     // Check the results of the query
+//     if (results.length > 0) {
+//       console.log("Connection to MySQL successful!");
+//     } else {
+//       console.log("Connection to MySQL failed!");
+//     }
+//   });
 });
-
-
 
 
 app.listen(PORT, () => {

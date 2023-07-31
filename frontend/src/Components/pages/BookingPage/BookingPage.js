@@ -7,7 +7,7 @@ import 'react-clock/dist/Clock.css';
 import ReturnCustomerForm from './ReturnCustomerForm';
 import ConsultationForm from './ConsultationForm';
 import './BookingPage.css';
-import MyTestForm from './MyTestForm';
+
 
 const BookingPage = () => {
 
@@ -32,7 +32,7 @@ const BookingPage = () => {
                 {isChecked ? <ConsultationForm /> : <ReturnCustomerForm />}
             </div>
 
-            <MyTestForm />
+
 
 
         </>
