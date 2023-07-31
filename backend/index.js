@@ -97,7 +97,7 @@ app.delete('/api/appointments', async (req, res) => {
 //       console.log("Connection to MySQL failed!");
 //     }
 //   });
-});
+// });
 
 
 app.listen(PORT, () => {
