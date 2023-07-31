@@ -8,7 +8,7 @@ var connection = mysql.createConnection({
   database: process.env.Database,
 });
 
-const Read = async (req, res, query, TableId = "") => {
+const Delete = async (req, res, query, TableId = "") => {
         connection.query(query,[TableId], function(err, data, fields) {
             if (err) throw err;
             res.json({
@@ -17,4 +17,4 @@ const Read = async (req, res, query, TableId = "") => {
           })
 };
 
-module.exports = Read;
+module.exports = Delete;

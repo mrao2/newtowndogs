@@ -8,8 +8,9 @@ var connection = mysql.createConnection({
   database: process.env.Database,
 });
 
-const Read = async (req, res, query, TableId = "") => {
-        connection.query(query,[TableId], function(err, data, fields) {
+const Update = async (req, res, query, TableId = "", changedValue1, changedValue2, changedValue3) => {
+    console.log(changedValue1)
+        connection.query(query,[changedValue1,changedValue2,changedValue3,TableId], function(err, data, fields) {
             if (err) throw err;
             res.json({
                 data
@@ -17,4 +18,4 @@ const Read = async (req, res, query, TableId = "") => {
           })
 };
 
-module.exports = Read;
+module.exports = Update;
