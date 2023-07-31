@@ -54,14 +54,14 @@ app.put('/api/data/:BlogId', async (req, res) => {
 })
 
 //appointment functions
-app.post('/api/appointments', async (req, res) => {
+app.post('/appointments', async (req, res) => {
   await create(req, res, 'INSERT INTO appointments SET ?')
 })
 
-app.delete('/api/appointments', async (req, res) => {
-  const { appointment_id } = req.params;
-  await deleteRow(req, res, 'DELETE FROM appointments WHERE appointment_id = ?', appointment_id);
-})
+// app.delete('/api/appointments', async (req, res) => {
+//   const { appointment_id } = req.params;
+//   await deleteRow(req, res, 'DELETE FROM appointments WHERE appointment_id = ?', appointment_id);
+// })
 
 
 
@@ -77,27 +77,27 @@ app.delete('/api/appointments', async (req, res) => {
 //   });
 // });
 
-// connection.connect((err) => {
-//   if (err) {
-//     console.log("Error connecting to MySQL:", err);
-//     return;
-//   }
+connection.connect((err) => {
+  if (err) {
+    console.log("Error connecting to MySQL:", err);
+    return;
+  }
 
-//   // Execute a query against the database
-//   connection.query("SELECT * FROM appointments", (err, results) => {
-//     if (err) {
-//       console.log("Error querying MySQL:", err);
-//       return;
-//     }
+  // Execute a query against the database
+  connection.query("SELECT * FROM appointments", (err, results) => {
+    if (err) {
+      console.log("Error querying MySQL:", err);
+      return;
+    }
 
-//     // Check the results of the query
-//     if (results.length > 0) {
-//       console.log("Connection to MySQL successful!");
-//     } else {
-//       console.log("Connection to MySQL failed!");
-//     }
-//   });
-// });
+    // Check the results of the query
+    if (results.length > 0) {
+      console.log("Connection to MySQL successful!");
+    } else {
+      console.log("Connection to MySQL failed!");
+    }
+  });
+});
 
 
 app.listen(PORT, () => {
