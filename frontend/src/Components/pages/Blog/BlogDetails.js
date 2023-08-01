@@ -78,18 +78,18 @@ const BlogDetails = () => {
                 <input
                   type="text"
                   required
-                  value={blog.data[0].Title}
+                  value={title}
                   onChange={(e) => setTitle(e.target.value)}
                 />
                 <label>Blog body:</label>
                 <textarea
                   required
-                  value={blog.data[0].Body}
+                  value={body}
                   onChange={(e) => setBody(e.target.value)}
                 ></textarea>
                 <label>Blog author:</label>
                 <select
-                  value={blog.data[0].Author}
+                  value={author}
                   onChange={(e) => setAuthor(e.target.value)}
                 >
                   {authors.map((author) => (
