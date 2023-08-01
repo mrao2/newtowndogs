@@ -14,7 +14,7 @@ import { useHistory } from "react-router-dom";
 
 
 const ConsultationForm = () => {
-    const [start_date, setstart_date] = useState();
+    const [startDate, setStartDate] = useState();
     const [startTime, setStartTime] = useState('09:00');
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
@@ -27,7 +27,7 @@ const ConsultationForm = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        const appointment = { start_date, startTime, firstName, lastName, email, phoneNum, isConsultation };
+        const appointment = { start_date: startDate, start_time: startTime, is_consultation: isConsultation };
 
         console.log(appointment);
         setIsPending(true);
@@ -43,9 +43,9 @@ const ConsultationForm = () => {
 
     }
 
-    const handleChange = (start_date) => {
+    const handleChange = (startDate) => {
 
-        setstart_date(start_date);
+        setStartDate(startDate);
 
 
     };
@@ -107,7 +107,7 @@ const ConsultationForm = () => {
                 <br />
                 <div id="appDatePicker">
                     <p>Please select the date you would like to have your consultation.</p>
-                    <DatePicker className="appDatePicker" selected={start_date} onChange={handleChange} />
+                    <DatePicker className="appDatePicker" selected={startDate} onChange={handleChange} />
                 </div>
                 <br />
                 <div className="appSpecialRequirements">

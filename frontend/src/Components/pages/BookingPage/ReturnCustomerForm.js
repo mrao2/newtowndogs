@@ -15,7 +15,7 @@ import { useHistory } from "react-router-dom";
 
 const ReturnCustomerForm = () => {
     // const [date, setDate] = useState(new Date());
-    const [start_date, setstart_date] = useState();
+    const [startDate, setStartDate] = useState();
     const [endDate, setEndDate] = useState();
     const [startTime, setStartTime] = useState('09:00');
     const [endTime, setEndTime] = useState('21:00');
@@ -32,11 +32,11 @@ const ReturnCustomerForm = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        const appointment = { start_date, endDate, startTime, endTime, firstName, lastName, email, phoneNum, isConsultation };
+        const appointment = { start_date: startDate, end_date: endDate, start_time: startTime, end_time: endTime, is_consultation: isConsultation };
 
         setIsPending(true);
 
-        console.log(appointment);
+        console.log(appointment)
 
         fetch("/api/appointments", {
             method: "POST",
@@ -50,8 +50,8 @@ const ReturnCustomerForm = () => {
     }
 
     const handleChange = (range) => {
-        const [start_date, endDate] = range;
-        setstart_date(start_date);
+        const [startDate, endDate] = range;
+        setStartDate(startDate);
         setEndDate(endDate);
     };
 
@@ -121,7 +121,7 @@ const ReturnCustomerForm = () => {
                 <br />
                 <div id="appDatePicker">
                     <p>Please select the date(s) you need a dog sitter.</p>
-                    <DatePicker className="appDatePicker" selected={start_date} onChange={handleChange} start_date={start_date} endDate={endDate} selectsRange />
+                    <DatePicker className="appDatePicker" selected={startDate} onChange={handleChange} startDate={startDate} endDate={endDate} selectsRange />
                 </div>
                 <br />
                 <div className="appSpecialRequirements">
