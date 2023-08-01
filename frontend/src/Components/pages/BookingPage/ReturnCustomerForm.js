@@ -23,6 +23,7 @@ const ReturnCustomerForm = () => {
     const [lastName, setLastName] = useState("");
     const [phoneNum, setPhoneNum] = useState();
     const [email, setEmail] = useState();
+    const [description, setDescription] = useState("");
     const [isConsultation, setIsConsultation] = useState(false);
     const [isPending, setIsPending] = useState(false);
     const history = useHistory();
@@ -32,7 +33,7 @@ const ReturnCustomerForm = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        const appointment = { start_date: startDate, end_date: endDate, start_time: startTime, end_time: endTime, is_consultation: isConsultation };
+        const appointment = { start_date: startDate, end_date: endDate, start_time: startTime, end_time: endTime, is_consultation: isConsultation, description };
 
         setIsPending(true);
 
@@ -44,7 +45,7 @@ const ReturnCustomerForm = () => {
             body: JSON.stringify(appointment),
         }).then(() => {
             setIsPending(false);
-            history.push('/AppSubmitted')
+            history.push('/BookingPage')
         });
 
     }
@@ -128,7 +129,7 @@ const ReturnCustomerForm = () => {
                     <Form.Group className="appSpecialRequirements" controlId="appSpecialRequirements">
                         <Form.Label className="specialReqLabel">Special Requirements: </Form.Label>
 
-                        <Form.Control as="textarea" rows={3} />
+                        <Form.Control as="textarea" rows={3} onChange={(e) => setDescription(e.target.value)} />
                     </Form.Group>
                 </div>
                 <br />

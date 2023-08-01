@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import React from 'react';
 import DatePicker from "react-datepicker";
 import 'react-datepicker/dist/react-datepicker.css';
@@ -10,6 +10,7 @@ import 'react-time-picker/dist/TimePicker.css';
 import 'react-clock/dist/Clock.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useHistory } from "react-router-dom";
+// import AppSubmitted from './AppSubmitted';
 
 
 
@@ -21,16 +22,19 @@ const ConsultationForm = () => {
     const [phoneNum, setPhoneNum] = useState();
     const [email, setEmail] = useState();
     const [isConsultation, setIsConsultation] = useState(false);
+    const [description, setDescription] = useState("");
     const [isPending, setIsPending] = useState(false);
+    const [isBooked, setIsBooked] = useState(false);
     const history = useHistory();
 
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        const appointment = { start_date: startDate, start_time: startTime, is_consultation: isConsultation };
+        const appointment = { start_date: startDate, start_time: startTime, is_consultation: isConsultation, description };
 
         console.log(appointment);
         setIsPending(true);
+
 
         fetch("/api/appointments", {
             method: "POST",
@@ -114,17 +118,19 @@ const ConsultationForm = () => {
                     <Form.Group className="appSpecialRequirements" controlId="appSpecialRequirements">
                         <Form.Label className="specialReqLabel">Special Requirements: </Form.Label>
 
-                        <Form.Control as="textarea" rows={3} />
+                        <Form.Control as="textarea" rows={3} onChange={(e) => setDescription(e.target.value)} />
                     </Form.Group>
                 </div>
                 <br />
 
                 {!isPending && <Button className="bookingSubmitButton" type="submit">Submit Appointment Request</Button>}
                 {isPending && <button disabled>Submitting Appointment Request...</button>}
+
             </Form>
         </>
 
     )
+
 }
 
 export default ConsultationForm;
