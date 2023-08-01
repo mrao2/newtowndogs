@@ -42,10 +42,8 @@ app.delete("/api/data/:BlogId", async (req, res) => {
 });
 
 app.put("/api/data/:BlogId", async (req, res) => {
-  console.log(req.body);
   const { BlogId } = req.params;
   const Title = req.body.title;
-  console.log(Title);
   const Body = req.body.body;
   const Author = req.body.author;
   await update(
