@@ -382,12 +382,14 @@ export default function App() {
   const {
     register,
     handleSubmit,
-    //formState: { errors }
+    formState: { errors }
   } = useForm();
 
   const onSubmit = (data) => {
     console.log(data);
   };
+
+  console.log(errors);
 
   return (
     <div className="App">
@@ -398,71 +400,100 @@ export default function App() {
             <label>Frist Name</label>
             <input 
             type="text" 
-            name="firstName" {...register("firstName")} />
+            name="firstName" {...register("firstName", {
+              required: true
+            })} />
         </div>
         
         <div className="form-control">
             <label>Last Name</label>
-            <input type="text" name="lastName" {...register("lastName")} />
+            <input type="text" name="lastName" {...register("lastName", {
+              required: true
+            })} />
         </div>
 
         <div className="form-control">
             <label>Display Name</label>
-            <input type="text" name="displayName" {...register("displayName")} />
+            <input type="text" name="displayName" {...register("displayName", {
+              required: true
+            })} />
         </div>
 
 
         <div className="form-control">
             <label>Street Address</label>
-            <input type="text" name="ownerAddress" {...register("ownerAddress")} />
+            <input type="text" name="ownerAddress" {...register("ownerAddress", {
+              required: true
+            })} />
         </div>
 
         <div className="form-control">
             <label>City</label>
-            <input type="text" name="ownerCity" {...register("ownerCity")} />
+            <input type="text" name="ownerCity" {...register("ownerCity", {
+              required: true
+            })} />
         </div>
         
         <div className="form-control">
             <label>State</label>
-            <input type="text" name="ownerState" {...register("ownerState")} />
+            <input type="text" name="ownerState" {...register("ownerState", {
+              required: true
+            })} />
 
         </div>
         
         <div className="form-control">
             <label>Zip Code</label>
-            <input type="text" name="ownerZip" {...register("ownerZip")} />
+            <input type="text" name="ownerZip" {...register("ownerZip", {
+              required: true,
+              minLength: 5,
+              maxLength: 5
+            })} />
 
         </div>
         
         <div className="form-control">
             <label>Email Address</label>
-            <input type="text" name="ownerEmail" {...register("ownerEmail")} />
-
+            <input type="text" name="ownerEmail" {...register("ownerEmail", {
+              required: true,
+              pattern: /^[^@ ]+@[^@ ]+\.[^@ .]{2,}$/
+            })}
+          />
+          {errors.ownerEmail && errors.ownerEmail.type === "required" && (
+            <p className="errorMsg">Email is required.</p>
+          )}
+          {errors.ownerEmail && errors.ownerEmail.type === "pattern" && (
+            <p className="errorMsg">Email is not valid.</p>
+          )}
         </div>
         
         <div className="form-control">
             <label>Phone Number</label>
-            <input type="text" name="ownerPhone" {...register("ownerPhone")} />
+            <input type="text" name="ownerPhone" placeholder="(xxx) xxx-xxxx" {...register("ownerPhone", {
+              required: true
+            })} />
 
         </div>
 
         <h1>Dog Information</h1>
 
-        
         <div className="form-control">
             <label>Dog's Name</label>
-            <input type="text" name="dogName" {...register("dogName")} />
-
+            <input type="text" name="dogName" {...register("dogName", {
+              required: true
+          })} />
         </div>
         
         <div className="form-control">
             <label>Dog Breed</label>
-            <input type="text" name="dogBreed" {...register("dogBreed")} />
+            <input type="text" name="dogBreed" {...register("dogBreed", {
+              required: true
+          })} />
         </div>
         
         <div className="form-control">
-            <label>Dog Age (years)</label>
-            <input type="text" name="dogAge" {...register("dogAge")} />
+            <label>Dog Age</label>
+            <input type="text" name="dogAge" placeholder="age in years" {...register("dogAge")} />
         </div>
         
         <div className="form-control">
@@ -477,17 +508,30 @@ export default function App() {
         
         <div className="form-control">
             <label>Dog Birthdate</label>
-            <input type="text" name="dogBirthdate" {...register("dogBirthdate")} />
+            <input type="text" name="dogBirthdate" placeholder="mm/dd" {...register("dogBirthdate", {
+              required: true
+            })} />
+
+
+          {errors.dogBirthdate && errors.dogBirthdate.type === "pattern" && (
+            <p className="errorMsg">Enter date in mm/dd format</p>
+          )}
+            
         </div>
         
         <div className="form-control">
-            <label>Dog Allergies (if none, enter "n/a")</label>
-            <input type="text" name="dogAllergies" {...register("dogAllergies")} />
+            <label>Dog Allergies</label>
+            <input type="text" name="dogAllergies" placeholder="if none, enter 'n/a'" {...register("dogAllergies", {
+              required: true
+            })} />
         </div>
         
         <div className="form-control">
             <label>Dog Weight</label>
-            <input type="text" name="dogWeight" {...register("dogWeight")} />
+            <input type="number" name="dogWeight" placeholder="pounds" {...register("dogWeight", {
+              required: true,
+              valueAsNumber: true
+            })} />
         </div>
 
         <div className="form-control">
@@ -525,17 +569,26 @@ export default function App() {
         
         <div className="form-control">
             <label>Amount of Walks Per Day</label>
-            <input type="text" name="amtWalks" {...register("amtWalks")} />
+            <input type="number" name="amtWalks" {...register("amtWalks", {
+              required: true,
+              valueAsNumber: true
+            })} />
         </div>
 
         <div className="form-control">
             <label>Amount of Meals Per Day</label>
-            <input type="text" name="amtMeals" {...register("amtMeals")} />
+            <input type="number" name="amtMeals" {...register("amtMeals", {
+              required: true,
+              valueAsNumber: true
+            })} />
         </div>
         
         <div className="form-control">
             <label>Amount of Food Per Meal</label>
-            <input type="text" name="amtPerMeal" {...register("amtPerMeal")} />
+            <input type="text" name="amtPerMeal" placeholder="in cups" {...register("amtPerMeal", {
+              required: true,
+              valueAsNumber: true
+            })} />
         </div>
 
         <div className="form-control">
