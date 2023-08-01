@@ -60,7 +60,7 @@ const ConsultationForm = () => {
 
     return (
         <>
-            <Form className="isNotConsultation" >
+            <Form className="isNotConsultation" onSubmit={handleSubmit}>
                 <div className="clientName">
                     <div className="clientFirstName">
 
@@ -118,7 +118,7 @@ const ConsultationForm = () => {
                 </div>
                 <br />
 
-                {!isPending && <Button className="bookingSubmitButton" onSubmit={handleSubmit}>Submit Appointment Request</Button>}
+                {!isPending && <Button className="bookingSubmitButton" >Submit Appointment Request</Button>}
                 {isPending && <button disabled>Submitting Appointment Request...</button>}
             </Form>
         </>
