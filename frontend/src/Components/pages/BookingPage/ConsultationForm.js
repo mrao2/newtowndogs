@@ -14,7 +14,6 @@ import { useHistory } from "react-router-dom";
 
 
 const ConsultationForm = () => {
-    // const [date, setDate] = useState(new Date());
     const [startDate, setStartDate] = useState();
     const [startTime, setStartTime] = useState('09:00');
     const [firstName, setFirstName] = useState("");
@@ -26,20 +25,19 @@ const ConsultationForm = () => {
     const history = useHistory();
 
 
-
-
     const handleSubmit = (e) => {
         e.preventDefault();
         const appointment = { startDate, startTime, firstName, lastName, email, phoneNum, isConsultation };
+
         setIsPending(true);
 
-        ("/api/appointments", {
+        fetch("/api/appointments", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(appointment),
         }).then(() => {
             setIsPending(false);
-            history.push('/BookingPage')
+            history.push('/AppSubmitted')
         });
 
     }
@@ -62,7 +60,7 @@ const ConsultationForm = () => {
 
     return (
         <>
-            <Form className="isNotConsultation" onSubmit={handleSubmit}>
+            <Form className="isNotConsultation" >
                 <div className="clientName">
                     <div className="clientFirstName">
 
@@ -120,7 +118,7 @@ const ConsultationForm = () => {
                 </div>
                 <br />
 
-                {!isPending && <Button className="bookingSubmitButton" >Submit Appointment Request</Button>}
+                {!isPending && <Button className="bookingSubmitButton" onSubmit={handleSubmit}>Submit Appointment Request</Button>}
                 {isPending && <button disabled>Submitting Appointment Request...</button>}
             </Form>
         </>

@@ -65,18 +65,6 @@ app.post('/api/appointments', async (req, res) => {
 
 
 
-// app.post("/api/test_data", (req, res) => {
-//   let sql = `INSERT INTO test_table (test_text) VALUES ('?')`;
-//   connection.query(sql, function (err, data, fields) {
-//     if (err) throw err;
-//     res.json({
-//       status: 200,
-//       data,
-//       message: "appointment submitted"
-//     })
-//   });
-// });
-
 connection.connect((err) => {
   if (err) {
     console.log("Error connecting to MySQL:", err);

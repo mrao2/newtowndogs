@@ -9,8 +9,8 @@ import TimePicker from 'react-time-picker';
 import 'react-time-picker/dist/TimePicker.css';
 import 'react-clock/dist/Clock.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-// import useFetch from './../../useFetch';
 import { useHistory } from "react-router-dom";
+
 
 
 const ReturnCustomerForm = () => {
@@ -29,19 +29,20 @@ const ReturnCustomerForm = () => {
 
 
 
+
     const handleSubmit = (e) => {
         e.preventDefault();
         const appointment = { startDate, endDate, startTime, endTime, firstName, lastName, email, phoneNum, isConsultation };
 
         setIsPending(true);
 
-        ("/api/appointments", {
+        fetch("/api/appointments", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(appointment),
         }).then(() => {
             setIsPending(false);
-            history.push('/BookingPage')
+            history.push('/AppSubmitted')
         });
 
     }
@@ -130,7 +131,7 @@ const ReturnCustomerForm = () => {
                 </div>
                 <br />
                 {!isPending && <Button className="bookingSubmitButton" >Submit Appointment Request</Button>}
-                {isPending && <button disabled>Submitting Appointment Request...</button>}
+                {isPending && <button>Submitting Appointment Request...</button>}
 
             </Form>
         </>
