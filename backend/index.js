@@ -99,6 +99,14 @@ connection.connect((err) => {
   });
 });
 
+app.put('/api/data/:BlogId', async (req, res) => {
+  const { BlogId } = req.params;
+  const Title = req.body.title;
+  const Body = req.body.body;
+  const Author = req.body.author;
+  await update(req, res, 'UPDATE blogs SET Title = ?, Body = ?, Author = ? WHERE BlogId = ?', BlogId, Title, Body, Author)
+})
+
 
 app.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`);
