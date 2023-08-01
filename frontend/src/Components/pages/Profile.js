@@ -1,4 +1,4 @@
-// import './App.css';
+// './index.css';
 import React from "react";
 import { useForm } from 'react-hook-form';
 
@@ -392,17 +392,13 @@ export default function App() {
   return (
     <div className="App">
         <form onSubmit={handleSubmit(onSubmit)}>
+
+        <h1>Owner Information</h1>
         <div className="form-control">
             <label>Frist Name</label>
             <input 
             type="text" 
             name="firstName" {...register("firstName")} />
-        </div>
-
-
-        <div className="form-control">
-            <label>Last Name</label>
-            <input type="text" name="lastName" {...register("lastName")} />
         </div>
         
         <div className="form-control">
@@ -542,24 +538,10 @@ export default function App() {
             <input type="text" name="amtPerMeal" {...register("amtPerMeal")} />
         </div>
 
-
+        <div className="form-control">
+          <label>Dog Fixed? </label>
+          <label>
         <input
-          type="radio"
-          label="Yes"
-          value="yes"
-          {...register("dogPottyTrained", {
-            required: "Dog Potty Trained?"
-          })}
-        />
-        <input
-          type="radio"
-          label="No"
-          value="no"
-        {...register("dogPottyTrained")}
-        />
-      
-
-      <input
           type="radio"
           label="Yes"
           value="yes"
@@ -567,19 +549,31 @@ export default function App() {
             required: "Dog Fixed?"
           })}
         />
+        Yes
+        </label>
+        <label>
         <input
           type="radio"
           label="No"
           value="no"
-        {...register("dogFixed")}
+          {...register("dogFixed", {
+            required: "Dog Fixed?"
+          })}
         />
+        No
+        </label>
+        <label>
         <input
           type="radio"
           label="Not Applicable"
           value="not applicable"
-        {...register("dogFriendly")}
+          {...register("dogFixed", {
+            required: "Dog Fixed?"
+          })}
         />
-
+        Not Applicable
+        </label>
+        </div>
 
         <div className="form-control">
             <label></label>
