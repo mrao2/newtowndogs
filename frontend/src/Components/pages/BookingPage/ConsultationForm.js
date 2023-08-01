@@ -14,7 +14,7 @@ import { useHistory } from "react-router-dom";
 
 
 const ConsultationForm = () => {
-    const [startDate, setStartDate] = useState();
+    const [start_date, setstart_date] = useState();
     const [startTime, setStartTime] = useState('09:00');
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
@@ -27,8 +27,9 @@ const ConsultationForm = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        const appointment = { startDate, startTime, firstName, lastName, email, phoneNum, isConsultation };
+        const appointment = { start_date, startTime, firstName, lastName, email, phoneNum, isConsultation };
 
+        console.log(appointment);
         setIsPending(true);
 
         fetch("/api/appointments", {
@@ -42,9 +43,9 @@ const ConsultationForm = () => {
 
     }
 
-    const handleChange = (startDate) => {
+    const handleChange = (start_date) => {
 
-        setStartDate(startDate);
+        setstart_date(start_date);
 
 
     };
@@ -106,7 +107,7 @@ const ConsultationForm = () => {
                 <br />
                 <div id="appDatePicker">
                     <p>Please select the date you would like to have your consultation.</p>
-                    <DatePicker className="appDatePicker" selected={startDate} onChange={handleChange} />
+                    <DatePicker className="appDatePicker" selected={start_date} onChange={handleChange} />
                 </div>
                 <br />
                 <div className="appSpecialRequirements">
@@ -118,7 +119,7 @@ const ConsultationForm = () => {
                 </div>
                 <br />
 
-                {!isPending && <Button className="bookingSubmitButton" >Submit Appointment Request</Button>}
+                {!isPending && <Button className="bookingSubmitButton" type="submit">Submit Appointment Request</Button>}
                 {isPending && <button disabled>Submitting Appointment Request...</button>}
             </Form>
         </>
