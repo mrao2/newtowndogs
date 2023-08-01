@@ -3,7 +3,7 @@ import React from "react";
 const AppSubmitted = () => {
     return (
         <>
-            <h1>Form Submitted!</h1>
+            <h1>Appointment Request Submitted!</h1>
         </>
     )
 }
