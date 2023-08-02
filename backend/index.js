@@ -23,13 +23,13 @@ app.use(express.json());
 
 // Blog Functions!
 app.get("/api/data", async (req, res) => {
-  await read(req, res, "SELECT * FROM newtowndogs");
+  await read(req, res, "SELECT * FROM blogs");
 });
 
 app.get("/api/data/:BlogId", async (req, res) => {
   const { BlogId } = req.params;
 
-  await read(req, res, "SELECT * FROM newtowndogs WHERE BlogId = ?", BlogId);
+  await read(req, res, "SELECT * FROM blogs WHERE BlogId = ?", BlogId);
 });
 
 app.post("/api/data", async (req, res) => {
