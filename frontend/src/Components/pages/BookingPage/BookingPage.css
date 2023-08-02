@@ -1,0 +1,122 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.clientEmail {
+    display: inline-flex;
+    justify-content: center;
+    max-width: 265px;
+    margin: 5px;
+}
+
+.appSpecialRequirements {
+    display:inline-flex;
+    padding: 10px;
+    justify-content: center;
+    margin: 10px;
+}
+
+.bookingSubmit {
+    display: block;
+    margin: 10 auto;
+    max-width: 265px;
+    margin: 5px;
+}
+
+.clientName {
+    display: inline-flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.clientFirstName, .clientLastName {
+    max-width: 265px;
+    margin: 5px;
+    display: inline-flex;
+    justify-content: center;
+}
+
+.clientPhoneNumber {
+    display: inline-flex;
+    max-width: 265px;
+    margin: 5px;
+}
+
+.pageHeader {
+    color: white;
+    background-color: #f1356d;
+    border-radius: 8px;
+    margin: auto;
+    margin-bottom: 20px;
+    text-align: center;
+    display: block;
+}
+
+.bookingSubmitButton {
+    color: white;
+    background-color: #f1356d;
+    border-radius: 8px;
+    border-color: #4b2732;
+    display: block;
+    margin: auto;
+}
+
+:hover.bookingSubmitButton {
+    background-color: #4b2732;
+   
+}
+
+.isConsultation, .result, .consultationNotice {
+    display: block;
+    text-align: center;
+    font-weight: 600;
+}
+
+.consultationNotice {
+    margin: 30px;
+}
+
+input[type='checkbox'] {
+    margin: 15px;
+}
+
+.appDatePicker {
+    text-align: center;
+    font-weight: 600;
+    border-radius: 5px;
+    border-width: 1px;
+    display:inline-flex;
+    font-size: 15px;
+    width: 200px;
+    border-color: rgba(173, 171, 171, 0.459);
+}
+
+#appDatePicker {
+    display: block;
+    margin: auto;
+    text-align: center;
+}
+
+.timePicker {
+ display: inline-block;
+ text-align: center;
+ margin: 10px;
+ border-radius: 5px;
+ border-width: 1px;
+ display:inline-flex;
+ font-size: 15px;
+ width: 200px;
+ border-color: rgba(173, 171, 171, 0.459);
+}
+
+.specialReqLabel {
+    margin: 10px;
+}
+
+.clientContactInfo {
+    display: inline-flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+}
