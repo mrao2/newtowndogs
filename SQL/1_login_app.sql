@@ -1,4 +1,4 @@
--- run this first!!!
+-- run this first!
 
 CREATE TABLE `login_app` (
   id int AUTO_INCREMENT ,
@@ -10,5 +10,10 @@ CREATE TABLE `login_app` (
   phone int,
   UNIQUE KEY username_UNIQUE (username),
   UNIQUE KEY phone_UNIQUE (phone),
-  PRIMARY KEY (id)
-)
+  PRIMARY KEY (id),
+  INDEX (id),
+  INDEX (first_name),
+  INDEX (last_name),
+  INDEX (email),
+  INDEX (username)
+);
