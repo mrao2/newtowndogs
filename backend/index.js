@@ -56,3 +56,25 @@ app.delete('/api/data/:BlogId', async(req, res) =>{
 app.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`);
 });
+
+app.post('/login', (req, res)=> {
+  const username = req.body.username;
+  const password = req.body.password;
+
+  db.query(
+    "SELECT * FROM login_app WHERE username = ? AND password = ?",
+    [username, password],
+    (err, result) => {
+
+      if(err) {
+        res.send({err: err})
+      } 
+
+        if (result) {
+          res.send(result)
+        } else {
+          res.send({message: "Wrong username/password."});
+        }
+      }
+  );
+});
