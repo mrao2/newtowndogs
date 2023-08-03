@@ -1,9 +1,9 @@
-CREATE TABLE user_profile (
+CREATE TABLE `user_profile` (
     id INTEGER,
-    first_name VARCHAR (15) ,
-    last_name VARCHAR (20),
-    email VARCHAR (50),
-    username VARCHAR (20)
+    first_name varchar(45),
+    last_name varchar(45),
+    email VARCHAR (100),
+    username varchar(45),
     ownerAddress VARCHAR (100),
     ownerCity VARCHAR (30),
     ownerState VARCHAR (2),
@@ -30,5 +30,5 @@ CREATE TABLE user_profile (
     FOREIGN KEY (first_name) REFERENCES login_app(first_name),
     FOREIGN KEY (last_name) REFERENCES login_app(last_name),
     FOREIGN KEY (email) REFERENCES login_app(email),
-    FOREIGN KEY (username) REFERENCES login_app(username),
+    FOREIGN KEY (username) REFERENCES login_app(username)
 );
