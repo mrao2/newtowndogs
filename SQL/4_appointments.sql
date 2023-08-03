@@ -6,5 +6,7 @@ CREATE TABLE appointments (
 	 start_date VARCHAR(255) NOT NULL,
 	 end_date VARCHAR(255),	 
      description VARCHAR(255),
-	 is_consultation TINYINT NOT NULL
+	 is_consultation TINYINT,
+	 INDEX (id),
+	 FOREIGN KEY (id) REFERENCES login_app(id)
 );

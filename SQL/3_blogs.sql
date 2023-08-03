@@ -5,5 +5,8 @@ CREATE TABLE blogs (
   Body VARCHAR(255),
   Likes VARCHAR(255),
   Category VARCHAR(255),
-  Comments VARCHAR(255)
+  Comments VARCHAR(255),
+  username VARCHAR (45),
+   INDEX (username),
+  FOREIGN KEY (username) REFERENCES login_app(username)
 );
