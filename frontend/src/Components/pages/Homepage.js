@@ -24,8 +24,19 @@ function Homepage() {
   return (
     <>
       <h1>{project.title}!</h1>
-      <p>Our most common breeds</p>
+      <p>All breeds welcome! Add yours to the list!</p>
+      <input type="text" />
       <ul> {listItems}</ul>
+
+      <img
+        src="https://cdn.stocksnap.io/img-thumbs/960w/dog-canine_VGA72SHHYQ.jpg"
+        alt="border collie"
+      />
+
+      <img
+        src="https://cdn.stocksnap.io/img-thumbs/960w/husky-animal_TFSKPZTEPD.jpg"
+        alt="husky"
+      />
 
       <MyButton count={count} onClick={handleClick} />
     </>

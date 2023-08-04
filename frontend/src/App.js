@@ -10,6 +10,7 @@ import "./App.css";
 import Login from "./Components/pages/Login";
 import BookingPage from "./Components/pages/BookingPage/BookingPage";
 import Profile from "./Components/pages/Profile";
+import AboutUs from "./Components/pages/AboutUs";
 
 function App() {
   return (
@@ -23,6 +24,9 @@ function App() {
             </Route>
             <Route exact path="/profile">
               <Profile />
+            </Route>
+            <Route exact path="/aboutus">
+              <AboutUs />
             </Route>
             <Route exact path="/BlogHome">
               <BlogHome />
