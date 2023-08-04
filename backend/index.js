@@ -94,8 +94,8 @@ app.put('/api/data/:BlogId', async (req, res) => {
   await update(req, res, 'UPDATE blogs SET Title = ?, Body = ?, Author = ? WHERE BlogId = ?', BlogId, Title, Body, Author)
 })
 
-await read(req, res, "SELECT * FROM blogs WHERE BlogId = ?", BlogId);
-});
+// await read(req, res, "SELECT * FROM blogs WHERE BlogId = ?", BlogId);
+// });
 
 app.post("/api/data", async (req, res) => {
   await create(req, res, "INSERT INTO blogs SET ?");
