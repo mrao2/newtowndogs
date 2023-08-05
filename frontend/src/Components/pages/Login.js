@@ -5,7 +5,7 @@ import "./Login.css";
 // const {data: logins, isPending, error} = useFetch('/api/data');
 
 function Login() {
-  const [username, setUsername] = useState("");
+  // const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
@@ -23,7 +23,7 @@ function Login() {
 
 const login = () => {
   Axios.post("http://localhost:3001/login", {
-    username: username, 
+    email: email, 
     password: password, 
   }).then((response) => {
     console.log(response);
@@ -59,6 +59,6 @@ const login = () => {
       </form>
     </div>
   );
+  }
 }
-
 export default Login;
