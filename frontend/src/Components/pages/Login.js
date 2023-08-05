@@ -27,7 +27,8 @@ const login = () => {
     password: password, 
   }).then((response) => {
     console.log(response);
-})
+});
+
   return (
     <div className="login-page">
       <h1>Login Page</h1>

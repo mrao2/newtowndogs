@@ -57,6 +57,8 @@ app.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`);
 });
 
+//login queries
+
 app.post('/login', (req, res)=> {
   const username = req.body.username;
   const password = req.body.password;
