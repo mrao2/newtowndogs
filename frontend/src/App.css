@@ -1,18 +1,29 @@
 @import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap");
 
 /* base styles */
-* {
+/* * {
   margin: 0;
   font-family: "Quicksand";
   color: #333;
-}
+} */
 
-.content {
+/* .content {
   max-width: 600px;
   margin: 40px auto;
   padding: 20px;
-}
+  margin-top: 80px;
+} */
 
+/* .content {
+  margin-top: 66px;
+} */
+
+.home {
+  max-width: 400px;
+  margin: 80px auto;
+  text-align: center;
+  margin-top: 90px;
+}
 /* blog previews / list */
 .blog-preview {
   padding: 10px 16px;
@@ -52,8 +63,9 @@
 /* create new blog form */
 .create {
   max-width: 400px;
-  margin: 0 auto;
+  margin: 80px auto;
   text-align: center;
+  margin-top: 90px;
 }
 .create label {
   text-align: left;
