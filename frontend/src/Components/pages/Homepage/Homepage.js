@@ -1,3 +1,4 @@
+import "./Homepage.css";
 import { useState } from "react";
 
 const project = {
@@ -22,24 +23,26 @@ function Homepage() {
   }
 
   return (
-    <>
+    <div className="homepage">
       <h1>{project.title}!</h1>
-      <p>All breeds welcome! Add yours to the list!</p>
+      <p>Add your favorite dog breed to the list!</p>
       <input type="text" />
       <ul> {listItems}</ul>
-
-      <img
-        src="https://cdn.stocksnap.io/img-thumbs/960w/dog-canine_VGA72SHHYQ.jpg"
-        alt="border collie"
-      />
-
-      <img
-        src="https://cdn.stocksnap.io/img-thumbs/960w/husky-animal_TFSKPZTEPD.jpg"
-        alt="husky"
-      />
+      {/* 
+      <div className="image-container">
+        <img
+          src="https://cdn.stocksnap.io/img-thumbs/960w/dog-canine_VGA72SHHYQ.jpg"
+          alt="border collie"
+        />
+        <p>This is a cool border collie!</p>
+        <img
+          src="https://cdn.stocksnap.io/img-thumbs/960w/husky-animal_TFSKPZTEPD.jpg"
+          alt="husky"
+        />
+      </div> */}
 
       <MyButton count={count} onClick={handleClick} />
-    </>
+    </div>
   );
 }
 
