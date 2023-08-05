@@ -1,20 +1,26 @@
 .homepage {
-  background-image: url("https://cdn.stocksnap.io/img-thumbs/960w/dog-canine_VGA72SHHYQ.jpg");
+  background-image: url("https://cdn.stocksnap.io/img-thumbs/960w/dog-dog%20owner_XJ76RLS1FI.jpg");
   background-position: center;
   height: 100vh;
-  width: 100vh;
+  width: 100vw;
   background-repeat: no-repeat;
   background-size: cover;
-  max-width: 100vh;
-  margin: 1;
-  padding: 1;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  margin-top: 66px;
 }
-h1 {
+.homepage h1 {
   color: white;
 }
-p {
+.homepage p {
+  font-weight: 900;
   color: white;
 }
-ul {
+.homepage ul {
   color: white;
+  list-style-type: none;
+  font-size: x-large;
+  font-weight: 900;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
 }
