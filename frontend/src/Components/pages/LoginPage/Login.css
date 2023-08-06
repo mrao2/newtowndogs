@@ -40,3 +40,12 @@
     padding: 10px;
     color: #f1356d;
 }
+
+.signup-button {
+    padding: 10px;
+    background-color: #f1356d;
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin: auto;
+}

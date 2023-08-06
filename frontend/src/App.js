@@ -7,9 +7,13 @@ import NotFound from "./NotFound";
 import BlogHome from "./Components/pages/Blog/BlogHome";
 import Homepage from "./Components/pages/Homepage";
 import "./App.css";
-import Login from "./Components/pages/Login";
+import Login from "./Components/pages/LoginPage/Login";
 import BookingPage from "./Components/pages/BookingPage/BookingPage";
-import Profile from "./Components/pages/Profile";
+import Profile from "./Components/pages/UserProfile/EditProfile";
+import SignUp from "./Components/pages/SignUp/SignUpPage";
+import EditProfile from "./Components/pages/UserProfile/EditProfile";
+import UserProfile from "./Components/pages/UserProfile/UserProfile";
+
 
 function App() {
   return (
@@ -21,8 +25,14 @@ function App() {
             <Route exact path="/">
               <Homepage />
             </Route>
-            <Route exact path="/profile">
-              <Profile />
+            <Route exact path="/editprofile">
+              <EditProfile />
+            </Route>
+            <Route exact path="/viewprofile">
+              <UserProfile />
+            </Route>
+            <Route exact path="/signup">
+              <SignUp />
             </Route>
             <Route exact path="/BlogHome">
               <BlogHome />
