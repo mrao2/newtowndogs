@@ -1,0 +1,26 @@
+.homepage {
+  background-image: url("https://cdn.stocksnap.io/img-thumbs/960w/dog-dog%20owner_XJ76RLS1FI.jpg");
+  background-position: center;
+  height: 100vh;
+  width: 100vw;
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  margin-top: 66px;
+}
+.homepage h1 {
+  color: white;
+}
+.homepage p {
+  font-weight: 900;
+  color: white;
+}
+.homepage ul {
+  color: white;
+  list-style-type: none;
+  font-size: x-large;
+  font-weight: 900;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+}

@@ -1,4 +1,5 @@
 // import './App.css';
+import "./Profile.css";
 import React, { useState } from "react";
 
 const Profile = () => {
@@ -33,7 +34,7 @@ const Profile = () => {
   console.log("doggender :: ", dogGender);
 
   return (
-    <div className="App">
+    <div className="profile">
       <h1>Owner Information</h1>
       <form onSubmit={handleSubmit}>
         <div>
