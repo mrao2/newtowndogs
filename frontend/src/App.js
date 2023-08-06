@@ -9,9 +9,8 @@ import Homepage from "./Components/pages/Homepage";
 import "./App.css";
 import Login from "./Components/pages/LoginPage/Login";
 import BookingPage from "./Components/pages/BookingPage/BookingPage";
-import Profile from "./Components/pages/UserProfile/EditProfile";
 import SignUp from "./Components/pages/SignUp/SignUpPage";
-import EditProfile from "./Components/pages/UserProfile/EditProfile";
+import {EditProfile} from "./Components/pages/UserProfile/EditProfile";
 import UserProfile from "./Components/pages/UserProfile/UserProfile";
 
 
@@ -48,9 +47,6 @@ function App() {
             </Route>
             <Route exact path="/BookingPage">
               <BookingPage />
-            </Route>
-            <Route exact path="/Profile">
-              <Profile />
             </Route>
             <Route path="*">
               <NotFound />
