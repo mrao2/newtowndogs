@@ -1,7 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap");
 
-*{
-    font-family: 'Quicksand';
+* {
+  font-family: "Quicksand";
 }
 
 body {
@@ -9,6 +9,7 @@ body {
 }
 
 .login-page {
+<<<<<<< HEAD
     display: flex;
     align-items: center;
     justify-content: center;
@@ -61,4 +62,41 @@ h3 {
 .alert {
     color: red;
     margin-top: 5px;
+=======
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 100px;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 300px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.login-input {
+  margin-bottom: 10px;
+  padding: 10px;
+  width: 200px;
+}
+
+.login-button {
+  padding: 10px;
+  background-color: #f1356d;
+  color: white;
+  border: none;
+  cursor: pointer;
+  margin: auto;
+}
+
+.login-show {
+  padding: 10px;
+  color: #f1356d;
+>>>>>>> main
 }

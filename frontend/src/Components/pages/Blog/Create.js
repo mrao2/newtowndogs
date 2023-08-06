@@ -3,8 +3,8 @@ import { useHistory } from "react-router-dom";
 
 const authors = [
   { value: "mario", label: "Mario" },
-  { value: "luigi", label: "Luigi" }
-]
+  { value: "luigi", label: "Luigi" },
+];
 
 const Create = () => {
   const [title, setTitle] = useState("");
@@ -25,9 +25,8 @@ const Create = () => {
       body: JSON.stringify(blog),
     }).then(() => {
       setIsPending(false);
-      history.push('/BlogHome')
+      history.push("/BlogHome");
     });
-
   };
 
   return (
@@ -50,9 +49,9 @@ const Create = () => {
         <label>Blog author:</label>
         <select value={author} onChange={(e) => setAuthor(e.target.value)}>
           {authors.map((author) => (
-              <option key={author.value} value={author.value}>
-                {author.label}
-              </option>
+            <option key={author.value} value={author.value}>
+              {author.label}
+            </option>
           ))}
         </select>
         {!isPending && <button>Add Blog</button>}
