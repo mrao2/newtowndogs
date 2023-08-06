@@ -19,5 +19,5 @@ CREATE TABLE `user_profile` (
     dogPottyTrained BOOLEAN,
     dogFixed BOOLEAN,
     INDEX (id),
-    FOREIGN KEY (longin_app_id) REFERENCES login_app(id),
+    FOREIGN KEY (longin_app_id) REFERENCES login_app(id)
 );

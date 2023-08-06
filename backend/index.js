@@ -37,6 +37,10 @@ app.post("/api/data", async (req, res) => {
   await create(req, res, "INSERT INTO blogs SET ?");
 });
 
+app.post("/api/sign-up", async (req, res) => {
+  await create(req, res, "INSERT INTO login_app SET ?");
+});
+
 app.delete("/api/data/:BlogId", async (req, res) => {
   const { BlogId } = req.params;
   await deleteRow(req, res, "DELETE FROM blogs WHERE BlogId = ?", BlogId);
