@@ -49,6 +49,9 @@ function App() {
             <Route exact path="/BookingPage">
               <BookingPage />
             </Route>
+            <Route exact path="/Profile">
+              <Profile />
+            </Route>
             <Route path="*">
               <NotFound />
             </Route>

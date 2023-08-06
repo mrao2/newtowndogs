@@ -26,6 +26,7 @@ app.get("/api/data", async (req, res) => {
   await read(req, res, "SELECT * FROM blogs");
 });
 
+// API endpoint to fetch a specific blog by BlogId
 app.get("/api/data/:BlogId", async (req, res) => {
   const { BlogId } = req.params;
 
