@@ -1,7 +1,18 @@
 import React, { useState } from "react";
 import "./Login.css";
+import axios from 'axios';
 
+// import useFetch from "../useFetch";
+
+// const {data: logins, isPending, error} = useFetch('/api/data');
+function login (email, password) {
+  axios.post("http://localhost:3001/login", {
+    email: email, 
+    password: password, 
+  });
+}
 function Login() {
+  // const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
@@ -15,6 +26,13 @@ function Login() {
     //validate login info?
     // const isLoggedIn = true;
     // onLogin(isLoggedIn);
+    login(email, password)
+    .then((response) => {
+      console.log(response);
+    })
+    .catch((error) => {
+      console.error(error);
+    })
   }
 
   return (
@@ -36,16 +54,19 @@ function Login() {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
+
         <button type="button" onClick={handlePasswordVisiblity}>
           {showPassword ? "Hide" : "Show"}
         </button>
-        <button type="submit" className="login-button">
+        <button onClick={handleSubmit} type="button" className="login-button">
           {" "}
           Login
         </button>
+        <h3>Not a member?</h3>
+        <button type="button" className="register-button"><a href="/Profile">Sign Up</a></button>
       </form>
     </div>
   );
-}
+  }
 
 export default Login;
