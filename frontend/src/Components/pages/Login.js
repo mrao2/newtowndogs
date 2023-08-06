@@ -6,7 +6,7 @@ import axios from 'axios';
 
 // const {data: logins, isPending, error} = useFetch('/api/data');
 function login (email, password) {
-  axios.post("http://localhost:3001/login", {
+  return axios.post("http://localhost:3001/login", {
     email: email, 
     password: password, 
   });
@@ -16,6 +16,7 @@ function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const [showPasswordAlert, setShowPasswordAlert] = useState(false);
 
   const handlePasswordVisiblity = () => {
     setShowPassword(!showPassword);
@@ -23,6 +24,11 @@ function Login() {
 
   function handleSubmit(event) {
     event.preventDefault();
+
+    if (password.length < 8) {
+      setShowPasswordAlert(true);
+      return;
+    }
     //validate login info?
     // const isLoggedIn = true;
     // onLogin(isLoggedIn);
@@ -45,6 +51,7 @@ function Login() {
           className="login-input"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
+          required
         />
 
         <input
@@ -52,18 +59,27 @@ function Login() {
           placeholder="dogsarethebest300!"
           className="login-input"
           value={password}
-          onChange={(e) => setPassword(e.target.value)}
+          onChange={(e) => {
+            setPassword(e.target.value);
+          setShowPasswordAlert(false);
+          }}
+          minLength="8"
+          required
         />
+
+        {showPasswordAlert && (
+          <div className="alert">Password must be at least 8 characters.</div>
+        )}
 
         <button type="button" onClick={handlePasswordVisiblity}>
           {showPassword ? "Hide" : "Show"}
         </button>
-        <button onClick={handleSubmit} type="button" className="login-button">
+        <button onClick={handleSubmit} type="submit" className="login-button">
           {" "}
           Login
         </button>
         <h3>Not a member?</h3>
-        <button type="button" className="register-button"><a href="/Profile">Sign Up</a></button>
+        <a href="/Profile" className="register-button">Sign Up</a>
       </form>
     </div>
   );
