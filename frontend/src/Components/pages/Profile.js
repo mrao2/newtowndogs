@@ -378,7 +378,7 @@ import { useForm } from 'react-hook-form';
 
 // export default Profile;
 
-export default function App() {
+const Profile = () => {
   const {
     register,
     handleSubmit,
