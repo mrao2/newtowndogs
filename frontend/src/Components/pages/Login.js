@@ -5,23 +5,23 @@ import { useHistory } from "react-router-dom";
 
 // const {data: logins, isPending, error} = useFetch('/api/data');
 
-function login (email, password) {
-  return fetch("/login", {
-    method: "POST",
-    body: JSON.stringify({
+async function login (email, password) {
+  try {
+    const response = await fetch("/login", {
+      method: "POST",
+      body: JSON.stringify({
         email: email,
         password: password
-    }),
-    headers: {
+      }),
+      headers: {
         "Content-type": "application/json; charset=UTF-8"
-    }
-})
-.then(response => response.json())
-//catching any errors and then re-throwing it so it'll be caught in handle submit
-.catch(error => {
-  console.error("An error occurred:", error);
-  throw error;
-});
+      }
+    });
+    return await response.json();
+  } catch (error) {
+    console.error("An error occurred:", error);
+    throw error;
+  }
     //.then looking for good or bad response & then updating isloggedin based on that. 
 }
 function Login() {
@@ -110,7 +110,6 @@ function Login() {
           {" "}
           Login
         </button>
-        <h3>Not a member?</h3>
       </form>
     </div>
   );
@@ -123,7 +122,7 @@ function Login() {
   //   // Hash the password
   //   const hashedPassword = await bcrypt.hash(ownerPassword, 10); // You should replace 'ownerPassword' with the actual password field's value
   
-  //   // Create an object containing the profile data including the hashed password
+  //   // create an object containing the profile data including the hashed password
   //   const profileData = {
   //     ownerFirstName,
   //     ownerLastName,
