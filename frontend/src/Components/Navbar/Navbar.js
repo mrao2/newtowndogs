@@ -19,8 +19,7 @@ function Navbar() {
 
         <Link to="/BookingPage">Book Sitter</Link>
         <Link to="/bloghome">Blog</Link>
-
-        <Link to="/create">New Blog</Link>
+        
       </div>
       <div class="smallScreenNav">
         <div className="dropdown">
