@@ -1,23 +1,27 @@
 import React, { useState } from "react";
 import "./Login.css";
-import axios from 'axios';
-
 // import useFetch from "../useFetch";
 
 // const {data: logins, isPending, error} = useFetch('/api/data');
 function login (email, password) {
-  return axios.post("http://localhost:3001/login", {
-    email: email, 
-    password: password, 
-  });
+  fetch("https://jsonplaceholder.typicode.com/posts", {
+    method: "POST",
+    body: JSON.stringify({
+        email: email,
+        password: password
+    }),
+    headers: {
+        "Content-type": "application/json; charset=UTF-8"
+    }
+})
+    //.then looking for good or bad response & then updating isloggedin based on that. 
 }
 function Login() {
-  // const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [showPasswordAlert, setShowPasswordAlert] = useState(false);
-
+  // const [username, setUsername] = useState("");
   const handlePasswordVisiblity = () => {
     setShowPassword(!showPassword);
   };
@@ -29,16 +33,7 @@ function Login() {
       setShowPasswordAlert(true);
       return;
     }
-    //validate login info?
-    // const isLoggedIn = true;
-    // onLogin(isLoggedIn);
     login(email, password)
-    .then((response) => {
-      console.log(response);
-    })
-    .catch((error) => {
-      console.error(error);
-    })
   }
 
   return (
@@ -47,7 +42,7 @@ function Login() {
       <form className="login-form" onSubmit={handleSubmit}>
         <input
           type="email"
-          placeholder="ILoveDogs@dogs.com"
+          placeholder="Email"
           className="login-input"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
@@ -56,7 +51,7 @@ function Login() {
 
         <input
           type={showPassword ? "text" : "password"}
-          placeholder="dogsarethebest300!"
+          placeholder="Password"
           className="login-input"
           value={password}
           onChange={(e) => {
