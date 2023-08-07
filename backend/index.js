@@ -4,17 +4,22 @@ const deleteRow = require("./SqlFunctions/Delete.js");
 const update = require("./SqlFunctions/Update.js");
 const express = require("express");
 const path = require("path");
-require("dotenv").config();
+const dotenv = require("dotenv");
 const bcrypt = require('bcrypt');
+dotenv.config();
 
 var mysql = require("mysql");
 const e = require("express");
-var connection = mysql.createConnection({
+const { connect } = require("http2");
+
+const connection = mysql.createConnection({
   host: process.env.Host,
   user: process.env.User,
   password: process.env.Password,
   database: process.env.Database,
 });
+
+
 
 const PORT = process.env.PORT || 3001;
 
@@ -66,13 +71,21 @@ app.post('/login', (req, res)=> {
   const password = req.body.password;
   console.log("Received email:", email);
   console.log("Received password:", password);
+
+  const connection = mysql.createConnection({
+    host: process.env.Host,
+    user: process.env.User,
+    password: process.env.Password,
+    database: process.env.Database,
+  })
 //finds user w this email in db
-  db.query(
+  connection.query(
     "SELECT * FROM login_app WHERE email = ?",
     [email],
     (err, result) => {
 //if err in query, status code & err message returned
       if(err) {
+        console.error("Database error:", err);
         res.status(500).send({err: err});
       } else {
 //otherwise, checks result length, makes sure theres one matching user. then retrieves stored HASHED pwd. uses compare to make sure theyre the same 
@@ -84,9 +97,11 @@ app.post('/login', (req, res)=> {
           } else {
             res.send({message: "Login successful."});
           }
+          connection.end();
         });
         } else {
           res.send({message: "Wrong email/password."});
+          connection.end();
         }
       }
     }
