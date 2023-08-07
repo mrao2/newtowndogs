@@ -77,6 +77,32 @@ app.put("/api/data/:BlogId", async (req, res) => {
   );
 });
 
+app.post('/login', (req, res)=> {
+  const email = req.body.email;
+  const password = req.body.password;
+
+  db.query(
+    "SELECT * FROM login_app WHERE email = ?",
+    [email, password],
+    (err, result) => {
+
+      if(err) {
+        res.send({err: err})
+      } 
+//check if result is 1 array
+//use middleware to unhash it to check  
+//check if passwords match 
+//res.json & nsend back status code 
+        if (result) {
+          res.send(result)
+        } else {
+          res.send({message: "Wrong email/password."});
+        }
+      }
+  );
+});
+
 app.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`);
 });
+
