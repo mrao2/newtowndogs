@@ -10,7 +10,7 @@ const SignUpPage = () => {
     const history = useHistory();
     const {
       register,
-      handleSubmit,
+      handleSubmit
       //formState: { errors }
     } = useForm();
   
@@ -23,6 +23,7 @@ const SignUpPage = () => {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
       }).then((resp) => {
+
         console.log(resp);
         // setIsPending(false);
         return resp.json();
