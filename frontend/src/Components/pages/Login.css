@@ -41,17 +41,19 @@ body {
 .register-button {
   padding: 10px;
   width: 100%;
-  background-color: #f1356d;
+  background-color: #ab8096;
   color: white;
   border: none;
   border-radius: 4px;
   cursor: pointer;
   margin-top: 10px;
+  text-decoration: none; 
+  text-align: center;
 }
 
 .login-show {
   padding: 10px;
-  color: #f1356d;
+  color: #ab8096;
 }
 
 h3 {
