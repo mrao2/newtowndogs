@@ -1,15 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useHistory, useParams } from "react-router-dom";
 import useFetch from "../../useFetch";
+import "./Blog.css";
 
 const BlogDetails = () => {
   const { BlogId } = useParams();
   const history = useHistory();
   const { data: blog, isPending, error } = useFetch(`/api/data/${BlogId}`);
-  const authors = [
-    { value: "mario", label: "Mario" },
-    { value: "luigi", label: "Luigi" },
-  ];
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
   const [author, setAuthor] = useState("");
@@ -66,7 +63,7 @@ const BlogDetails = () => {
       {isPending && <div>Loading...</div>}
       {error && <div>{error}</div>}
       {blog && (
-        <article>
+        <article className="single-blog">
           {!isEditing && <h2>{blog.data[0].Title}</h2>}
           {!isEditing && <p>Written by {blog.data[0].Author}</p>}
           {!isEditing && <div>{blog.data[0].Body}</div>}
@@ -88,16 +85,11 @@ const BlogDetails = () => {
                   onChange={(e) => setBody(e.target.value)}
                 ></textarea>
                 <label>Blog author:</label>
-                <select
+                <textarea
+                  required
                   value={author}
                   onChange={(e) => setAuthor(e.target.value)}
-                >
-                  {authors.map((author) => (
-                    <option key={author.value} value={author.value}>
-                      {author.label}
-                    </option>
-                  ))}
-                </select>
+                ></textarea>
                 <button type="submit" disabled={isPendingUpdate}>
                   {isPendingUpdate ? "Updating..." : "Update"}
                 </button>
