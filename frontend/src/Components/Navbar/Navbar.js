@@ -14,13 +14,8 @@ function Navbar() {
       <div className="links">
         <a href="/">Home</a>
         <a href="/profile">Profile</a>
-<<<<<<< HEAD
-        <a href="/about">About Us</a>
-        <Link to="/Login">Login</Link>
-=======
         <Link to="/aboutus">About Us</Link>
         <Link to="/Login">Sign Up</Link>
->>>>>>> main
 
         <Link to="/BookingPage">Book Sitter</Link>
         <Link to="/bloghome">Blog</Link>
