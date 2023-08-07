@@ -6,14 +6,16 @@ import "react-time-picker/dist/TimePicker.css";
 import "react-clock/dist/Clock.css";
 import ReturnCustomerForm from "./ReturnCustomerForm";
 import ConsultationForm from "./ConsultationForm";
-import "./BookingPage.css";
+
 
 const BookingPage = () => {
 
+  const [submit, setSubmit] = useState(false);
   const [isChecked, setIsChecked] = useState(false);
   const handleOnChange = () => {
     setIsChecked(!isChecked);
   };
+
 
 
   return (
@@ -28,15 +30,14 @@ const BookingPage = () => {
       </div>
       <br />
       <div>
-        {isChecked ? <ConsultationForm /> : <ReturnCustomerForm />}
+        {isChecked ? <ConsultationForm setSubmit={setSubmit} /> : <ReturnCustomerForm />}
       </div>
-
-
-
-
+      {console.log(submit)}
     </>
   )
 
 }
+
+
 
 export default BookingPage;

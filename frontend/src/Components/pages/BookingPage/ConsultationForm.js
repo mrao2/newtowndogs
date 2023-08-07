@@ -14,7 +14,7 @@ import { useHistory } from "react-router-dom";
 
 
 
-const ConsultationForm = () => {
+const ConsultationForm = ({ setSubmit }) => {
     const [startDate, setStartDate] = useState();
     const [startTime, setStartTime] = useState('09:00');
     const [firstName, setFirstName] = useState("");
@@ -28,6 +28,7 @@ const ConsultationForm = () => {
     const history = useHistory();
 
 
+
     const handleSubmit = (e) => {
         e.preventDefault();
         const appointment = { start_date: startDate, start_time: startTime, is_consultation: isConsultation, description };
@@ -36,12 +37,19 @@ const ConsultationForm = () => {
         setIsPending(true);
 
 
+        // const email = e.target.email.value;
+        // const subject = 'Form TEST TEST TEST';
+        // const body = "Your test has succeeded!";
+
+        // sendEmail(email, subject, body);
+
         fetch("/api/appointments", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(appointment),
         }).then(() => {
             setIsPending(false);
+
             history.push('/AppSubmitted')
         });
 
@@ -61,11 +69,9 @@ const ConsultationForm = () => {
     };
 
 
-
-
     return (
         <>
-            <Form className="isNotConsultation" onSubmit={handleSubmit}>
+            <Form className="isConsultation" onSubmit={handleSubmit}>
                 <div className="clientName">
                     <div className="clientFirstName">
 
@@ -123,8 +129,14 @@ const ConsultationForm = () => {
                 </div>
                 <br />
 
-                {!isPending && <Button className="bookingSubmitButton" type="submit">Submit Appointment Request</Button>}
+                {!isPending && <Button className="bookingSubmitButton" type="submit" onClick={() => {
+
+                    setSubmit(true);
+                    setIsConsultation(true);
+
+                }}>Submit Appointment Request</Button>}
                 {isPending && <button disabled>Submitting Appointment Request...</button>}
+
 
             </Form>
         </>

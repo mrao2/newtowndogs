@@ -1,13 +1,17 @@
-/* * {
+* {
   margin: 0;
   padding: 0;
-} */
+}
 
 .bookingpage {
   max-width: 600px;
   margin: 40px auto;
   padding: 20px;
   margin-top: 80px;
+}
+
+.appSubConf {
+  text-align: center;
 }
 
 .clientEmail {
