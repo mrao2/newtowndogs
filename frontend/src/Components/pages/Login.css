@@ -61,7 +61,9 @@ h3 {
   font-size: 15px;
 }
 
-.alert {
+.alert, .invalid-email-alert {
   color: red;
   margin-top: 5px;
+  margin-bottom: 5px;
 }
+
