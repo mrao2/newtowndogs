@@ -2,9 +2,12 @@
 import React, { useState } from "react";
 import "./SignUp.css";
 import { useForm } from 'react-hook-form';
+import { useHistory} from "react-router-dom";
+
 
 
   export const SignUp = () => {
+    const history = useHistory();
     const {
       register,
       handleSubmit,
@@ -19,10 +22,13 @@ import { useForm } from 'react-hook-form';
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
-      }).then(() => {
+      }).then((resp) => {
+        console.log(resp);
         // setIsPending(false);
-        //history.push('/UserProfile')
-      });
+        return resp.json();
+      }).then((data) => {
+        history.push(`/profile/${data.id}`)
+      })
     };
   
   

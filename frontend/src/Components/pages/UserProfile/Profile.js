@@ -2,8 +2,10 @@
 import React, { useState } from "react";
 import "./UserProfile.css";
 import { Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
-const UserProfile = () => {
+const Profile = () => {
+    const {id} = useParams();
     let firstName = "Maggie";
     let lastName = "Hollander";
     let ownerPhone = "";
@@ -37,7 +39,7 @@ return (
     <div className="App">
         <h1>Owner Information</h1>
         <div>
-            <div>First Name: {firstName}</div>
+            <div>First Name: {id}</div>
             <div>Last Name: {lastName}</div>
             <div>Phone Number: {ownerPhone}</div>
             <div>Username: {username}</div>
@@ -69,5 +71,5 @@ return (
 );
 };
 
-export default UserProfile;
+export default Profile;
 
