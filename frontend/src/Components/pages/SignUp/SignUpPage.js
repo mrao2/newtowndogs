@@ -1,17 +1,17 @@
-// import './App.css';
-import React, { useState } from "react";
+//import React, { useState } from "react";
 import "./SignUp.css";
 import { useForm } from 'react-hook-form';
 import { useHistory} from "react-router-dom";
+import { Link } from "react-router-dom";
 
 
 
-  export const SignUp = () => {
+const SignUpPage = () => {
     const history = useHistory();
     const {
       register,
       handleSubmit,
-      formState: { errors }
+      //formState: { errors }
     } = useForm();
   
     const onSubmit = (data) => {
@@ -30,8 +30,8 @@ import { useHistory} from "react-router-dom";
         history.push(`/profile/${data.id}`)
       })
     };
-  
-  
+
+
 return (
   <span> 
     <div className="App">
@@ -52,14 +52,12 @@ return (
               required: true
             })} />
         </div>
-
         <div className="form-control">
             <label>Phone Number</label>
             <input type="text" name="phone" {...register("phone", {
               required: true
             })} />
         </div>
-
         <div className="form-control">
             <label>Username (this will be used for blog posts)</label>
             <input type="text" name="username" {...register("username", {
@@ -80,38 +78,13 @@ return (
               required: true
             })} />
         </div>
-        
+        <Link to="/editprofile">
         <button className="createaccount-button">Create Account</button>
+        </Link>
       </form>
     </div>
     </span>
   );
-};
+    }
 
-
-
-export default SignUp;
-
-// function App()
-// {
-//     return (
-//     <div className="App">
-//         <header className="App-header">
-//         <img src={logo} className="App-logo" alt="logo" />
-//         <p>
-//           Edit <code>src/App.js</code> and save to reload.
-//         </p>
-//         <a
-//           className="App-link"
-//           href="https://reactjs.org"
-//           target="_blank"
-//           rel="noopener noreferrer"
-//         >
-//           Learn React
-//         </a>
-//       </header>
-//     </div>
-//   );
-// }
-
-// export default App;
+    export default SignUpPage;

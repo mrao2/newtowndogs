@@ -9,8 +9,9 @@ import Homepage from "./Components/pages/Homepage";
 import "./App.css";
 import Login from "./Components/pages/LoginPage/Login";
 import BookingPage from "./Components/pages/BookingPage/BookingPage";
-import SignUp from "./Components/pages/SignUp/SignUpPage";
+import SignUpPage from "./Components/pages/SignUp/SignUpPage";
 import Profile from "./Components/pages/UserProfile/Profile";
+import { EditProfile } from "./Components/pages/UserProfile/EditProfile";
 
 
 function App() {
@@ -27,7 +28,10 @@ function App() {
               <Profile />
             </Route>
             <Route exact path="/signup">
-              <SignUp />
+              <SignUpPage />
+            </Route>
+            <Route exact path="/editprofile">
+              <EditProfile />
             </Route>
             <Route exact path="/BlogHome">
               <BlogHome />

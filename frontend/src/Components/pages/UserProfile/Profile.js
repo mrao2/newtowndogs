@@ -1,8 +1,8 @@
-// import './App.css';
-import React, { useState } from "react";
+//import React, { useState } from "react";
 import "./UserProfile.css";
 import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
+
 
 const Profile = () => {
     const {id} = useParams();
@@ -29,16 +29,14 @@ const Profile = () => {
     let amtPerMeal = "";
     let dogPottyTrained = "";
     let dogFixed = ""
-
-
 // const handleSubmit = () => {
 //     console.log(`The owner's first name is ${ownerFirstName}.`);
 // };
-
 return (
     <div className="App">
         <h1>Owner Information</h1>
         <div>
+            <div>First Name: {firstName}</div>
             <div>First Name: {id}</div>
             <div>Last Name: {lastName}</div>
             <div>Phone Number: {ownerPhone}</div>
@@ -72,4 +70,3 @@ return (
 };
 
 export default Profile;
-
