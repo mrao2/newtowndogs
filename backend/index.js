@@ -21,6 +21,26 @@ const app = express();
 app.use(express.static(path.resolve(__dirname, "../frontend")));
 app.use(express.json());
 
+//Home functions
+app.get("/api/home", async (req, res) => {
+  await read(req, res, "SELECT * FROM homepage");
+});
+
+app.get("/api/home/:id", async (req, res) => {
+  const { id } = req.params;
+
+  await read(req, res, "SELECT * FROM homepage WHERE id = ?", id);
+});
+
+app.post("api/home", async (req, res) => {
+  await create(req, res, "INSERT INTO homepage set ?");
+});
+
+app.delete("/api/home/:id", async (req, res) => {
+  const { id } = req.params;
+  await deleteRow(req, res, "DELETE FROM homepage WHERE id = ?", id);
+});
+
 // Blog Functions!
 app.get("/api/data", async (req, res) => {
   await read(req, res, "SELECT * FROM blogs");
