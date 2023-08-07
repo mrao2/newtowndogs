@@ -21,6 +21,7 @@ function Login() {
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [showPasswordAlert, setShowPasswordAlert] = useState(false);
+  const [showEmailAlert, setShowEmailAlert] = useState(false);
   // const [username, setUsername] = useState("");
   const handlePasswordVisiblity = () => {
     setShowPassword(!showPassword);
@@ -28,6 +29,12 @@ function Login() {
 
   function handleSubmit(event) {
     event.preventDefault();
+   const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+     if(!emailPattern.test(email)) {
+    setShowEmailAlert(true);
+    return;
+   } 
+   setShowEmailAlert(false);
 
     if (password.length < 8) {
       setShowPasswordAlert(true);
@@ -45,10 +52,17 @@ function Login() {
           placeholder="Email"
           className="login-input"
           value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          onChange={(e) => {
+            setEmail(e.target.value);
+            setShowEmailAlert(false);
+          }}
+          // pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}"
           required
         />
-
+        {showEmailAlert && (
+        <div className="invalid-email-alert">Invalid email format. Please try again.</div>
+      )}
+      
         <input
           type={showPassword ? "text" : "password"}
           placeholder="Password"
