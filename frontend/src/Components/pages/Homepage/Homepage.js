@@ -6,7 +6,7 @@ import BreedList from "./BreedList";
 function Homepage() {
   const [count, setCount] = useState(0);
   const project = {
-    title: "Welcome to Newtown Dogs",
+    title: "Newtown Dogs Pet Grooming",
   };
 
   const { data: breeds, isPending, error } = useFetch("/api/home");
@@ -19,7 +19,7 @@ function Homepage() {
     <div className="homepage">
       {error && <div>{error}</div>}
       {isPending && <div>Loading... </div>}
-      <h1>{project.title}!</h1>
+      <h1 className="title">{project.title}</h1>
       <BreedList breeds={breeds} />
       <MyButton count={count} onClick={handleClick} />
     </div>
