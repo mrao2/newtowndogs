@@ -5,8 +5,10 @@ const update = require("./SqlFunctions/Update.js");
 const express = require("express");
 const path = require("path");
 require("dotenv").config();
+const bcrypt = require('bcrypt');
 
 var mysql = require("mysql");
+const e = require("express");
 var connection = mysql.createConnection({
   host: process.env.Host,
   user: process.env.User,
@@ -63,24 +65,32 @@ app.post('/login', (req, res)=> {
 
   db.query(
     "SELECT * FROM login_app WHERE email = ?",
-    [email, password],
+    [email],
     (err, result) => {
 
       if(err) {
         res.send({err: err})
-      } 
-//check if result is 1 array
-//use middleware to unhash it to check  
-//check if passwords match 
-//res.json & nsend back status code 
-        if (result) {
-          res.send(result)
+      } else {
+        if (result.length === 1) {
+          const storedHashedPassword = result[0].password;
+          bcrypt.compare(password, storedHashedPassword, (bcryptErr, bcryptResult) => {
+            if (bcryptErr || !bcryptResult) {
+              res.send({message: "Wrong email/password."});
+          } else {
+            res.send({message: "Login successful."});
+          }
+        });
         } else {
           res.send({message: "Wrong email/password."});
         }
       }
+    }
   );
 });
+//check if result is 1 array
+//use middleware to unhash it to check  
+//check if passwords match 
+//res.json & nsend back status code 
 
 app.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`);

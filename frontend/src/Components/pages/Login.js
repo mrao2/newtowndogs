@@ -22,6 +22,7 @@ function Login() {
   const [showPassword, setShowPassword] = useState(false);
   const [showPasswordAlert, setShowPasswordAlert] = useState(false);
   const [showEmailAlert, setShowEmailAlert] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   // const [username, setUsername] = useState("");
   const handlePasswordVisiblity = () => {
     setShowPassword(!showPassword);
@@ -29,18 +30,29 @@ function Login() {
 
   function handleSubmit(event) {
     event.preventDefault();
-   const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
-     if(!emailPattern.test(email)) {
-    setShowEmailAlert(true);
-    return;
-   } 
-   setShowEmailAlert(false);
 
-    if (password.length < 8) {
-      setShowPasswordAlert(true);
-      return;
+    const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+    const isEmailValid = emailPattern.test(email);
+    setShowEmailAlert(!isEmailValid);
+  
+    const isPasswordValid = password.length >= 8;
+    setShowPasswordAlert(!isPasswordValid);
+  
+    if (isEmailValid && isPasswordValid) {
+      login(email, password)
+      .then((response) => {
+        if (response.data && response.data.success) {
+          setIsLoggedIn(true);
+          console.log("Login successful!");
+        } else {
+          console.log("Login unsuccessful!");
+        }
+      })
+      .catch((error) => {
+        console.error("An error occurred:", error);
+      })
     }
-    login(email, password)
+
   }
 
   return (
@@ -62,7 +74,7 @@ function Login() {
         {showEmailAlert && (
         <div className="invalid-email-alert">Invalid email format. Please try again.</div>
       )}
-      
+
         <input
           type={showPassword ? "text" : "password"}
           placeholder="Password"
