@@ -37,6 +37,7 @@ app.post("/api/data", async (req, res) => {
   await create(req, res, "INSERT INTO blogs SET ?");
 });
 
+//Sign up
 app.post("/api/sign-up", async (req, res) => {
   await create(req, res, "INSERT INTO login_app SET ?");
 });

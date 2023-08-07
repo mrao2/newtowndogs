@@ -10,8 +10,7 @@ import "./App.css";
 import Login from "./Components/pages/LoginPage/Login";
 import BookingPage from "./Components/pages/BookingPage/BookingPage";
 import SignUp from "./Components/pages/SignUp/SignUpPage";
-import {EditProfile} from "./Components/pages/UserProfile/EditProfile";
-import UserProfile from "./Components/pages/UserProfile/UserProfile";
+import Profile from "./Components/pages/UserProfile/Profile";
 
 
 function App() {
@@ -24,11 +23,8 @@ function App() {
             <Route exact path="/">
               <Homepage />
             </Route>
-            <Route exact path="/editprofile">
-              <EditProfile />
-            </Route>
-            <Route exact path="/viewprofile">
-              <UserProfile />
+            <Route exact path="/profile/:id">
+              <Profile />
             </Route>
             <Route exact path="/signup">
               <SignUp />
