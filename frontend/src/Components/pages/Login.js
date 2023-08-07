@@ -6,7 +6,7 @@ import { useHistory } from "react-router-dom";
 // const {data: logins, isPending, error} = useFetch('/api/data');
 
 function login (email, password) {
-  return fetch("https://jsonplaceholder.typicode.com/posts", {
+  return fetch("/login", {
     method: "POST",
     body: JSON.stringify({
         email: email,
@@ -111,7 +111,6 @@ function Login() {
           Login
         </button>
         <h3>Not a member?</h3>
-        <a href="/Profile" className="register-button">Sign Up</a>
       </form>
     </div>
   );

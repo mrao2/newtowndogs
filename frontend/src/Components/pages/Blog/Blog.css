@@ -1,0 +1,136 @@
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap");
+
+/* base styles */
+/* * {
+  font-family: "Quicksand";
+  color: #333;
+}
+
+.content {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 20px;
+  margin-top: 80px;
+}
+
+.content {
+  margin-top: 66px;
+} */
+
+.home {
+  max-width: 400px;
+  margin: 80px auto;
+  text-align: center;
+  margin-top: 90px;
+  font-family: "Quicksand";
+  color: #333;
+}
+.new-blog {
+  text-decoration: none;
+  padding: 6px;
+  color: white;
+  background-color: #f1356d;
+  border-radius: 8px;
+}
+/* blog previews / list */
+.blog-preview {
+  padding: 10px 16px;
+  margin: 20px 0;
+  border-bottom: 1px solid #fafafa;
+}
+.blog-preview:hover {
+  box-shadow: 1px 3px 5px rgba(0, 0, 0, 0.1);
+}
+.blog-preview h2 {
+  font-size: 20px;
+  color: #f1356d;
+  margin-bottom: 8px;
+}
+.blog-preview a {
+  text-decoration: none;
+}
+
+/* blog details page */
+.blog-details {
+  font-family: "Quicksand";
+  color: #333;
+  margin: 0;
+}
+.blog-details h2 {
+  font-size: 20px;
+  color: #f1356d;
+  margin-bottom: 10px;
+}
+.blog-details div {
+  margin: 20px 0;
+}
+.blog-details button {
+  background: #f1356d;
+  color: #fff;
+  border: 0;
+  padding: 8px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.blog-details.content {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 20px;
+  margin-top: 80px;
+}
+
+.blog-details.content {
+  margin-top: 66px;
+}
+.single-blog {
+  text-align: center;
+  margin-top: 80px;
+}
+/* create new blog form */
+.create {
+  max-width: 400px;
+  margin: 80px auto;
+  text-align: center;
+  margin-top: 90px;
+  font-family: "Quicksand";
+  color: #333;
+}
+.create label {
+  text-align: left;
+  display: block;
+}
+.create h2 {
+  font-size: 20px;
+  color: #f1356d;
+  margin-bottom: 30px;
+}
+.create input,
+.create textarea,
+.create select {
+  width: 100%;
+  padding: 6px 10px;
+  margin: 10px 0;
+  border: 1px solid #ddd;
+  box-sizing: border-box;
+  display: block;
+}
+.create button {
+  background: #f1356d;
+  color: #fff;
+  border: 0;
+  padding: 8px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.create.content {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 20px;
+  margin-top: 80px;
+}
+
+.create.content {
+  margin-top: 66px;
+}
