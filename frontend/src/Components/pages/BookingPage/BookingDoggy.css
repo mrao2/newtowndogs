@@ -1,8 +1,6 @@
 html, body {
-   /* background: #1D4569;  */
     height: 100%;
     width: 100%;
-
   }
   
   .dog {
@@ -14,20 +12,20 @@ html, body {
   }
   
   .body {
-    background: #60C8E7;
+    background: #e760ca;
     border-radius: 300px 300px 0 0;
     height: 300px;
   }
   .beard {
     width: 55px;
     height: 65px;
-    background: #087BA5;
+    background: #9808a5;
     margin: 0 auto;
     border-radius: 20px;
     position: relative;
   &:after {
       content: '';
-      background: #087BA5;
+      background: #9808a5;
       width: 26px;
       height: 13px;
       border-radius: 0 0 25px 25px;
@@ -75,7 +73,7 @@ html, body {
   }
   
   .eyes {
-    background: #fff;
+    background: rgb(247, 219, 233);
     width: 20px;
     height: 24px;
     border-radius: 20px 20px 0 0;
@@ -104,7 +102,7 @@ html, body {
   
   .belt {
     height: 30px;
-    background: #FF6B5A;
+    background: #0c0201;
     margin-top: 20px;
     position: relative;
     .locket {
@@ -118,7 +116,7 @@ html, body {
     .dot {
       width: 10px;
       height: 10px;
-      background: #fff;
+      background: #FFC442;
       position: absolute;
       border-radius: 50%;
       top: 0;
@@ -142,7 +140,7 @@ html, body {
       position: absolute;
       width: 5px;
       height: 10px;
-      background: #fff;
+      background: #FFC442;
       top: 0;
       bottom: 0;
       margin: auto;
@@ -160,7 +158,7 @@ html, body {
   .stomach {
     width: 56px;
     height: 130px;
-    background: #fff;
+    background: rgb(247, 219, 233);
     position: absolute;
     bottom: 0;
     left: 0;
@@ -180,7 +178,7 @@ html, body {
       display: inline-block;
       content: '';
       position: absolute;
-      background: #087BA5;
+      background: #9808a5;
       width: 45px;
     }
     &:before {
@@ -193,14 +191,14 @@ html, body {
       display: inline;
       width: 12px;
       height: 55px;
-      background: #087BA5;
+      background: #a50890;
       position: absolute;
       bottom: 0;
       &:before {
         content: '';
         width: 28px;
         height: 12px;
-        background: #60C8E7;
+        background: #a50870;
         border-radius: 20px 20px 0 0;
         display: inline-block;
         bottom: 0;
@@ -231,20 +229,20 @@ html, body {
     &:after, &:before {
       content: '';
       display: inline-block;
-      background: #087BA5;
+      background: #a50890;
       width: 40px;
       height: 90px;
       border-radius: 100% 100% 0 0;
     }
     &:after {
       transform: translateX(40px);
-      border: 10px solid #60C8E7;
+      border: 10px solid #db6bc9;
       box-sizing: border-box;
     }
   }
   
   .tail {
-    background: #60C8E7;
+    background: #db6bc9;
     width: 14px;
     height: 80px;
     position: absolute;
@@ -259,8 +257,8 @@ html, body {
   }
   
   .tag {
-    border-left: 5px solid #FF6B5A;
-    border-bottom: 5px solid #FF6B5A;
+    border-left: 5px solid #000000;
+    border-bottom: 5px solid #000000;
     width: 500%;
     height: 161px;
     z-index: 2;
