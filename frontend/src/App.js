@@ -5,7 +5,7 @@ import Create from "./Components/pages/Blog/Create";
 import BlogDetails from "./Components/pages/Blog/BlogDetails";
 import NotFound from "./NotFound";
 import BlogHome from "./Components/pages/Blog/BlogHome";
-import Homepage from "./Components/pages/Homepage";
+import Homepage from "./Components/pages/Homepage/Homepage";
 import "./App.css";
 import Login from "./Components/pages/LoginPage/Login";
 import BookingPage from "./Components/pages/BookingPage/BookingPage";
@@ -13,6 +13,7 @@ import SignUpPage from "./Components/pages/SignUp/SignUpPage";
 import Profile from "./Components/pages/UserProfile/Profile";
 import { EditProfile } from "./Components/pages/UserProfile/EditProfile";
 
+import AboutUs from "./Components/pages/AboutUs/AboutUs";
 
 function App() {
   return (
@@ -32,6 +33,9 @@ function App() {
             </Route>
             <Route exact path="/editprofile">
               <EditProfile />
+            </Route>
+            <Route exact path="/aboutus">
+              <AboutUs />
             </Route>
             <Route exact path="/BlogHome">
               <BlogHome />
