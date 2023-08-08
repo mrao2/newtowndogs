@@ -37,7 +37,8 @@ const BookingPage = () => {
           : "You are a returning customer."}
       </div>
       <br />
-      <div>{isChecked ? <ConsultationForm setSubmit={setSubmit} /> : <ReturnCustomerForm setSubmit={setSubmit} />}</div>
+      <div>{isChecked ? <ConsultationForm setSubmit={setSubmit} /> : <ReturnCustomerForm setSubmit={setSubmit} />}
+        {console.log(submit)}</div>
     </div>
   );
 };

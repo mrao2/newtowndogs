@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import React from 'react';
 import DatePicker from "react-datepicker";
 import 'react-datepicker/dist/react-datepicker.css';
@@ -10,7 +10,6 @@ import 'react-time-picker/dist/TimePicker.css';
 import 'react-clock/dist/Clock.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useHistory } from "react-router-dom";
-// import AppSubmitted from './AppSubmitted';
 
 
 
@@ -24,7 +23,6 @@ const ConsultationForm = ({ setSubmit }) => {
     const [isConsultation, setIsConsultation] = useState(false);
     const [description, setDescription] = useState("");
     const [isPending, setIsPending] = useState(false);
-    const [isBooked, setIsBooked] = useState(false);
     const history = useHistory();
 
 
@@ -42,23 +40,16 @@ const ConsultationForm = ({ setSubmit }) => {
             body: JSON.stringify(appointment),
         }).then(() => {
             setIsPending(false);
-
             history.push('/AppSubmitted')
         });
-
     }
 
     const handleChange = (startDate) => {
-
         setStartDate(startDate);
-
-
     };
 
     const handleStartTimeChange = (startTime) => {
-
         setStartTime(startTime);
-
     };
 
 

@@ -44,7 +44,6 @@ const ReturnCustomerForm = ({ setSubmit }) => {
             setIsPending(false);
             history.push('/AppSubmitted')
         });
-
     }
 
     const handleChange = (range) => {
