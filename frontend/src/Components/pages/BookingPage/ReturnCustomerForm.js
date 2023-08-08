@@ -13,8 +13,7 @@ import { useHistory } from "react-router-dom";
 
 
 
-const ReturnCustomerForm = () => {
-    // const [date, setDate] = useState(new Date());
+const ReturnCustomerForm = ({ setSubmit }) => {
     const [startDate, setStartDate] = useState();
     const [endDate, setEndDate] = useState();
     const [startTime, setStartTime] = useState('09:00');
@@ -34,9 +33,7 @@ const ReturnCustomerForm = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         const appointment = { start_date: startDate, end_date: endDate, start_time: startTime, end_time: endTime, is_consultation: isConsultation, description };
-
         setIsPending(true);
-
         console.log(appointment)
 
         fetch("/api/appointments", {
@@ -45,7 +42,7 @@ const ReturnCustomerForm = () => {
             body: JSON.stringify(appointment),
         }).then(() => {
             setIsPending(false);
-            history.push('/BookingPage')
+            history.push('/AppSubmitted')
         });
 
     }
@@ -57,18 +54,13 @@ const ReturnCustomerForm = () => {
     };
 
     const handleStartTimeChange = (startTime) => {
-
         setStartTime(startTime);
-
     };
 
 
     const handleEndTimeChange = (endTime) => {
-
         setEndTime(endTime);
-
     };
-
 
 
     return (

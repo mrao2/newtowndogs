@@ -15,8 +15,11 @@ const AppSubmitted = () => {
             <br />
             <br />
             <br />
-            <h1 className="appSubConf">Appointment Request Submitted!</h1>
-            <BookingDoggy />
+            <div>
+                <h1 className="appSubConf">Appointment Request Submitted!</h1>
+                <BookingDoggy />
+            </div>
+
         </>
     )
 }
