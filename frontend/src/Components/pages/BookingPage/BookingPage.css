@@ -128,3 +128,13 @@ input[type="checkbox"] {
   flex-wrap: wrap;
   justify-content: center;
 }
+
+.bookingDoggySource {
+  display: flex;
+  justify-content: center;
+  font-size: xx-small;
+}
+
+.appSubConf {
+  text-align: center;
+}
