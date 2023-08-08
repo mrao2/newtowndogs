@@ -1,0 +1,27 @@
+body,html {
+    padding: 0;
+    margin: 0 auto;
+    display: block;
+}
+
+.container {
+    display:flex;
+    justify-content: center;
+    align-content: space-around;
+    justify-items: center;
+}
+
+.appHeader {
+    width:100%;
+    margin: 0 auto;
+    color: #ab8096f6;
+    background-image: url(./images/appDisplayDog.jpg);
+    background-size: contain;
+    height: 13vh;
+    text-shadow: 1px 1px 2px #49343ec9;
+    font-weight: 700;
+}
+
+.appContent {
+    border-color: #ab8096 !important;
+}

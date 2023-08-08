@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./Navbar.css";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBars } from '@fortawesome/free-solid-svg-icons';
 
 function Navbar() {
   return (
@@ -18,12 +20,13 @@ function Navbar() {
         <Link to="/Login">Sign Up</Link>
 
         <Link to="/BookingPage">Book Sitter</Link>
+        <Link to="/AppointmentDisplay">Appointment Requests</Link>
         <Link to="/bloghome">Blog</Link>
-        
+
       </div>
       <div class="smallScreenNav">
         <div className="dropdown">
-          <button class="dropbtn">Navigate the Website</button>
+          <button class="dropbtn"><FontAwesomeIcon icon={faBars} size="2x" /></button>
           <div class="dropdown-content">
             <div className="links">
               <a href="/">Home</a>
@@ -31,6 +34,7 @@ function Navbar() {
               <a href="/about">About Us</a>
               <Link to="/Login">Login</Link>
               <Link to="/BookingPage">Book Sitter</Link>
+              <Link to="/AppointmentDisplay">Appointment Requests</Link>
               <Link to="/bloghome">Blog</Link>
 
               <Link to="/create">New Blog</Link>
