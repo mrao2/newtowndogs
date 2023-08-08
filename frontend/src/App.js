@@ -11,7 +11,6 @@ import Login from "./Components/pages/Login";
 import BookingPage from "./Components/pages/BookingPage/BookingPage";
 import Profile from "./Components/pages/Profile";
 import AboutUs from "./Components/pages/AboutUs/AboutUs";
-import AppSubmitted from "./Components/pages/BookingPage/AppSubmitted";
 
 function App() {
   return (

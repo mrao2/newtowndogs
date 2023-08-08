@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
+import './Blog.css';
 
 const authors = [
   { value: "mario", label: "Mario" },
@@ -47,13 +48,11 @@ const Create = () => {
           onChange={(e) => setBody(e.target.value)}
         ></textarea>
         <label>Blog author:</label>
-        <select value={author} onChange={(e) => setAuthor(e.target.value)}>
-          {authors.map((author) => (
-            <option key={author.value} value={author.value}>
-              {author.label}
-            </option>
-          ))}
-        </select>
+        <textarea
+          required
+          value={author}
+          onChange={(e) => setAuthor(e.target.value)}
+        ></textarea>
         {!isPending && <button>Add Blog</button>}
         {isPending && <button disabled>Adding Blog...</button>}
       </form>

@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import './Blog.css';
 
 const BlogList = ({ blogs, title }) => {
   return (
@@ -13,6 +14,7 @@ const BlogList = ({ blogs, title }) => {
             </Link>
         </div>
       ))}
+      <Link className="new-blog" to="/create">New Blog</Link>
     </div>
   );
 };
