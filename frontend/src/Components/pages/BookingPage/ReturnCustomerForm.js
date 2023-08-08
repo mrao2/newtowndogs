@@ -133,7 +133,12 @@ const ReturnCustomerForm = () => {
                     </Form.Group>
                 </div>
                 <br />
-                {!isPending && <Button className="bookingSubmitButton" type="submit">Submit Appointment Request</Button>}
+                {!isPending && <Button className="bookingSubmitButton" type="submit" onClick={() => {
+
+                    setSubmit(true);
+                    setIsConsultation(true);
+
+                }}>Submit Appointment Request</Button>}
                 {isPending && <button>Submitting Appointment Request...</button>}
 
             </Form>
