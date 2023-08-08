@@ -127,7 +127,7 @@ const ReturnCustomerForm = ({ setSubmit }) => {
                 {!isPending && <Button className="bookingSubmitButton" type="submit" onClick={() => {
 
                     setSubmit(true);
-                    setIsConsultation(true);
+                    setIsConsultation(false);
 
                 }}>Submit Appointment Request</Button>}
                 {isPending && <button>Submitting Appointment Request...</button>}
