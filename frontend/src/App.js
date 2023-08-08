@@ -12,7 +12,7 @@ import BookingPage from "./Components/pages/BookingPage/BookingPage";
 import Profile from "./Components/pages/Profile";
 import AboutUs from "./Components/pages/AboutUs/AboutUs";
 import AppSubmitted from "./Components/pages/BookingPage/AppSubmitted";
-import AppointmentDisplay from "./Components/AppointmentDislay/AppointmentDisplay";
+import AppointmentDisplay from "./Components/pages/AppointmentDislay/AppointmentDisplay";
 
 function App() {
   return (
