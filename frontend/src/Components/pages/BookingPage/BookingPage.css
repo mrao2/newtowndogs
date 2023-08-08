@@ -1,8 +1,3 @@
-/* * {
-  margin: 0;
-  padding: 0;
-} */
-
 .bookingpage {
   max-width: 600px;
   margin: 40px auto;
@@ -53,7 +48,7 @@
 
 .pageHeader {
   color: white;
-  background-color: #f1356d;
+  background-color: #ab8096;
   border-radius: 8px;
   margin: auto;
   margin-bottom: 20px;
@@ -63,7 +58,7 @@
 
 .bookingSubmitButton {
   color: white;
-  background-color: #f1356d;
+  background-color: #ab8096;
   border-radius: 8px;
   border-color: #4b2732;
   display: block;
@@ -75,6 +70,7 @@
 }
 
 .isConsultation,
+.isNotConsultation,
 .result,
 .consultationNotice {
   display: block;
