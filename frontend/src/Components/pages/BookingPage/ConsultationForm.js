@@ -36,13 +36,6 @@ const ConsultationForm = ({ setSubmit }) => {
         console.log(appointment);
         setIsPending(true);
 
-
-        // const email = e.target.email.value;
-        // const subject = 'Form TEST TEST TEST';
-        // const body = "Your test has succeeded!";
-
-        // sendEmail(email, subject, body);
-
         fetch("/api/appointments", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
