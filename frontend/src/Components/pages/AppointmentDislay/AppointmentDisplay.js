@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import '../BookingPage/BookingDoggy.css'
 import useFetch from "../../useFetch";
 import './AppointmentDisplay.css';
+import AppointmentList from './AppointmentList';
 
 const AppointmentDisplay = () => {
 
@@ -17,7 +18,8 @@ const AppointmentDisplay = () => {
             <h1 className="appHeader text-center">Appointment Requests</h1>
             {error && <div>{error}</div>}
             {isPending && <div>Loading</div>}
-            {appointments}
+            {appointments && <AppointmentList appointments={appointments} title="All Appointments" />}
+            {console.log(appointments)}
             <div className="container">
                 <div class="row">
                     <div className="col-sm-12 col-md-6 mt-3 border">
