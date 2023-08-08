@@ -48,8 +48,8 @@ function App() {
             <Route exact path="/AppSubmitted">
               <AppSubmitted />
             </Route>
-            <Route>
-              <AppointmentDisplay exact path="/AppointmentDisplay" />
+            <Route exact path="/AppointmentDisplay" >
+              <AppointmentDisplay />
             </Route>
             <Route path="*">
               <NotFound />
