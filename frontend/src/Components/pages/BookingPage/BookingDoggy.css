@@ -12,20 +12,20 @@ html, body {
   }
   
   .body {
-    background: #e760ca;
+    background: #b38ba0;
     border-radius: 300px 300px 0 0;
     height: 300px;
   }
   .beard {
     width: 55px;
     height: 65px;
-    background: #9808a5;
+    background: #9d32a7;
     margin: 0 auto;
     border-radius: 20px;
     position: relative;
   &:after {
       content: '';
-      background: #9808a5;
+      background: #9d32a7;
       width: 26px;
       height: 13px;
       border-radius: 0 0 25px 25px;
@@ -191,14 +191,14 @@ html, body {
       display: inline;
       width: 12px;
       height: 55px;
-      background: #a50890;
+      background: #9d32a7;
       position: absolute;
       bottom: 0;
       &:before {
         content: '';
         width: 28px;
         height: 12px;
-        background: #a50870;
+        background: #bb5bab;
         border-radius: 20px 20px 0 0;
         display: inline-block;
         bottom: 0;
@@ -229,20 +229,20 @@ html, body {
     &:after, &:before {
       content: '';
       display: inline-block;
-      background: #a50890;
+      background: #9d32a7;
       width: 40px;
       height: 90px;
       border-radius: 100% 100% 0 0;
     }
     &:after {
       transform: translateX(40px);
-      border: 10px solid #db6bc9;
+      border: 10px solid #bb5bab;
       box-sizing: border-box;
     }
   }
   
   .tail {
-    background: #db6bc9;
+    background: #bb5bab;
     width: 14px;
     height: 80px;
     position: absolute;
