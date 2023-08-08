@@ -12,6 +12,7 @@ import BookingPage from "./Components/pages/BookingPage/BookingPage";
 import Profile from "./Components/pages/Profile";
 import AboutUs from "./Components/pages/AboutUs/AboutUs";
 import AppSubmitted from "./Components/pages/BookingPage/AppSubmitted";
+import AppointmentDisplay from "./Components/AppointmentDislay/AppointmentDisplay";
 
 function App() {
   return (
@@ -46,6 +47,9 @@ function App() {
             </Route>
             <Route exact path="/AppSubmitted">
               <AppSubmitted />
+            </Route>
+            <Route>
+              <AppointmentDisplay exact path="/AppointmentDisplay" />
             </Route>
             <Route path="*">
               <NotFound />
