@@ -1,26 +1,30 @@
 import React from "react";
 import { useState } from "react";
-// import { Link } from "react-router-dom";
 import './AppointmentDisplay.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
-import useFetch from "../../useFetch";
+// import useFetch from "../../useFetch";
+import { useHistory, useParams } from "react-router-dom";
+
 
 const AppointmentList = ({ appointments }) => {
     // const [confirmed, setConfirmed] = useState(false);
     // const [rejected, setRejected] = useState(false);
     // const [isPending, setIsPending] = useState(false);
     const [isDeleted, setIsDeleted] = useState(false);
+    const history = useHistory();
+    const { appointment_id } = useParams();
 
-    const handleTrashClick = (e) => {
-        e.preventDefault();
+    const handleTrashClick = () => {
+
         setIsDeleted(true);
-        fetch("/api/appointments/" + appointments.appointment_id, {
+        fetch("/api/appointments/" + appointment_id, {
             method: "DELETE",
         }).then(() => {
-            history.pushState("/AppointmentsDisplay").catch((error) => {
-                console.error("Error deleteing appointment:", error);
-            })
+            history.push("/AppointmentDisplay");
+            console.log(isDeleted);
+        }).catch((error) => {
+            console.error("Error deleting appointment:", error);
         })
     }
 
@@ -45,7 +49,7 @@ const AppointmentList = ({ appointments }) => {
                             <p className="apptDescription">Pet Parent Appointment Notes: {!appointment.description ? "---" : appointment.description}</p>
                             <button className="confirmApptBtn btn"><a className="confirmRejectLink" href={`mailto:${appointment.email}?subject=NewTown Dogs - Confirming Your Appointment!`}>Confirm Appointment</a></button>
                             <button className="rejectApptBtn btn"><a className="confirmRejectLink" href={`mailto:${appointment.email}?subject=NewTown Dogs - Appointment Cannot Be Confirmed Yet`}>Reject Appointment</a></button>
-                            <a href="#" aria-label="Deletes Appointment" onClick={handleTrashClick}><FontAwesomeIcon className="trashCan" icon={faTrashCan} /></a>
+                            <a href="/" aria-label="Deletes Appointment" onClick={handleTrashClick}><FontAwesomeIcon className="trashCan" icon={faTrashCan} /></a>
                             {/* {isPending && <div><button className="confirmApptBtn btn"><a href={`mailto:${appointment.email}?subject=NewTown Dogs - Confirming Your Appointment!`} onClick={() => {
 
                                 setConfirmed(true)
