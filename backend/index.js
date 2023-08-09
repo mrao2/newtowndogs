@@ -28,8 +28,7 @@ app.get("/api/data", async (req, res) => {
 
 app.get("/api/data/:BlogId", async (req, res) => {
   const { BlogId } = req.params;
-
-  await read(req, res, "SELECT * FROM blogs WHERE BlogId = ?", BlogId);
+    await read(req, res, "SELECT * FROM blogs LEFT JOIN comments ON blogs.BlogId = comments.BlogId WHERE blogs.BlogId = ?", BlogId)
 });
 
 app.post("/api/data", async (req, res) => {

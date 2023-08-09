@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useHistory, useParams } from "react-router-dom";
 import useFetch from "../../useFetch";
 import "./Blog.css";
+import CommentList from "./CommentList";
 
 const BlogDetails = () => {
   const { BlogId } = useParams();
@@ -103,6 +104,7 @@ const BlogDetails = () => {
               <button onClick={handleClick}>Delete</button>
             </div>
           )}
+          <CommentList comments={blog}/>
         </article>
       )}
     </div>
