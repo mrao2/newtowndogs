@@ -1,8 +1,13 @@
 import React from "react";
+// import { useState } from "react";
 // import { Link } from "react-router-dom";
 import './AppointmentDisplay.css';
 
 const AppointmentList = ({ appointments }) => {
+    // const [confirmed, setConfirmed] = useState(false);
+    // const [rejected, setRejected] = useState(false);
+    // const [isPending, setIsPending] = useState(false);
+
     return (
         <>{appointments.data.map((appointment) => (
             <div class="appointment_list col-sm-12 col-md-5 mt-3">
@@ -21,8 +26,24 @@ const AppointmentList = ({ appointments }) => {
                             <p className="apptStartDate">Appointment Start Date: {appointment.start_date.substring(0, 10)}</p>
                             <p className="apptEndDate">Appointment End Date: {!appointment.end_date ? "---" : appointment.end_date.substring(0, 10)}</p>
                             <p className="apptDescription">Pet Parent Appointment Notes: {!appointment.description ? "---" : appointment.description}</p>
-                            <button className="confirmApptBtn btn">Confirm Appointment</button>
-                            <button className="rejectApptBtn btn">Reject Appointment</button>
+                            <button className="confirmApptBtn btn"><a className="confirmRejectLink" href={`mailto:${appointment.email}?subject=NewTown Dogs - Confirming Your Appointment!`}>Confirm Appointment</a></button>
+                            <button className="rejectApptBtn btn"><a className="confirmRejectLink" href={`mailto:${appointment.email}?subject=NewTown Dogs - Appointment Cannot Be Confirmed Yet`}>Reject Appointment</a></button>
+
+                            {/* {isPending && <div><button className="confirmApptBtn btn"><a href={`mailto:${appointment.email}?subject=NewTown Dogs - Confirming Your Appointment!`} onClick={() => {
+
+                                setConfirmed(true)
+                                setIsPending(false)
+
+                            }}>Confirm Appointment</a></button>
+                                <button className="rejectApptBtn btn"><a href={`mailto:${appointment.email}?subject=NewTown Dogs - Appointment Cannot Be Confirmed Yet`} onClick={() => {
+
+                                    setRejected(true)
+                                    setIsPending(false)
+
+                                }}>Reject Appointment</a></button>
+                            </div>
+                            }
+                            {!isPending && <div>Appointment request has been replied to.</div>} */}
                         </div>
                     </div>
                 </div>

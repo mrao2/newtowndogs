@@ -21,6 +21,8 @@ html {
     height: 13vh;
     text-shadow: 1px 1px 2px #49343ec9;
     font-weight: 700;
+    -webkit-text-stroke: 1px rgba(0, 0, 0, 0.27);
+
 }
 
 .appContent {
@@ -33,11 +35,18 @@ html {
     flex-wrap: wrap;
 }
 
+.appointment-preview {
+    box-shadow: 4px 5px 5px 4px rgb(110, 110, 110);
+    margin: 5px;
+}
+
 .rejectApptBtn,
 .confirmApptBtn {
     background-color: #ab8096;
     border-color: black;
-    margin: 2px;
+    margin: 7px;
+    box-shadow: 4px 10px 10px 4px rgb(110, 110, 110);
+    color: whitesmoke;
 }
 
 .rejectApptBtn:hover {
@@ -46,4 +55,8 @@ html {
 
 .confirmApptBtn:hover {
     background-color: green;
+}
+
+.confirmRejectLink {
+    color: whitesmoke;
 }
