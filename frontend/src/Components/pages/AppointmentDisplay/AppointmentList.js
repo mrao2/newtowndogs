@@ -3,8 +3,9 @@ import { useState } from "react";
 import './AppointmentDisplay.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
-// import useFetch from "../../useFetch";
+import useFetch from "../../useFetch";
 import { useHistory, useParams } from "react-router-dom";
+
 
 
 const AppointmentList = ({ appointments }) => {
@@ -13,7 +14,10 @@ const AppointmentList = ({ appointments }) => {
     // const [isPending, setIsPending] = useState(false);
     const [isDeleted, setIsDeleted] = useState(false);
     const history = useHistory();
-    const { appointment_id } = useParams();
+
+    const appointment_id = useParams();
+    const { data: appointment, isPending, error } = useFetch(`/api/appointments/:${appointment_id}`);
+
 
     const handleTrashClick = () => {
 
@@ -25,8 +29,8 @@ const AppointmentList = ({ appointments }) => {
             console.log(isDeleted);
         }).catch((error) => {
             console.error("Error deleting appointment:", error);
-        })
-    }
+        });
+    };
 
 
     return (
