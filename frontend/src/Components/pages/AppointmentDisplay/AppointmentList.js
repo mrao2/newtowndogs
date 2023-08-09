@@ -1,12 +1,21 @@
 import React from "react";
-// import { useState } from "react";
+import { useState } from "react";
 // import { Link } from "react-router-dom";
 import './AppointmentDisplay.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
 
 const AppointmentList = ({ appointments }) => {
     // const [confirmed, setConfirmed] = useState(false);
     // const [rejected, setRejected] = useState(false);
     // const [isPending, setIsPending] = useState(false);
+    const [isDeleted, setIsDeleted] = useState(false);
+
+    const handleTrashClick = (e) => {
+        e.preventDefault();
+        setIsDeleted(true);
+    }
+
 
     return (
         <>{appointments.data.map((appointment) => (
@@ -28,7 +37,7 @@ const AppointmentList = ({ appointments }) => {
                             <p className="apptDescription">Pet Parent Appointment Notes: {!appointment.description ? "---" : appointment.description}</p>
                             <button className="confirmApptBtn btn"><a className="confirmRejectLink" href={`mailto:${appointment.email}?subject=NewTown Dogs - Confirming Your Appointment!`}>Confirm Appointment</a></button>
                             <button className="rejectApptBtn btn"><a className="confirmRejectLink" href={`mailto:${appointment.email}?subject=NewTown Dogs - Appointment Cannot Be Confirmed Yet`}>Reject Appointment</a></button>
-
+                            <a href="#" onClick={handleTrashClick}><FontAwesomeIcon className="trashCan" icon={faTrashCan} /></a>
                             {/* {isPending && <div><button className="confirmApptBtn btn"><a href={`mailto:${appointment.email}?subject=NewTown Dogs - Confirming Your Appointment!`} onClick={() => {
 
                                 setConfirmed(true)

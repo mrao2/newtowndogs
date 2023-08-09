@@ -7,6 +7,8 @@ CREATE TABLE appointments (
 	 end_date VARCHAR(255),	 
      description VARCHAR(255),
 	 is_consultation TINYINT,
+    is_confirmed TINYINT,
+    is_rejected TINYINT,
      first_name VARCHAR(255),
      last_name VARCHAR(255),
      email VARCHAR(255),
