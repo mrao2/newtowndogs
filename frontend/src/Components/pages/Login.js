@@ -46,17 +46,17 @@ function Login() {
   
     const isPasswordValid = password.length >= 8;
     setShowPasswordAlert(!isPasswordValid);
-  
     if (isEmailValid && isPasswordValid) {
       login(email, password)
       .then((response) => {
-        if (response.data && response.data.success) {
+        if (response.data) {
+          console.log(response.success);
           // setIsLoggedIn(true); //set login status to true
           console.log("Login successful!");
             //redirect to home page
             history.push("/Homepage");
         } else {
-          console.log("Login unsuccessful!");
+          console.log("Login unsuccessful!!!!!");
         }
       })
       .catch((error) => {

@@ -77,12 +77,22 @@ app.post('/login', (req, res)=> {
     user: process.env.User,
     password: process.env.Password,
     database: process.env.Database,
+  });
+
+  connection.connect((err) => {
+    if(err) {
+      console.error('Database connection error:', err);
+      res.status(500).send({err: err});
+      return;
+    }
+    console.log('Connected to the database');
   })
 //finds user w this email in db
   connection.query(
     "SELECT * FROM login_app WHERE email = ?",
     [email],
     (err, result) => {
+      console.log(result);
 //if err in query, status code & err message returned
       if(err) {
         console.error("Database error:", err);
@@ -90,23 +100,34 @@ app.post('/login', (req, res)=> {
       } else {
 //otherwise, checks result length, makes sure theres one matching user. then retrieves stored HASHED pwd. uses compare to make sure theyre the same 
         if (result.length === 1) {
-          const storedHashedPassword = result[0].password;
-          bcrypt.compare(password, storedHashedPassword, (bcryptErr, bcryptResult) => {
-            if (bcryptErr || !bcryptResult) {
-              res.send({message: "Wrong email/password."});
-          } else {
-            res.send({message: "Login successful."});
-          }
-          connection.end();
-        });
+          const storedEmail = result[0].email;
+          //change to storedHashedPassword^^
+          if(email === storedEmail) {
+            res.send({message: "Login successful!"});
         } else {
-          res.send({message: "Wrong email/password."});
-          connection.end();
+          res.send({message: "Wrong email/password!"});
         }
-      }
+      } else {
+        res.send({message: "Wrong email/password."});
+        }
+      } 
+      connection.end();
     }
   );
 }); 
+
+
+// bcrypt.compare(password, storedHashedPassword, (bcryptErr, bcryptResult) => {
+//   if (bcryptErr || !bcryptResult) {
+//     res.send({message: "Wrong email/password."});
+// } else {
+//   res.send({message: "Login successful."});
+// }
+// connection.end();
+// });
+// } else {
+// res.send({message: "Wrong email/password."});
+// connection.end();
 
 //registration functions!
 
