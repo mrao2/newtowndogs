@@ -68,10 +68,10 @@ app.get("/api/appointments", async (req, res) => {
   await read(req, res, "SELECT * FROM appointments");
 });
 
-// app.delete('/api/appointments', async (req, res) => {
-//   const { appointment_id } = req.params;
-//   await deleteRow(req, res, 'DELETE FROM appointments WHERE appointment_id = ?', appointment_id);
-// })
+app.delete('/api/appointments', async (req, res) => {
+  const { appointment_id } = req.params;
+  await deleteRow(req, res, 'DELETE FROM appointments WHERE appointment_id = ?', appointment_id);
+})
 
 
 

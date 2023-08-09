@@ -4,6 +4,7 @@ import { useState } from "react";
 import './AppointmentDisplay.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
+import useFetch from "../../useFetch";
 
 const AppointmentList = ({ appointments }) => {
     // const [confirmed, setConfirmed] = useState(false);
@@ -14,6 +15,13 @@ const AppointmentList = ({ appointments }) => {
     const handleTrashClick = (e) => {
         e.preventDefault();
         setIsDeleted(true);
+        fetch("/api/appointments/" + appointments.appointment_id, {
+            method: "DELETE",
+        }).then(() => {
+            history.pushState("/AppointmentsDisplay").catch((error) => {
+                console.error("Error deleteing appointment:", error);
+            })
+        })
     }
 
 
@@ -37,7 +45,7 @@ const AppointmentList = ({ appointments }) => {
                             <p className="apptDescription">Pet Parent Appointment Notes: {!appointment.description ? "---" : appointment.description}</p>
                             <button className="confirmApptBtn btn"><a className="confirmRejectLink" href={`mailto:${appointment.email}?subject=NewTown Dogs - Confirming Your Appointment!`}>Confirm Appointment</a></button>
                             <button className="rejectApptBtn btn"><a className="confirmRejectLink" href={`mailto:${appointment.email}?subject=NewTown Dogs - Appointment Cannot Be Confirmed Yet`}>Reject Appointment</a></button>
-                            <a href="#" onClick={handleTrashClick}><FontAwesomeIcon className="trashCan" icon={faTrashCan} /></a>
+                            <a href="#" aria-label="Deletes Appointment" onClick={handleTrashClick}><FontAwesomeIcon className="trashCan" icon={faTrashCan} /></a>
                             {/* {isPending && <div><button className="confirmApptBtn btn"><a href={`mailto:${appointment.email}?subject=NewTown Dogs - Confirming Your Appointment!`} onClick={() => {
 
                                 setConfirmed(true)
