@@ -6,9 +6,9 @@ const AppointmentList = ({ appointments }) => {
     return (
         <div className="appointment-list">
             {appointments.data.map((appointment) => (
-                <div className="appointment-preview" key={appointment.AppointmentId}>
+                <div className="appointment-preview" key={appointment.appointment_id}>
                     <Link to={`/appointments/${appointment.AppointmentId}`} />
-                    <h2>{appointment.AppointmentId}</h2>
+                    <h2>{appointment.appointment_id}</h2>
                 </div>
             ))}
         </div>
