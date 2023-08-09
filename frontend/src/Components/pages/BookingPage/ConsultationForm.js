@@ -29,7 +29,7 @@ const ConsultationForm = ({ setSubmit }) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        const appointment = { start_date: startDate, start_time: startTime, is_consultation: isConsultation, description };
+        const appointment = { first_name: firstName, last_name: lastName, email: email, start_date: startDate, start_time: startTime, is_consultation: isConsultation, description };
 
         console.log(appointment);
         setIsPending(true);

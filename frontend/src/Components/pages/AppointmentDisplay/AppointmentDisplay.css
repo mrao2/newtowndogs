@@ -23,7 +23,11 @@ body,html {
 }
 
 .appContent {
-
     border-color: #ab8096 !important;
     margin: 2px;
+}
+
+.appointment_list {
+    display: flex;
+    flex-wrap: wrap;
 }
