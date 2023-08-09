@@ -1,6 +1,4 @@
-import React, { useEffect, useState } from "react";
-// import dog1 from './images/appDisplayDog.jpg';
-// import dog2 from './images/appDisplayDog2.jpg';
+import React from "react";
 import '../BookingPage/BookingDoggy.css'
 import useFetch from "../../useFetch";
 import './AppointmentDisplay.css';

@@ -7,6 +7,18 @@ CREATE TABLE appointments (
 	 end_date VARCHAR(255),	 
      description VARCHAR(255),
 	 is_consultation TINYINT,
-	 INDEX (id),
-	 FOREIGN KEY (id) REFERENCES login_app(id)
+     first_name VARCHAR(255),
+     last_name VARCHAR(255),
+     email VARCHAR(255),
+     username VARCHAR(255),
+    INDEX (id),
+    INDEX (first_name),
+    INDEX (last_name),
+    INDEX (email),
+    INDEX (username),
+    FOREIGN KEY (id) REFERENCES login_app(id),
+    FOREIGN KEY (first_name) REFERENCES login_app(first_name),
+    FOREIGN KEY (last_name) REFERENCES login_app(last_name),
+    FOREIGN KEY (email) REFERENCES login_app(email),
+    FOREIGN KEY (username) REFERENCES login_app(username)
 );
