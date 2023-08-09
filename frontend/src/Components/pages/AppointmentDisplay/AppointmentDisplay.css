@@ -22,7 +22,6 @@ html {
     text-shadow: 1px 1px 2px #49343ec9;
     font-weight: 700;
     -webkit-text-stroke: 1px rgba(0, 0, 0, 0.27);
-
 }
 
 .appContent {
@@ -30,12 +29,14 @@ html {
     margin: 2px;
 }
 
-.appointment-preview,
 .appointment_list {
     flex-wrap: wrap;
+    justify-content: center;
+    justify-items: center;
 }
 
 .appointment-preview {
+    flex-wrap: wrap;
     box-shadow: 4px 5px 5px 4px rgb(110, 110, 110);
     margin: 5px;
 }

@@ -10,7 +10,7 @@ const AppointmentList = ({ appointments }) => {
 
     return (
         <>{appointments.data.map((appointment) => (
-            <div class="appointment_list col-sm-12 col-md-5 mt-3">
+            <div class="appointment_list col-sm-12 col-md-6 mt-3">
 
                 <div className="appointment-preview" key={appointment.appointment_id}>
                     {/* <Link to={`/appointments/${appointment.AppointmentId}`} /> */}
