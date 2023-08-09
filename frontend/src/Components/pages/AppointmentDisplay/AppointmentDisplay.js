@@ -14,11 +14,15 @@ const AppointmentDisplay = () => {
             <br />
             <br />
             <h1 className="appHeader text-center">Appointment Requests</h1>
-            {error && <div>{error}</div>}
-            {isPending && <div>Loading</div>}
-            {appointments && <AppointmentList appointments={appointments} title="All Appointments" />}
-            {console.log(appointments)}
             <div className="container">
+
+                {error && <div>{error}</div>}
+                {isPending && <div>Loading</div>}
+                <div className="row">
+                    {appointments && <AppointmentList appointments={appointments} title="All Appointments" />}
+                </div>
+
+                {console.log(appointments)}
 
 
             </div>

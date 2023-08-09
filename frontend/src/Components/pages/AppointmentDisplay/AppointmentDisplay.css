@@ -1,18 +1,19 @@
-body,html {
+body,
+html {
     padding: 0;
     margin: 0 auto;
     display: block;
 }
 
 .container {
-    display:flex;
+    display: flex;
     justify-content: center;
     align-content: space-around;
     justify-items: center;
 }
 
 .appHeader {
-    width:100%;
+    width: 100%;
     margin: 0 auto;
     color: #ab8096f6;
     background-image: url(./images/appDisplayDog.jpg);
@@ -27,7 +28,22 @@ body,html {
     margin: 2px;
 }
 
+.appointment-preview,
 .appointment_list {
-    display: flex;
     flex-wrap: wrap;
+}
+
+.rejectApptBtn,
+.confirmApptBtn {
+    background-color: #ab8096;
+    border-color: black;
+    margin: 2px;
+}
+
+.rejectApptBtn:hover {
+    background-color: red;
+}
+
+.confirmApptBtn:hover {
+    background-color: green;
 }
