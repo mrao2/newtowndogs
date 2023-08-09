@@ -11,7 +11,11 @@
   margin-top: 66px;
 }
 .homepage h1 {
-  color: white;
+  color: black;
+
+  font-size: 50px;
+  font-weight: 400;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 .homepage p {
   font-weight: 900;
