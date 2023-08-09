@@ -21,58 +21,6 @@ const AppointmentDisplay = () => {
             {appointments && <AppointmentList appointments={appointments} title="All Appointments" />}
             {console.log(appointments)}
             <div className="container">
-                <div class="row">
-                    <div className="col-sm-12 col-md-6 mt-3 border">
-                        <h2 className="appContent border rounded text-center" >Appointment</h2>
-                        <div className="appointmentParagraphs text-center">
-                            <p className="petParentName">Pet Parent Name: Davey Crockett</p>
-                            <p className="petName">Pet Name: Lassie Crockett</p>
-                            <p className="apptStartTime">Appointment Start Time: 8am</p>
-                            <p className="apptEndTime">Appointment End Time: 10am</p>
-                            <p className="apptStartDate">Appointment Start Date: 8/29/23</p>
-                            <p className="apptEndDate">Appointment End Date: 8/30/23</p>
-                        </div>
-                    </div>
-                    <div className="col-sm-12 col-md-6 mt-3 border">
-                        <h2 className="appContent border border-info rounded text-center">Appointment</h2>
-
-                        <div className="appointmentParagraphs text-center">
-                            <p className="petParentName">Pet Parent Name: Davey Crockett</p>
-                            <p className="petName">Pet Name: Lassie Crockett</p>
-                            <p className="apptStartTime">Appointment Start Time: 8am</p>
-                            <p className="apptEndTime">Appointment End Time: 10am</p>
-                            <p className="apptStartDate">Appointment Start Date: 8/29/23</p>
-                            <p className="apptEndDate">Appointment End Date: 8/30/23</p>
-                        </div>
-                    </div>
-                </div>
-
-
-                <div class="row">
-                    <div className="col-sm-12 col-md-6 mt-3 border">
-                        <h2 className="appContent border rounded text-center" >Appointment</h2>
-                        <div className="appointmentParagraphs text-center">
-                            <p className="petParentName">Pet Parent Name: Davey Crockett</p>
-                            <p className="petName">Pet Name: Lassie Crockett</p>
-                            <p className="apptStartTime">Appointment Start Time: 8am</p>
-                            <p className="apptEndTime">Appointment End Time: 10am</p>
-                            <p className="apptStartDate">Appointment Start Date: 8/29/23</p>
-                            <p className="apptEndDate">Appointment End Date: 8/30/23</p>
-                        </div>
-                    </div>
-                    <div className="col-sm-12 col-md-6 mt-3 border">
-                        <h2 className="appContent border border-info rounded text-center">Appointment</h2>
-
-                        <div className="appointmentParagraphs text-center">
-                            <p className="petParentName">Pet Parent Name: Davey Crockett</p>
-                            <p className="petName">Pet Name: Lassie Crockett</p>
-                            <p className="apptStartTime">Appointment Start Time: 8am</p>
-                            <p className="apptEndTime">Appointment End Time: 10am</p>
-                            <p className="apptStartDate">Appointment Start Date: 8/29/23</p>
-                            <p className="apptEndDate">Appointment End Date: 8/30/23</p>
-                        </div>
-                    </div>
-                </div>
 
 
             </div>
