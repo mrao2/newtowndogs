@@ -67,6 +67,10 @@ app.get("/comments/:BlogId", async (req, res) => {
     await read(req, res, "SELECT * FROM comments WHERE comments.BlogId = ?", BlogId)
 });
 
+app.post("/comments", async (req, res) => {
+  await create(req, res, "INSERT INTO comments SET ?");
+});
+
 app.delete("/comments/:CommentId", async (req, res) => {
   const { CommentId } = req.params;
   await deleteRow(req, res, "DELETE FROM comments WHERE CommentId = ?", CommentId);

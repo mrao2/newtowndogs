@@ -2,15 +2,10 @@ import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import './Blog.css';
 
-const authors = [
-  { value: "mario", label: "Mario" },
-  { value: "luigi", label: "Luigi" },
-];
-
 const Create = () => {
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
-  const [author, setAuthor] = useState(authors[0].value);
+  const [author, setAuthor] = useState("");
   const [isPending, setIsPending] = useState(false);
   const history = useHistory();
 
