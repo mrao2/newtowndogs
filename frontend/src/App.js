@@ -14,6 +14,7 @@ import AboutUs from "./Components/pages/AboutUs/AboutUs";
 import AppSubmitted from "./Components/pages/BookingPage/AppSubmitted";
 import AppointmentDisplay from "./Components/pages/AppointmentDisplay/AppointmentDisplay";
 import AppointmentList from "./Components/pages/AppointmentDisplay/AppointmentList";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 
 function App() {
