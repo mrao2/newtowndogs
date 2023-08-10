@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 
 const CreateComment = ({BlogId}) => {
-    const[comment_Author, setCommentAuthor] = useState("")
+    const[Comment_Author, setCommentAuthor] = useState("")
     const[Comment_Body, setCommentBody] = useState("")
 
     const [isPending, setIsPending] = useState(false);
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        const comment = { comment_Author, Comment_Body, BlogId };
+        const comment = { Comment_Author, Comment_Body, BlogId };
     
         setIsPending(true);
     
@@ -35,7 +35,7 @@ const CreateComment = ({BlogId}) => {
           <label>Comment Author:</label>
           <textarea
             required
-            value={comment_Author}
+            value={Comment_Author}
             onChange={(e) => setCommentAuthor(e.target.value)}
           />
           {!isPending && <button>Add Comment</button>}
