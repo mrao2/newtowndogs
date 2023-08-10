@@ -71,3 +71,7 @@ html {
 .trashCan:hover {
     color: red;
 }
+
+a {
+    color: #572727;
+}
