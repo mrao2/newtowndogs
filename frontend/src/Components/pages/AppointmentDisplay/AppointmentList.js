@@ -9,9 +9,10 @@ import { Link } from "react-router-dom";
 
 
 const AppointmentList = ({ appointments }) => {
-    const { appointment_id } = useParams();
+    // const { appointment_id } = useParams();
     const history = useHistory();
-    const { data: appointment, isPending, error } = useFetch(`/api/appointments/${appointment_id}`);
+    // const { data: appointment, isPending, error } = useFetch(`/api/appointments/${appointment_id}`);
+    
 
     const handleSubmit = (e) => {
         e.preventDefault();

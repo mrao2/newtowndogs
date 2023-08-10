@@ -60,7 +60,8 @@ app.put('/api/data/:BlogId', async (req, res) => {
 })
 
 //appointment functions
-app.post('/api/appointments/:appointment_id', async (req, res) => {
+app.post('/api/appointments', async (req, res) => {
+  console.log(req.body)
   await create(req, res, 'INSERT INTO appointments SET ?')
 })
 
