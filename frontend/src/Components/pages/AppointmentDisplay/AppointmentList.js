@@ -18,13 +18,13 @@ const AppointmentList = ({ appointments }) => {
 
     useEffect(() => {
         const appointmentId = appointments.data.find(
-          (c) => c.appointment_id === appointmentBeingDeleted
+            (c) => c.appointment_id === appointmentBeingDeleted
         );
         if (appointmentId) {
-          setAppointmentId(appointmentId.appointment_id)
+            setAppointmentId(appointmentId.appointment_id)
         }
-      }, [appointmentBeingDeleted]);
-    
+    }, [appointmentBeingDeleted]);
+
 
     // const handleSubmit = (e) => {
     //     e.preventDefault();
