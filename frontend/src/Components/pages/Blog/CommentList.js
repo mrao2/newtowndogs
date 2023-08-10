@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from "react";
 // import { Link } from "react-router-dom";
+import CreateComment from "./CreateComment";
 import "./CommentList.css";
-import { useHistory, useParams } from "react-router-dom";
-import useFetch from "../../useFetch";
+import { useParams } from "react-router-dom";
 
 const CommentList = (comments) => {
-  const history = useHistory();
   const [Comment_Author, setCommentAuthor] = useState("");
   const [Comment_Body, setCommentBody] = useState("");
+  const { BlogId } = useParams();
 
   const [isPendingUpdate, setIsPendingUpdate] = useState(false);
   const [commentBeingEdited, setCommentBeingEdited] = useState(null);
+  const [isCreating, setIsCreating] = useState(false);
 
   useEffect(() => {
     const comment = comments.comments.data.find(
@@ -104,11 +105,7 @@ const CommentList = (comments) => {
                     >
                       Edit
                     </button>
-                    <button
-                      onClick={() => (
-                         handleDelete(comment.CommentId)
-                      )}
-                    >
+                    <button onClick={() => handleDelete(comment.CommentId)}>
                       Delete
                     </button>
                   </div>
@@ -117,6 +114,8 @@ const CommentList = (comments) => {
             </li>
           ))}
         </ul>
+        <button onClick={() => setIsCreating(true)}>Create Comment</button>
+        {isCreating && <CreateComment BlogId={BlogId}/>}
       </div>
     </div>
   );
