@@ -5,7 +5,7 @@ import './Blog.css';
 
 const BlogHome = () => {
 
-const {data: blogs, isPending, error} = useFetch('/api/data')
+const {data: blogs, isPending, error} = useFetch('/blogs')
 
 
   return (
