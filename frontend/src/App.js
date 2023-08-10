@@ -52,7 +52,7 @@ function App() {
             </Route>
             <Route exact path="/AppointmentDisplay" >
               <AppointmentDisplay />
-              <Route exact path="/appointments/:appointment_id">
+              <Route path="/appointments/:appointment_id">
                 <AppointmentList />
               </Route>
             </Route>
