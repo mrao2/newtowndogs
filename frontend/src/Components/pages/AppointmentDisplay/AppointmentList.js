@@ -2,17 +2,14 @@ import React from "react";
 import './AppointmentDisplay.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
-import useFetch from "../../useFetch";
 import { useHistory, useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 
 
 
 const AppointmentList = ({ appointments }) => {
-    // const { appointment_id } = useParams();
     const history = useHistory();
-    // const { data: appointment, isPending, error } = useFetch(`/api/appointments/${appointment_id}`);
-    
+
 
     const handleSubmit = (e) => {
         e.preventDefault();
