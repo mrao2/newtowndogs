@@ -11,6 +11,7 @@ import Login from "./Components/pages/Login";
 import BookingPage from "./Components/pages/BookingPage/BookingPage";
 import Profile from "./Components/pages/Profile";
 import AboutUs from "./Components/pages/AboutUs/AboutUs";
+import CommentList from "./Components/pages/Blog/CommentList";
 import AppSubmitted from "./Components/pages/BookingPage/AppSubmitted";
 import AppointmentDisplay from "./Components/pages/AppointmentDisplay/AppointmentDisplay";
 import AppointmentList from "./Components/pages/AppointmentDisplay/AppointmentList";
@@ -44,6 +45,9 @@ function App() {
             <Route exact path="/Login">
               <Login />
             </Route>
+            <Route exact path="/comments/:BlogId">
+              <CommentList />
+            </Route>
             <Route exact path="/BookingPage">
               <BookingPage />
             </Route>
@@ -52,6 +56,7 @@ function App() {
             </Route>
             <Route exact path="/AppointmentDisplay" >
               <AppointmentDisplay />
+              <Route/>
               <Route path="/appointments/:appointment_id">
                 <AppointmentList />
               </Route>
