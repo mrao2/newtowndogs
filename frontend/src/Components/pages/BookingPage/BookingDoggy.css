@@ -181,6 +181,7 @@ html, body {
       background: #9808a5;
       width: 45px;
     }
+
     &:before {
       left: -37px;
     }
