@@ -11,6 +11,7 @@ import Login from "./Components/pages/Login";
 import BookingPage from "./Components/pages/BookingPage/BookingPage";
 import Profile from "./Components/pages/Profile";
 import AboutUs from "./Components/pages/AboutUs/AboutUs";
+import CommentList from "./Components/pages/Blog/CommentList";
 
 function App() {
   return (
@@ -39,6 +40,9 @@ function App() {
             </Route>
             <Route exact path="/Login">
               <Login />
+            </Route>
+            <Route exact path="/comments/:BlogId">
+              <CommentList />
             </Route>
             <Route exact path="/BookingPage">
               <BookingPage />

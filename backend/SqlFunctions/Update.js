@@ -8,8 +8,8 @@ var connection = mysql.createConnection({
   database: process.env.Database,
 });
 
-const Update = async (req, res, query, TableId = "", changedValue1, changedValue2, changedValue3) => {
-        connection.query(query,[changedValue1,changedValue2,changedValue3,TableId], function(err, data, fields) {
+const Update = async (req, res, query, TableId = "", ...changedValues) => {
+        connection.query(query,[...changedValues,TableId], function(err, data, fields) {
             if (err) throw err;
             res.json({
                 data
