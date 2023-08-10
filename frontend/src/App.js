@@ -13,6 +13,7 @@ import Profile from "./Components/pages/Profile";
 import AboutUs from "./Components/pages/AboutUs/AboutUs";
 import AppSubmitted from "./Components/pages/BookingPage/AppSubmitted";
 import AppointmentDisplay from "./Components/pages/AppointmentDisplay/AppointmentDisplay";
+import AppointmentList from "./Components/pages/AppointmentDisplay/AppointmentList";
 
 
 function App() {
@@ -51,6 +52,9 @@ function App() {
             </Route>
             <Route exact path="/AppointmentDisplay" >
               <AppointmentDisplay />
+              <Route exact path="/appointments/:appointment_id">
+                <AppointmentList />
+              </Route>
             </Route>
             <Route path="*">
               <NotFound />

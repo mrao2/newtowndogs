@@ -60,7 +60,7 @@ app.put('/api/data/:BlogId', async (req, res) => {
 })
 
 //appointment functions
-app.post('/api/appointments', async (req, res) => {
+app.post('/api/appointments/:appointment_id', async (req, res) => {
   await create(req, res, 'INSERT INTO appointments SET ?')
 })
 
@@ -68,35 +68,30 @@ app.get("/api/appointments", async (req, res) => {
   await read(req, res, "SELECT * FROM appointments");
 });
 
-app.delete('/api/appointments/:appointment_id', async (req, res) => {
+app.delete("/api/appointments/", async (req, res) => {
   const { appointment_id } = req.params;
+  await deleteRow(req, res, "DELETE FROM appointments WHERE appointment_id = ?", appointment_id);
+});
 
-  await deleteRow(req, res, 'DELETE FROM appointments WHERE appointment_id = ?', appointment_id);
+app.put('/api/appointments/:appointment_id', async (req, res) => {
+  const { appointment_id } = req.params;
+  const description = req.body.description;
+  const email = req.body.email;
+  const end_date = req.body.end_date;
+  const end_time = req.body.end_time;
+  const first_name = req.body.first_name;
+  const id = req.body.id;
+  const is_confirmed = req.body.is_confirmed;
+  const is_consultation = req.body.is_consultation;
+  const is_rejected = req.body.is_rejected;
+  const last_name = req.body.last_name;
+  const start_date = req.body.start_date;
+  const start_time = req.body.start_time;
+  const username = req.body.username;
+  await update(req, res, 'UPDATE appointments SET description = ?, email = ?, end_date = ?, end_time = ?, first_name = ?, id = ?, is_confirmed = ?, is_consultation = ?, is_rejected = ?, last_name = ?, start_date = ?, start_date = ?, username = ? WHERE appointment_id = ?', appointment_id, description, email, end_date, end_time, first_name, id, is_confirmed, is_consultation, is_rejected, last_name, start_date, start_time, username)
 })
 
-
-
-connection.connect((err) => {
-  if (err) {
-    console.log("Error connecting to MySQL:", err);
-    return;
-  }
-
-  // Execute a query against the database
-  connection.query("SELECT * FROM appointments", (err, results) => {
-    if (err) {
-      console.log("Error querying MySQL:", err);
-      return;
-    }
-
-    // Check the results of the query
-    if (results.length > 0) {
-      console.log("Connection to MySQL successful!");
-    } else {
-      console.log("Connection to MySQL failed!");
-    }
-  });
-});
+//end appointment functions
 
 app.put('/api/data/:BlogId', async (req, res) => {
   const { BlogId } = req.params;
@@ -106,8 +101,6 @@ app.put('/api/data/:BlogId', async (req, res) => {
   await update(req, res, 'UPDATE blogs SET Title = ?, Body = ?, Author = ? WHERE BlogId = ?', BlogId, Title, Body, Author)
 })
 
-// await read(req, res, "SELECT * FROM blogs WHERE BlogId = ?", BlogId);
-// });
 
 app.post("/api/data", async (req, res) => {
   await create(req, res, "INSERT INTO blogs SET ?");
