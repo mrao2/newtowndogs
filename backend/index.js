@@ -4,10 +4,15 @@ const deleteRow = require("./SqlFunctions/Delete.js");
 const update = require("./SqlFunctions/Update.js");
 const express = require("express");
 const path = require("path");
-require("dotenv").config();
+const dotenv = require("dotenv");
+const bcrypt = require("bcrypt");
+dotenv.config();
 
 var mysql = require("mysql");
-var connection = mysql.createConnection({
+const e = require("express");
+const { connect } = require("http2");
+
+const connection = mysql.createConnection({
   host: process.env.Host,
   user: process.env.User,
   password: process.env.Password,
@@ -20,6 +25,26 @@ const app = express();
 
 app.use(express.static(path.resolve(__dirname, "../frontend")));
 app.use(express.json());
+
+//Home functions
+app.get("/api/home", async (req, res) => {
+  await read(req, res, "SELECT * FROM homepage");
+});
+
+app.get("/api/home/:id", async (req, res) => {
+  const { id } = req.params;
+
+  await read(req, res, "SELECT * FROM homepage WHERE id = ?", id);
+});
+
+app.post("api/home", async (req, res) => {
+  await create(req, res, "INSERT INTO homepage set ?");
+});
+
+app.delete("/api/home/:id", async (req, res) => {
+  const { id } = req.params;
+  await deleteRow(req, res, "DELETE FROM homepage WHERE id = ?", id);
+});
 
 // Blog Functions!
 app.get("/blogs", async (req, res) => {
@@ -54,6 +79,86 @@ app.put("/blogs/:BlogId", async (req, res) => {
     Body,
     Author
   );
+});
+
+//login functions!!
+console.log("hello");
+app.post("/login", (req, res) => {
+  const email = req.body.email;
+  const password = req.body.password;
+  console.log("Received email:", email);
+  console.log("Received password:", password);
+
+  const connection = mysql.createConnection({
+    host: process.env.Host,
+    user: process.env.User,
+    password: process.env.Password,
+    database: process.env.Database,
+  });
+  //finds user w this email in db
+  connection.query(
+    "SELECT * FROM login_app WHERE email = ?",
+    [email],
+    (err, result) => {
+      //if err in query, status code & err message returned
+      if (err) {
+        console.error("Database error:", err);
+        res.status(500).send({ err: err });
+      } else {
+        //otherwise, checks result length, makes sure theres one matching user. then retrieves stored HASHED pwd. uses compare to make sure theyre the same
+        if (result.length === 1) {
+          const storedHashedPassword = result[0].password;
+          bcrypt.compare(
+            password,
+            storedHashedPassword,
+            (bcryptErr, bcryptResult) => {
+              if (bcryptErr || !bcryptResult) {
+                res.send({ message: "Wrong email/password." });
+              } else {
+                res.send({ message: "Login successful." });
+              }
+              connection.end();
+            }
+          );
+        } else {
+          res.send({ message: "Wrong email/password." });
+          connection.end();
+        }
+      }
+    }
+  );
+});
+
+//registration functions!
+
+app.post("/Profile", (req, res) => {
+  const email = req.body.email;
+  const password = req.body.password;
+  //hashes the password, 10 salt rounds
+  bcrypt.hash(password, 10, (hashErr, hashedPassword) => {
+    //if there's an error, its console logged
+    if (hashErr) {
+      console.error(hashErr);
+      //error status code
+      res.status(500).json({ message: "Error hashing password." });
+    } else {
+      //store pwd and em in db
+      db.query(
+        "INSERT INTO login_app (email, password) VALUES (?,?)",
+        [email, hashedPassword],
+        (dbErr, dbResult) => {
+          //db errors
+          if (dbErr) {
+            console.error(dbErr);
+            res.status(500).json({ message: "Error storing user data." });
+          } else {
+            //yay!! success code
+            res.status(201).json({ message: "Registration successful." });
+          }
+        }
+      );
+    }
+  });
 });
 
 
