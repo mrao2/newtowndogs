@@ -6,7 +6,7 @@ import BreedList from "./BreedList";
 function Homepage() {
   const [count, setCount] = useState(0);
   const project = {
-    title: "Newtown Dogs Pet Grooming",
+    title: "Newtown Dogs Pet Sitting",
   };
 
   const { data: breeds, isPending, error } = useFetch("/api/home");
