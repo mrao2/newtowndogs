@@ -22,25 +22,25 @@ app.use(express.static(path.resolve(__dirname, "../frontend")));
 app.use(express.json());
 
 // Blog Functions!
-app.get("/api/data", async (req, res) => {
+app.get("/blogs", async (req, res) => {
   await read(req, res, "SELECT * FROM blogs");
 });
 
-app.get("/api/data/:BlogId", async (req, res) => {
+app.get("/blogs/:BlogId", async (req, res) => {
   const { BlogId } = req.params;
     await read(req, res, "SELECT * FROM blogs LEFT JOIN comments ON blogs.BlogId = comments.BlogId WHERE blogs.BlogId = ?", BlogId)
 });
 
-app.post("/api/data", async (req, res) => {
+app.post("/blogs", async (req, res) => {
   await create(req, res, "INSERT INTO blogs SET ?");
 });
 
-app.delete("/api/data/:BlogId", async (req, res) => {
+app.delete("/blogs/:BlogId", async (req, res) => {
   const { BlogId } = req.params;
   await deleteRow(req, res, "DELETE FROM blogs WHERE BlogId = ?", BlogId);
 });
 
-app.put("/api/data/:BlogId", async (req, res) => {
+app.put("/blogs/:BlogId", async (req, res) => {
   const { BlogId } = req.params;
   const Title = req.body.title;
   const Body = req.body.body;
@@ -55,6 +55,37 @@ app.put("/api/data/:BlogId", async (req, res) => {
     Author
   );
 });
+
+
+// Comment Function
+app.get("/comments", async (req, res) => {
+  await read(req, res, "SELECT * FROM comments");
+});
+
+app.get("/comments/:BlogId", async (req, res) => {
+  const { BlogId } = req.params;
+    await read(req, res, "SELECT * FROM comments WHERE comments.BlogId = ?", BlogId)
+});
+
+app.delete("/comments/:CommentId", async (req, res) => {
+  const { CommentId } = req.params;
+  await deleteRow(req, res, "DELETE FROM comments WHERE CommentId = ?", CommentId);
+});
+
+app.put("/comments/:CommentId", async (req, res) => {
+  const { CommentId } = req.params;
+  const Body = req.body.Comment_Body;
+  const Author = req.body.Comment_Author;
+  await update(
+    req,
+    res,
+    "UPDATE comments SET Comment_Body = ?, Comment_Author = ? WHERE CommentId = ?",
+    CommentId,
+    Body,
+    Author
+  );
+});
+
 
 app.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`);
