@@ -2,11 +2,14 @@ import React, { useEffect, useState } from "react";
 import { useHistory, useParams } from "react-router-dom";
 import useFetch from "../../useFetch";
 import "./Blog.css";
+import CommentList from "./CommentList";
 
 const BlogDetails = () => {
   const { BlogId } = useParams();
   const history = useHistory();
-  const { data: blog, isPending, error } = useFetch(`/api/data/${BlogId}`);
+  const { data: blog, isPending, error } = useFetch(`/blogs/${BlogId}`);
+  const { data: comments, isPending: isCommentsPending, error: commentsError } = useFetch(`/comments/${BlogId}`);
+  console.log(comments);
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
   const [author, setAuthor] = useState("");
@@ -30,7 +33,7 @@ const BlogDetails = () => {
 
     setIsPendingUpdate(true);
 
-    fetch("/api/data/" + BlogId, {
+    fetch("/blogs/" + BlogId, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(updatedBlog),
@@ -47,7 +50,7 @@ const BlogDetails = () => {
   };
 
   const handleClick = () => {
-    fetch("/api/data/" + BlogId, {
+    fetch("/blogs/" + BlogId, {
       method: "DELETE",
     })
       .then(() => {
@@ -103,6 +106,7 @@ const BlogDetails = () => {
               <button onClick={handleClick}>Delete</button>
             </div>
           )}
+          {comments && (<CommentList comments={comments}/>)}
         </article>
       )}
     </div>

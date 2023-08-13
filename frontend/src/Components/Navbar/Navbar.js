@@ -6,8 +6,8 @@ function Navbar() {
   return (
     <nav className="navbar">
       <img
-        src="https://cdn.stocksnap.io/img-thumbs/960w/husky-animal_34ZZVPMCM2.jpg"
-        alt="sleeping husky"
+        src="https://cdn.stocksnap.io/img-thumbs/960w/husky-animal_RZL1A2KF5X.jpg"
+        alt="husky"
       />
       <h3>NewtownDogs</h3>
 
@@ -19,7 +19,6 @@ function Navbar() {
 
         <Link to="/BookingPage">Book Sitter</Link>
         <Link to="/bloghome">Blog</Link>
-        
       </div>
       <div class="smallScreenNav">
         <div className="dropdown">
