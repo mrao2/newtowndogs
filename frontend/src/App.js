@@ -14,6 +14,7 @@ import Profile from "./Components/pages/UserProfile/Profile";
 import { EditProfile } from "./Components/pages/UserProfile/EditProfile";
 
 import AboutUs from "./Components/pages/AboutUs/AboutUs";
+import CommentList from "./Components/pages/Blog/CommentList";
 
 function App() {
   return (
@@ -48,6 +49,9 @@ function App() {
             </Route>
             <Route exact path="/Login">
               <Login />
+            </Route>
+            <Route exact path="/comments/:BlogId">
+              <CommentList />
             </Route>
             <Route exact path="/BookingPage">
               <BookingPage />
