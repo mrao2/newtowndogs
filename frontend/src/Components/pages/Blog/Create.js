@@ -1,13 +1,15 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
-import './Blog.css';
+import "./Blog.css";
 
 const Create = () => {
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
   const [author, setAuthor] = useState("");
+  const [image, setImage] = useState(null);
   const [isPending, setIsPending] = useState(false);
   const history = useHistory();
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -19,7 +21,18 @@ const Create = () => {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(blog),
-    }).then(() => {
+    }).then(async (res) => {
+      const blogData = await res.json();
+      if (image instanceof File && blogData?.data?.insertId) {
+        const imageData = new FormData();
+        imageData.append("BlogId", blogData.data.insertId);
+        imageData.append("image", image);
+        await fetch(`/images`, {
+          method: "POST",
+          body: imageData,
+        });
+      }
+
       setIsPending(false);
       history.push("/BlogHome");
     });
@@ -48,6 +61,12 @@ const Create = () => {
           value={author}
           onChange={(e) => setAuthor(e.target.value)}
         ></textarea>
+        <label>Blog Image:</label>
+        <input
+          type="file"
+          accept="image/*"
+          onChange={(e) => setImage(e.target.files[0])}
+        />
         {!isPending && <button>Add Blog</button>}
         {isPending && <button disabled>Adding Blog...</button>}
       </form>
