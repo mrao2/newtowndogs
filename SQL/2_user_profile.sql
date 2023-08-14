@@ -16,6 +16,7 @@ CREATE TABLE `user_profile` (
     dog_friendly BOOLEAN,
     amt_walks INTEGER (2),
     amt_meals INTEGER (2),
+    amt_per_meal INTEGER (2),
     dog_potty_trained BOOLEAN,
     dog_fixed BOOLEAN,
     UNIQUE KEY login_id_UNIQUE (login_app_id),
