@@ -259,7 +259,7 @@ app.get("/images/:BlogId", async (req, res, next) => {
         res.status(404);
         return next("Not found");
       }
-      res.setHeader("Content-Type", data[0].content_type);
+      res.setHeader("Content-Type", data[0].Content_Type);
       res.send(data[0].Image_Data);
     }
   );
