@@ -66,12 +66,10 @@ app.put("/api/data/:BlogId", async (req, res) => {
 
 //login functions!!
 console.log("hello");
-app.post('/login', (req, res)=> {
+app.post('/login', (req, res) => {
   const email = req.body.email;
   const password = req.body.password;
-  console.log("Received email:", email);
-  console.log("Received password:", password);
-
+  
   const connection = mysql.createConnection({
     host: process.env.Host,
     user: process.env.User,
@@ -80,13 +78,19 @@ app.post('/login', (req, res)=> {
   });
 
   connection.connect((err) => {
-    if(err) {
+    if (err) {
       console.error('Database connection error:', err);
-      res.status(500).send({err: err});
-      return;
+      res.status(500).json({ error: 'Database connection error' });
+      return; // Exit the function here to prevent further execution
     }
     console.log('Connected to the database');
-  })
+
+    // Rest of your code
+  });
+
+  // ...
+});
+
 //finds user w this email in db
   connection.query(
     "SELECT * FROM login_app WHERE email = ?",
@@ -96,25 +100,24 @@ app.post('/login', (req, res)=> {
 //if err in query, status code & err message returned
       if(err) {
         console.error("Database error:", err);
-        res.status(500).send({err: err});
+        res.status(500).json({error: 'Database error'});
       } else {
 //otherwise, checks result length, makes sure theres one matching user. then retrieves stored HASHED pwd. uses compare to make sure theyre the same 
         if (result.length === 1) {
           const storedEmail = result[0].email;
           //change to storedHashedPassword^^
           if(email === storedEmail) {
-            res.send({message: "Login successful!"});
+            res.json({success: true, message: "Login successful!"});
         } else {
-          res.send({message: "Wrong email/password!"});
+          res.json({success: false, message: "Wrong email/password!"});
         }
       } else {
-        res.send({message: "Wrong email/password."});
+        res.json({success: false, message: "Wrong email/password."});
         }
       } 
       connection.end();
     }
-  );
-}); 
+  ); 
 
 
 // bcrypt.compare(password, storedHashedPassword, (bcryptErr, bcryptResult) => {
