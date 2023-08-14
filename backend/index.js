@@ -53,7 +53,12 @@ app.get("/blogs", async (req, res) => {
 
 app.get("/blogs/:BlogId", async (req, res) => {
   const { BlogId } = req.params;
-    await read(req, res, "SELECT * FROM blogs LEFT JOIN comments ON blogs.BlogId = comments.BlogId WHERE blogs.BlogId = ?", BlogId)
+  await read(
+    req,
+    res,
+    "SELECT * FROM blogs LEFT JOIN comments ON blogs.BlogId = comments.BlogId WHERE blogs.BlogId = ?",
+    BlogId
+  );
 });
 
 app.post("/blogs", async (req, res) => {
@@ -161,7 +166,6 @@ app.post("/Profile", (req, res) => {
   });
 });
 
-
 // Comment Function
 app.get("/comments", async (req, res) => {
   await read(req, res, "SELECT * FROM comments");
@@ -169,7 +173,12 @@ app.get("/comments", async (req, res) => {
 
 app.get("/comments/:BlogId", async (req, res) => {
   const { BlogId } = req.params;
-    await read(req, res, "SELECT * FROM comments WHERE comments.BlogId = ?", BlogId)
+  await read(
+    req,
+    res,
+    "SELECT * FROM comments WHERE comments.BlogId = ?",
+    BlogId
+  );
 });
 
 app.post("/comments", async (req, res) => {
@@ -178,7 +187,12 @@ app.post("/comments", async (req, res) => {
 
 app.delete("/comments/:CommentId", async (req, res) => {
   const { CommentId } = req.params;
-  await deleteRow(req, res, "DELETE FROM comments WHERE CommentId = ?", CommentId);
+  await deleteRow(
+    req,
+    res,
+    "DELETE FROM comments WHERE CommentId = ?",
+    CommentId
+  );
 });
 
 app.put("/comments/:CommentId", async (req, res) => {
@@ -194,7 +208,6 @@ app.put("/comments/:CommentId", async (req, res) => {
     Author
   );
 });
-
 
 app.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`);
