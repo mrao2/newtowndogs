@@ -3,10 +3,13 @@ const create = require("./SqlFunctions/Create.js");
 const deleteRow = require("./SqlFunctions/Delete.js");
 const update = require("./SqlFunctions/Update.js");
 const express = require("express");
+const multer = require("multer");
 const path = require("path");
 const dotenv = require("dotenv");
 const bcrypt = require("bcrypt");
+const { promisify } = require("util");
 dotenv.config();
+const upload = multer();
 
 var mysql = require("mysql");
 const e = require("express");
@@ -18,6 +21,10 @@ const connection = mysql.createConnection({
   password: process.env.Password,
   database: process.env.Database,
 });
+
+// Needs the .bind so that the this keyword always refers to the connection variable, as if it were called as connection.query
+// There's a chance that query refers to this, and in that case, calling promiseQuery without a bind would result in this being undefined
+const promiseQuery = promisify(connection.query).bind(connection);
 
 const PORT = process.env.PORT || 3001;
 
@@ -206,6 +213,91 @@ app.put("/comments/:CommentId", async (req, res) => {
     CommentId,
     Body,
     Author
+  );
+});
+
+const contentTypes = {
+  png: "image/png",
+  jpg: "image/jpeg",
+  jpeg: "image/jpeg",
+  bmp: "image/bmp",
+  heic: "image/heic",
+  webp: "image/webp",
+};
+
+app.post("/images", upload.single("image"), async (req, res, next) => {
+  const extension = req.file?.originalname?.split(".").pop();
+  if (!req.file?.buffer) {
+    res.status(400);
+    return next("No file provided");
+  } else if (!contentTypes[extension]) {
+    res.status(400);
+    return next("File type not allowed");
+  }
+  const image = {
+    BlogId: req.body.BlogId,
+    content_type: contentTypes[extension],
+    Image_Data: req.file.buffer,
+  };
+
+  connection.query(
+    "INSERT INTO images SET ?",
+    image,
+    function (err, data, fields) {
+      if (err) throw err;
+      res.status(201).send();
+    }
+  );
+});
+
+app.get("/images/:BlogId", async (req, res, next) => {
+  const image = await connection.query(
+    "SELECT * FROM images WHERE BlogId = ?",
+    req.params.BlogId,
+    (err, data, fields) => {
+      if (!data[0]) {
+        res.status(404);
+        return next("Not found");
+      }
+      res.setHeader("Content-Type", data[0].content_type);
+      res.send(data[0].Image_Data);
+    }
+  );
+});
+
+app.put("/images/:BlogId", upload.single("image"), async (req, res, next) => {
+  const extension = req.file?.originalname?.split(".").pop();
+  if (!req.file?.buffer) {
+    res.status(400);
+    return next("No file provided");
+  } else if (!contentTypes[extension]) {
+    res.status(400);
+    return next("File type not allowed");
+  }
+  const updatedImage = {
+    BlogId: req.body.BlogId,
+    content_type: contentTypes[extension],
+    Image_Data: req.file.buffer,
+  };
+
+  await promiseQuery("DELETE FROM images WHERE BlogId = ?", [
+    updatedImage.BlogId,
+  ]);
+
+  await promiseQuery("INSERT INTO images SET ?", [
+    updatedImage
+  ]);
+
+  res.status(201).send();
+});
+
+app.delete("/images/:BlogId", async (req, res) => {
+  const { BlogId } = req.params;
+  await deleteRow(
+    req,
+    res,
+    "DELETE FROM images WHERE BlogId = ?",
+    BlogId
   );
 });
 

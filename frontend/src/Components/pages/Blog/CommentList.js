@@ -103,10 +103,10 @@ const CommentList = (comments) => {
                     <button
                       onClick={() => setCommentBeingEdited(comment.CommentId)}
                     >
-                      Edit
+                      Edit Comment
                     </button>
                     <button onClick={() => handleDelete(comment.CommentId)}>
-                      Delete
+                      Delete Comment
                     </button>
                   </div>
                 </>
