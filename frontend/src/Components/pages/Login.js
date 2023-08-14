@@ -132,7 +132,7 @@ function Login() {
   //     // ... (other fields)
   //   };
   
-  //   // Send the profile data to the server
+  //   // sends profile data back
   //   try {
   //     const response = await fetch("http://localhost:3001/submit-profile", {
   //       method: "POST",
@@ -144,7 +144,6 @@ function Login() {
   
   //     if (response.ok) {
   //       console.log("Profile data submitted successfully");
-  //       // You might want to handle further actions, such as showing a success message to the user
   //     } else {
   //       console.error("Error submitting profile data");
   //     }
