@@ -12,17 +12,12 @@ const SignUpPage = () => {
     } = useForm();
   
     const onSubmit = (data) => {
-      console.log(data);
-      // setIsPending(true);
   
       fetch("/api/sign-up", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
       }).then((resp) => {
-
-        console.log(resp);
-        // setIsPending(false);
         return resp.json();
       }).then((data) => {
         history.push(`/profile/${data.id}`)

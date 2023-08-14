@@ -88,8 +88,7 @@ app.post("/api/sign-up", async (req, res) => {
 });
 
 //Fetch profile
-app.get("/api/profile/:id", async (req, res) => {
-  console.log('end endpoint')
+app.get("/api/profile/:id", async (req, res) => {)
   const { id } = req.params;
     await read(req, res, `SELECT 
     la.id,
@@ -123,7 +122,7 @@ app.get("/api/profile/:id", async (req, res) => {
 
 //Save profile data
 app.put("/api/user/:id", async (req, res) => {
-  console.log("did it");
+
   const { id } = req.params;
   const username = req.body.username;
   const email = req.body.email;
@@ -148,7 +147,6 @@ app.put("/api/user/:id", async (req, res) => {
 });
 
 app.put("/api/profile/:id", async (req, res) => {
-  console.log("reached profile id");
   const { id } = req.params;
   const address = req.body.ownerAddress;
   const city = req.body.ownerCity;
