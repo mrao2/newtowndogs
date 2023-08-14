@@ -9,7 +9,7 @@ var connection = mysql.createConnection({
 });
 
 const Update = async (req, res, query, TableId = "", ...changedValues) => {
-        connection.query(query,[...changedValues,TableId], (err, data, fields) => {
+        connection.query(query,[...changedValues,TableId], function(err, data, fields) {
             if (err) throw err;
             
             res.json({

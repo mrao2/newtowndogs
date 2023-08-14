@@ -209,15 +209,14 @@ app.put("/api/profile/:id", async (req, res) => {
   dogPottyTrained
 );
 });
-
-
-
+  
 //login functions!!
-
+console.log("hello");
 app.post("/login", (req, res) => {
   const email = req.body.email;
   const password = req.body.password;
-  
+  console.log("Received email:", email);
+  console.log("Received password:", password);
 
   const connection = mysql.createConnection({
     host: process.env.Host,
@@ -260,7 +259,6 @@ app.post("/login", (req, res) => {
 });
 
 //registration functions!
-
 app.post("/Profile", (req, res) => {
   const email = req.body.email;
   const password = req.body.password;
@@ -324,8 +322,6 @@ app.put("/comments/:CommentId", async (req, res) => {
     Author
   );
 });
-
-
 
 app.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`);
