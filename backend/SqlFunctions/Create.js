@@ -11,7 +11,6 @@ var connection = mysql.createConnection({
 const Create = async (req, res, query) => {
         connection.query(query, req.body, function(err, result, fields) {
             if (err) throw err;
-            console.log(res);
             res.json({
                 id: result.insertId
               })

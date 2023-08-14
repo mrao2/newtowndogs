@@ -4,6 +4,9 @@
     font-family: 'Quicksand';
 }
 
+.user-profile-page {
+    padding-top: 100px;
+}
 
 .createaccount-button {
     padding: 10px;

@@ -10,9 +10,7 @@ import "./App.css";
 import Login from "./Components/pages/LoginPage/Login";
 import BookingPage from "./Components/pages/BookingPage/BookingPage";
 import SignUpPage from "./Components/pages/SignUp/SignUpPage";
-import Profile from "./Components/pages/UserProfile/Profile";
-import { EditProfile } from "./Components/pages/UserProfile/EditProfile";
-
+import { Profile } from "./Components/pages/UserProfile/Profile";
 import AboutUs from "./Components/pages/AboutUs/AboutUs";
 import CommentList from "./Components/pages/Blog/CommentList";
 
@@ -31,9 +29,6 @@ function App() {
             </Route>
             <Route exact path="/signup">
               <SignUpPage />
-            </Route>
-            <Route exact path="/editprofile">
-              <EditProfile />
             </Route>
             <Route exact path="/aboutus">
               <AboutUs />

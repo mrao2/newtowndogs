@@ -2,9 +2,6 @@
 import "./SignUp.css";
 import { useForm } from 'react-hook-form';
 import { useHistory} from "react-router-dom";
-import { Link } from "react-router-dom";
-
-
 
 const SignUpPage = () => {
     const history = useHistory();
@@ -35,7 +32,7 @@ const SignUpPage = () => {
 
 return (
   <span> 
-    <div className="App">
+    <div className="signup-page">
       <h1>Create an Account</h1>
       <form onSubmit={handleSubmit(onSubmit)}>
       <div className="form-control">
@@ -79,9 +76,7 @@ return (
               required: true
             })} />
         </div>
-        <Link to="/editprofile">
-        <button className="createaccount-button">Create Account</button>
-        </Link>
+        <button type="submit" className="createaccount-button">Create Account</button>
       </form>
     </div>
     </span>

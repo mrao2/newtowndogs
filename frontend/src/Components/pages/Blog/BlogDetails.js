@@ -9,7 +9,6 @@ const BlogDetails = () => {
   const history = useHistory();
   const { data: blog, isPending, error } = useFetch(`/blogs/${BlogId}`);
   const { data: comments, isPending: isCommentsPending, error: commentsError } = useFetch(`/comments/${BlogId}`);
-  console.log(comments);
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
   const [author, setAuthor] = useState("");
