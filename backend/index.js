@@ -88,7 +88,7 @@ app.post("/api/sign-up", async (req, res) => {
 });
 
 //Fetch profile
-app.get("/api/profile/:id", async (req, res) => {)
+app.get("/api/profile/:id", async (req, res) => {
   const { id } = req.params;
     await read(req, res, `SELECT 
     la.id,
