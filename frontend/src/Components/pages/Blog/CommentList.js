@@ -115,7 +115,7 @@ const CommentList = (comments) => {
           ))}
         </ul>
         <button onClick={() => setIsCreating(true)}>Create Comment</button>
-        {isCreating && <CreateComment BlogId={BlogId}/>}
+        {isCreating && <CreateComment BlogId={BlogId} />}
       </div>
     </div>
   );
