@@ -7,6 +7,8 @@ const multer = require("multer");
 const path = require("path");
 const dotenv = require("dotenv");
 const bcrypt = require("bcrypt");
+
+// promisify is a node.js component in the latest editions useful when you have three inputs and the final one being a call back function. I use this later when using connection.query
 const { promisify } = require("util");
 dotenv.config();
 const upload = multer();
@@ -233,13 +235,16 @@ app.put("/comments/:CommentId", async (req, res) => {
   const { CommentId } = req.params;
   const Body = req.body.Comment_Body;
   const Author = req.body.Comment_Author;
+  const submittedDate = new Date(req.body.Comment_Date);
+  const formattedDate = submittedDate.toISOString().slice(0, 19).replace('T', ' '); // Convert to 'YYYY-MM-DD HH:MM:SS'
   await update(
     req,
     res,
-    "UPDATE comments SET Comment_Body = ?, Comment_Author = ? WHERE CommentId = ?",
+    "UPDATE comments SET Comment_Body = ?, Comment_Author = ?, Comment_Date = ? WHERE CommentId = ?",
     CommentId,
     Body,
-    Author
+    Author,
+    formattedDate
   );
 });
 
@@ -337,15 +342,16 @@ app.put("/images/:BlogId", upload.single("image"), async (req, res, next) => {
   };
 
 
-  // I needed to break my PUT request 
+  // I needed to break my PUT request into a promise for deleting the image first in case a blog does not currently have an image assigned to it
   await promiseQuery("DELETE FROM images WHERE BlogId = ?", [
     updatedImage.BlogId,
   ]);
 
+  // then I insert into the table
   await promiseQuery("INSERT INTO images SET ?", [
     updatedImage
   ]);
-
+  // Send a response of status 201 to know that it was added to the table
   res.status(201).send();
 });
 

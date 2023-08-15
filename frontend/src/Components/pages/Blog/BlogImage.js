@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, {  useState } from "react";
+import "./Blog.css"
 
 const BlogImage = ({ BlogId, BlogTitle, showDeleteButton, ...props }) => {
   const [imgExists, setImgExists] = useState(true);
+  const [imgLoaded, setImgLoaded] = useState(false);
 
   const handleDeleteImage = () => {
     fetch("/images/" + BlogId, {
@@ -15,21 +17,24 @@ const BlogImage = ({ BlogId, BlogTitle, showDeleteButton, ...props }) => {
       });
   };
 
-  return (
-    <div>
-      {imgExists && <img
+  return imgExists ? (
+    <>
+      <img
         src={`/images/${BlogId}`}
         alt={BlogTitle}
-        style={{ display: imgExists ? undefined : "none" }}
         onError={() => setImgExists(false)}
+        onLoad={() => setImgLoaded(true)}
         {...props}
-      />}
-      <br></br>
-      {showDeleteButton && imgExists ? (
-        <button onClick={handleDeleteImage}>Delete Image</button>
+        className={(props.className || '') + (imgExists && imgLoaded ? '' : ' hidden')}
+      />
+      {showDeleteButton && imgLoaded ? (
+        <>
+          <br></br>
+          <button onClick={handleDeleteImage}>Delete Image</button>
+        </>
       ) : null}
-    </div>
-  );
+    </>
+  ) : null;
 };
 
 export default BlogImage;
