@@ -11,7 +11,7 @@ import 'react-clock/dist/Clock.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const ReturnCustomerForm = () => {
-    const [date, setDate] = useState(new Date());
+    // const [date, setDate] = useState(new Date());
     const [startDate, setStartDate] = useState();
     const [endDate, setEndDate] = useState();
     const [startTime, setStartTime] = useState('09:00');
