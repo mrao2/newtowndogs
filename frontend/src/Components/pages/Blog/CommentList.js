@@ -103,10 +103,10 @@ const CommentList = (comments) => {
                     <button
                       onClick={() => setCommentBeingEdited(comment.CommentId)}
                     >
-                      Edit
+                      Edit Comment
                     </button>
                     <button onClick={() => handleDelete(comment.CommentId)}>
-                      Delete
+                      Delete Comment
                     </button>
                   </div>
                 </>
@@ -115,7 +115,7 @@ const CommentList = (comments) => {
           ))}
         </ul>
         <button onClick={() => setIsCreating(true)}>Create Comment</button>
-        {isCreating && <CreateComment BlogId={BlogId}/>}
+        {isCreating && <CreateComment BlogId={BlogId} />}
       </div>
     </div>
   );

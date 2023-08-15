@@ -3,15 +3,21 @@ import { useHistory, useParams } from "react-router-dom";
 import useFetch from "../../useFetch";
 import "./Blog.css";
 import CommentList from "./CommentList";
+import BlogImage from "./BlogImage";
 
 const BlogDetails = () => {
   const { BlogId } = useParams();
   const history = useHistory();
   const { data: blog, isPending, error } = useFetch(`/blogs/${BlogId}`);
-  const { data: comments, isPending: isCommentsPending, error: commentsError } = useFetch(`/comments/${BlogId}`);
+  const {
+    data: comments,
+    isPending: isCommentsPending,
+    error: commentsError,
+  } = useFetch(`/comments/${BlogId}`);
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
   const [author, setAuthor] = useState("");
+  const [image, setImage] = useState(null);
 
   const [isPendingUpdate, setIsPendingUpdate] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
@@ -37,7 +43,16 @@ const BlogDetails = () => {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(updatedBlog),
     })
-      .then(() => {
+      .then( async () => {
+      if (image instanceof File) {
+        const imageData = new FormData();
+        imageData.append("BlogId", BlogId);
+        imageData.append("image", image);
+        await fetch("/images/" + BlogId, {
+          method: "PUT",
+          body: imageData,
+        });
+      }
         setIsPendingUpdate(false);
         setIsEditing(false);
         window.location.reload();
@@ -48,7 +63,9 @@ const BlogDetails = () => {
       });
   };
 
-  const handleClick = () => {
+
+
+  const handleDeleteBlog = () => {
     fetch("/blogs/" + BlogId, {
       method: "DELETE",
     })
@@ -59,6 +76,7 @@ const BlogDetails = () => {
         console.error("Error deleting blog:", error);
       });
   };
+  
 
   return (
     <div className="blog-details">
@@ -67,6 +85,16 @@ const BlogDetails = () => {
       {blog && (
         <article className="single-blog">
           {!isEditing && <h2>{blog.data[0].Title}</h2>}
+          {!isEditing && (
+            <div><BlogImage
+            BlogId={BlogId}
+            BlogTitle={title}
+            showDeleteButton={true}
+            style={{ maxWidth: "100%" }}
+            className=""
+          />
+          </div>
+          )}
           {!isEditing && <p>Written by {blog.data[0].Author}</p>}
           {!isEditing && <div>{blog.data[0].Body}</div>}
 
@@ -92,6 +120,12 @@ const BlogDetails = () => {
                   value={author}
                   onChange={(e) => setAuthor(e.target.value)}
                 ></textarea>
+                <label>Blog Image:</label>
+                <input
+                  type="file"
+                  accept="image/*"
+                  onChange={(e) => setImage(e.target.files[0])}
+                />
                 <button type="submit" disabled={isPendingUpdate}>
                   {isPendingUpdate ? "Updating..." : "Update"}
                 </button>
@@ -101,11 +135,11 @@ const BlogDetails = () => {
 
           {!isEditing && (
             <div>
-              <button onClick={() => setIsEditing(true)}>Edit</button>
-              <button onClick={handleClick}>Delete</button>
+              <button onClick={() => setIsEditing(true)}>Edit Blog</button>
+              <button onClick={handleDeleteBlog}>Delete Blog</button>
             </div>
           )}
-          {comments && (<CommentList comments={comments}/>)}
+          {comments && <CommentList comments={comments} />}
         </article>
       )}
     </div>
