@@ -82,16 +82,13 @@ app.put("/blogs/:BlogId", async (req, res) => {
 });
 
 console.log("hello");
-app.post('/Login', (req, res)=> {
+app.post('/login', (req, res)=> {
   const email = req.body.email;
   const password = req.body.password;
   console.log("Received email:", email);
   console.log("Received password:", password);
-  
-  connection.connect(function(err) {
-    if (err) throw err;
-    console.log("Connected!");
-  });
+
+
 //finds user w this email in db
   connection.query(
     "SELECT * FROM login_app WHERE email = ?",

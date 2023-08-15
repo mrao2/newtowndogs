@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import "./Login.css";
 import { useHistory } from "react-router-dom";
+
 // import useFetch from "../useFetch";
 
 // const {data: logins, isPending, error} = useFetch('/api/data');
 
 async function login (email, password) {
   try {
-    const response = await fetch("/Login", {
+    const response = await fetch("/login", {
       method: "POST",
       body: JSON.stringify({
       email: email,
@@ -25,8 +26,8 @@ async function login (email, password) {
     //.then looking for good or bad response & then updating isloggedin based on that. 
 }
 function Login() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [showPasswordAlert, setShowPasswordAlert] = useState(false);
   const [showEmailAlert, setShowEmailAlert] = useState(false);
@@ -75,10 +76,11 @@ function Login() {
           placeholder="Email"
           className="login-input"
           value={email}
-          onChange={(e) => {
-            setEmail(e.target.value);
-            setShowEmailAlert(false);
-          }}
+          onChange={e => setEmail(e.target.value)}
+          // onChange={(e) => {
+          //   setEmail(e.target.value);
+          //   setShowEmailAlert(false);
+          // }}
           // pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}"
           required
         />
@@ -91,10 +93,11 @@ function Login() {
           placeholder="Password"
           className="login-input"
           value={password}
-          onChange={(e) => {
-            setPassword(e.target.value);
-          setShowPasswordAlert(false);
-          }}
+          onChange={e => setPassword(e.target.value)}
+          // onChange={(e) => {
+          //   setPassword(e.target.value);
+          // setShowPasswordAlert(false);
+          // }}
           minLength="8"
           required
         />
