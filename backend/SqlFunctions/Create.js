@@ -9,10 +9,10 @@ var connection = mysql.createConnection({
 });
 
 const Create = async (req, res, query) => {
-        connection.query(query, req.body, function(err, result, fields) {
+        connection.query(query, req.body, function(err, data, fields) {
             if (err) throw err;
             res.json({
-                id: result.insertId
+                data
               })
           })
 };

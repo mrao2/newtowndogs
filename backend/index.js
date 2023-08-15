@@ -84,7 +84,13 @@ app.put("/blogs/:BlogId", async (req, res) => {
 //Sign up
 app.post("/api/sign-up", async (req, res) => {
 
-  await create(req, res, "INSERT INTO login_app SET ?");
+  //await create(req, res, "INSERT INTO login_app SET ?");
+  await connection.query("INSERT INTO login_app SET ?", req.body, function(err, result, fields) {
+    if (err) throw err;
+    res.json({
+        id: result.insertId
+      })
+  })
 });
 
 //Fetch profile
