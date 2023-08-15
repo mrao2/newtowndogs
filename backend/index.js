@@ -59,24 +59,28 @@ app.delete("/api/appointments/:appointment_id", async (req, res) => {
   const { appointment_id } = req.params;
   await deleteRow(req, res, "DELETE FROM appointments WHERE appointment_id = ?", appointment_id);
 });
-app.get("/api/appointments/:appointment_id", async (req, res) => {
-  const { appointment_id } = req.params;  await read(req, res, 'SELECT * FROM appointments WHERE appointment_id = ?', appointment_id);});app.put('/api/appointments/:appointment_id', async (req, res) => {
-  const { appointment_id } = req.params;
-  const description = req.body.description;
-  const email = req.body.email;
-  const end_date = req.body.end_date;
-  const end_time = req.body.end_time;
-  const first_name = req.body.first_name;
-  const id = req.body.id;
-  const is_confirmed = req.body.is_confirmed;
-  const is_consultation = req.body.is_consultation;
-  const is_rejected = req.body.is_rejected;
-  const last_name = req.body.last_name;
-  const start_date = req.body.start_date;
-  const start_time = req.body.start_time;
-  const username = req.body.username;
-  await update(req, res, 'UPDATE appointments SET description = ?, email = ?, end_date = ?, end_time = ?, first_name = ?, id = ?, is_confirmed = ?, is_consultation = ?, is_rejected = ?, last_name = ?, start_date = ?, start_date = ?, username = ? WHERE appointment_id = ?', appointment_id, description, email, end_date, end_time, first_name, id, is_confirmed, is_consultation, is_rejected, last_name, start_date, start_time, username)
-})//end appointment functions
+// app.get("/api/appointments/:appointment_id", async (req, res) => {
+//   const { appointment_id } = req.params;  
+//   await read(req, res, 'SELECT * FROM appointments WHERE appointment_id = ?', appointment_id);});
+//   app.put('/api/appointments/:appointment_id', async (req, res) => {
+//   const { appointment_id } = req.params;
+//   const description = req.body.description;
+//   const email = req.body.email;
+//   const end_date = req.body.end_date;
+//   const end_time = req.body.end_time;
+//   const first_name = req.body.first_name;
+//   const id = req.body.id;
+//   const is_confirmed = req.body.is_confirmed;
+//   const is_consultation = req.body.is_consultation;
+//   const is_rejected = req.body.is_rejected;
+//   const last_name = req.body.last_name;
+//   const start_date = req.body.start_date;
+//   const start_time = req.body.start_time;
+//   const username = req.body.username;
+//   await update(req, res, 'UPDATE appointments SET description = ?, email = ?, end_date = ?, end_time = ?, first_name = ?, id = ?, is_confirmed = ?, is_consultation = ?, is_rejected = ?, last_name = ?, start_date = ?, start_date = ?, username = ? WHERE appointment_id = ?', appointment_id, description, email, end_date, end_time, first_name, id, is_confirmed, is_consultation, is_rejected, last_name, start_date, start_time, username)
+// })
+
+//end appointment functions
 
 // Blog Functions!
 app.get("/blogs", async (req, res) => {
@@ -85,7 +89,7 @@ app.get("/blogs", async (req, res) => {
 
 app.get("/blogs/:BlogId", async (req, res) => {
   const { BlogId } = req.params;
-    await read(req, res, "SELECT * FROM blogs LEFT JOIN comments ON blogs.BlogId = comments.BlogId WHERE blogs.BlogId = ?", BlogId)
+  await read(req, res, "SELECT * FROM blogs LEFT JOIN comments ON blogs.BlogId = comments.BlogId WHERE blogs.BlogId = ?", BlogId)
 });
 
 app.post("/blogs", async (req, res) => {
@@ -201,7 +205,7 @@ app.get("/comments", async (req, res) => {
 
 app.get("/comments/:BlogId", async (req, res) => {
   const { BlogId } = req.params;
-    await read(req, res, "SELECT * FROM comments WHERE comments.BlogId = ?", BlogId)
+  await read(req, res, "SELECT * FROM comments WHERE comments.BlogId = ?", BlogId)
 });
 
 app.post("/comments", async (req, res) => {
