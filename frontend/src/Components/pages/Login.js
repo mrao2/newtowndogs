@@ -7,7 +7,7 @@ import { useHistory } from "react-router-dom";
 
 async function login (email, password) {
   try {
-    const response = await fetch("/login", {
+    const response = await fetch("/Login", {
       method: "POST",
       body: JSON.stringify({
       email: email,
@@ -120,9 +120,9 @@ function Login() {
   //   event.preventDefault();
   
   //   // Hash the password
-  //   const hashedPassword = await bcrypt.hash(ownerPassword, 10); // You should replace 'ownerPassword' with the actual password field's value
+  //   const hashedPassword = await bcrypt.hash(ownerPassword, 10); 
   
-  //   // create an object containing the profile data including the hashed password
+  //   // create an o2bject containing the profile data including the hashed password
   //   const profileData = {
   //     ownerFirstName,
   //     ownerLastName,

@@ -81,38 +81,47 @@ app.put("/blogs/:BlogId", async (req, res) => {
   );
 });
 
-//login functions!!
-connection.query(
-  "SELECT * FROM login_app WHERE email = ?",
-  [email],
-  (err, result) => {
-    //if err in query, status code & err message returned
-    if (err) {
-      console.error("Database error:", err);
-      res.status(500).send({ err: err });
-    } else {
-      //otherwise, checks result length, makes sure theres one matching user. then retrieves stored HASHED pwd. uses compare to make sure theyre the same
-      if (result.length === 1) {
-        const storedHashedPassword = result[0].password;
-        bcrypt.compare(
-          password,
-          storedHashedPassword,
-          (bcryptErr, bcryptResult) => {
-            if (bcryptErr || !bcryptResult) {
-              res.send({ message: "Wrong email/password." });
-            } else {
-              res.send({ message: "Login successful." });
-            }
-            connection.end();
-          }
-        );
+console.log("hello");
+app.post('/Login', (req, res)=> {
+  const email = req.body.email;
+  const password = req.body.password;
+  console.log("Received email:", email);
+  console.log("Received password:", password);
+  
+  connection.connect(function(err) {
+    if (err) throw err;
+    console.log("Connected!");
+  });
+//finds user w this email in db
+  connection.query(
+    "SELECT * FROM login_app WHERE email = ?",
+    [email],
+    (err, result) => {
+//if err in query, status code & err message returned
+      if(err) {
+        console.error("Database error:", err);
+        res.status(500).send({err: err});
       } else {
-        res.send({ message: "Wrong email/password." });
-        connection.end();
+//otherwise, checks result length, makes sure theres one matching user. then retrieves stored HASHED pwd. uses compare to make sure theyre the same 
+        if (result.length === 1) {
+          const storedHashedPassword = result[0].password;
+          bcrypt.compare(password, storedHashedPassword, (bcryptErr, bcryptResult) => {
+            if (bcryptErr || !bcryptResult) {
+              res.send({message: "Wrong email/password."});
+          } else {
+            res.send({message: "Login successful."});
+          }
+          connection.end();
+        });
+        } else {
+          res.send({message: "Wrong email/password."});
+          connection.end();
+        }
       }
     }
-  }
-);
+  );
+}); 
+
 
 
 
