@@ -216,6 +216,8 @@ app.put("/comments/:CommentId", async (req, res) => {
   );
 });
 
+
+// What types of images will be accepted
 const contentTypes = {
   png: "image/png",
   jpg: "image/jpeg",
@@ -225,21 +227,38 @@ const contentTypes = {
   webp: "image/webp",
 };
 
+
+// Image CRUD api end points
+
+
+// Create Image
+
+// I had to use Multer to be able to parse an image into a BLOB type of data into the Sql table, thats why you are seeing upload.singl("image")
 app.post("/images", upload.single("image"), async (req, res, next) => {
+  // to get the image type i needed to go into the req and find if there is a file type, then if there is, if there is an original name (what the file is named), 
+  // it will then split the name into an array and pop the final part of the array which should be just the type of file aka(png,img,jpeg)
   const extension = req.file?.originalname?.split(".").pop();
+
+  // a boolean to check if the req.file.buffer (which would be they bytes of data parsed by multer) is truthy
   if (!req.file?.buffer) {
+    // if empty/false return an error
     res.status(400);
     return next("No file provided");
-  } else if (!contentTypes[extension]) {
+  } 
+  // if there is a file loaded, it will check if the extension of the file is one that is allowed other wise it will throw an error
+    else if (!contentTypes[extension]) {
     res.status(400);
     return next("File type not allowed");
   }
+
+  // at this point I am ready to assign the variables into an object that i will then send to the Sql table
   const image = {
     BlogId: req.body.BlogId,
     content_type: contentTypes[extension],
     Image_Data: req.file.buffer,
   };
 
+  // this is the final product of sending the data to the Sql table, res.status 201 is to say that the data was succesfully added
   connection.query(
     "INSERT INTO images SET ?",
     image,
@@ -250,22 +269,32 @@ app.post("/images", upload.single("image"), async (req, res, next) => {
   );
 });
 
+
+// Read Image
 app.get("/images/:BlogId", async (req, res, next) => {
   const image = await connection.query(
     "SELECT * FROM images WHERE BlogId = ?",
     req.params.BlogId,
+    // checking if the data exists for the blog id given, otherwise error
     (err, data, fields) => {
       if (!data[0]) {
         res.status(404);
         return next("Not found");
       }
+      // at this point, I need to set the Content-Type so that the front end knows how to display the bytes coming from Sql, aka (jpeg,img,png)
       res.setHeader("Content-Type", data[0].Content_Type);
+      // once the header is set, i then send the image data
       res.send(data[0].Image_Data);
     }
   );
 });
 
+
+// Update Image
+// I had to use Multer to be able to parse an image into a BLOB type of data into the Sql table, thats why you are seeing upload.singl("image")
 app.put("/images/:BlogId", upload.single("image"), async (req, res, next) => {
+  // to get the image type i needed to go into the req and find if there is a file type, then if there is, if there is an original name (what the file is named), 
+  // it will then split the name into an array and pop the final part of the array which should be just the type of file aka(png,img,jpeg)
   const extension = req.file?.originalname?.split(".").pop();
   if (!req.file?.buffer) {
     res.status(400);
@@ -280,6 +309,8 @@ app.put("/images/:BlogId", upload.single("image"), async (req, res, next) => {
     Image_Data: req.file.buffer,
   };
 
+
+  // I needed to break my PUT request 
   await promiseQuery("DELETE FROM images WHERE BlogId = ?", [
     updatedImage.BlogId,
   ]);

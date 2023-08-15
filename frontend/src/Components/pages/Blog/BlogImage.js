@@ -17,13 +17,13 @@ const BlogImage = ({ BlogId, BlogTitle, showDeleteButton, ...props }) => {
 
   return (
     <div>
-      <img
+      {imgExists && <img
         src={`/images/${BlogId}`}
         alt={BlogTitle}
         style={{ display: imgExists ? undefined : "none" }}
         onError={() => setImgExists(false)}
         {...props}
-      />
+      />}
       <br></br>
       {showDeleteButton && imgExists ? (
         <button onClick={handleDeleteImage}>Delete Image</button>
