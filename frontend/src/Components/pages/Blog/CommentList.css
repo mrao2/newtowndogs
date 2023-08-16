@@ -258,11 +258,57 @@ a:not([href]):not([tabindex]):focus {
 }
 
 
-.gd-warning {
+.gd-warning1 {
+  color: #fff;
+  border: none;
+  background: #10c428 linear-gradient(45deg, #10c428, #045f10)
+}
+.gd-warning2 {
+  color: #fff;
+  border: none;
+  background: #b1340e linear-gradient(45deg, #b1340e, #681d23)
+}
+.gd-warning3 {
   color: #fff;
   border: none;
   background: #f4c414 linear-gradient(45deg, #f4c414, #f45414)
 }
+.gd-warning4 {
+  color: #fff;
+  border: none;
+  background: #448bff linear-gradient(45deg, #448bff, #44e9ff)
+}
+.gd-warning5 {
+  color: #fff;
+  border: none;
+  background: #14bae4 linear-gradient(45deg, #14bae4, #14e4a6)
+}
+.gd-warning6 {
+  color: #fff;
+  border: none;
+  background: #f414e1 linear-gradient(45deg, #f414e1, #6b1952)
+}
+.gd-warning7 {
+  color: #fff;
+  border: none;
+  background: #2a14f4 linear-gradient(45deg, #2a14f4, #14f497)
+}
+.gd-warning8 {
+  color: #fff;
+  border: none;
+  background: #df396a linear-gradient(45deg, #df396a, #ec0f07)
+}
+.gd-warning9 {
+  color: #fff;
+  border: none;
+  background: #fcd340 linear-gradient(45deg, #fcd340, #8bf414)
+}
+.gd-warning0 {
+  color: #fff;
+  border: none;
+  background: #7514f4 linear-gradient(45deg, #7514f4, #7b0792)
+}
+
 
 
 @media (min-width:992px) {

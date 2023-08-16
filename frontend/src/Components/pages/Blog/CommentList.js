@@ -138,7 +138,7 @@ const CommentList = (comments) => {
                     <>
                       <div>
                         {/* <a href="#" data-abc="true"> */}
-                        <span className="w-48 avatar gd-warning">
+                        <span className={"w-48 avatar gd-warning"+(Math.floor(Math.random()*10))}>
                           {comment.Comment_Author?.slice(
                             0,
                             1
