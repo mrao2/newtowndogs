@@ -380,7 +380,7 @@ app.get("/images/:BlogId", async (req, res, next) => {
 });
 
 // Update Image
-// I had to use Multer to be able to parse an image into a BLOB type of data into the Sql table, thats why you are seeing upload.singl("image")
+// I had to use Multer to be able to parse an image into a BLOB type of data into the Sql table, thats why you are seeing upload.single("image")
 app.put("/images/:BlogId", upload.single("image"), async (req, res, next) => {
   try {
     // to get the image type i needed to go into the req and find if there is a file type, then if there is, if there is an original name (what the file is named),
