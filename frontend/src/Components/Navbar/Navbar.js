@@ -11,7 +11,7 @@ function Navbar() {
         src="https://cdn.stocksnap.io/img-thumbs/960w/husky-animal_RZL1A2KF5X.jpg"
         alt="husky"
       />
-      <h3>@ND</h3>
+      <h3>NewtownDogs</h3>
 
       <div className="links">
         <a href="/">Home</a>
