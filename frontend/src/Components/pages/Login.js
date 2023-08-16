@@ -51,7 +51,6 @@ function Login() {
       login(email, password)
       .then((response) => {
         if (response.message) {
-          console.log(response.success);
           // setIsLoggedIn(true); //set login status to true
           console.log("Login successful!");
             //redirect to home page
