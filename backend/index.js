@@ -64,18 +64,23 @@ app.delete("/api/home/:id", async (req, res) => {
 });
 
 //appointment functions
-app.post('/api/appointments', async (req, res) => {
-  await create(req, res, 'INSERT INTO appointments SET ?')
+app.post("/api/appointments", async (req, res) => {
+  await create(req, res, "INSERT INTO appointments SET ?");
 });
 app.get("/api/appointments", async (req, res) => {
   await read(req, res, "SELECT * FROM appointments");
 });
 app.delete("/api/appointments/:appointment_id", async (req, res) => {
   const { appointment_id } = req.params;
-  await deleteRow(req, res, "DELETE FROM appointments WHERE appointment_id = ?", appointment_id);
+  await deleteRow(
+    req,
+    res,
+    "DELETE FROM appointments WHERE appointment_id = ?",
+    appointment_id
+  );
 });
 // app.get("/api/appointments/:appointment_id", async (req, res) => {
-//   const { appointment_id } = req.params;  
+//   const { appointment_id } = req.params;
 //   await read(req, res, 'SELECT * FROM appointments WHERE appointment_id = ?', appointment_id);});
 //   app.put('/api/appointments/:appointment_id', async (req, res) => {
 //   const { appointment_id } = req.params;
@@ -98,38 +103,58 @@ app.delete("/api/appointments/:appointment_id", async (req, res) => {
 //end appointment functions
 
 // Blog Functions!
-app.get("/blogs", async (req, res) => {
-  await read(req, res, "SELECT * FROM blogs");
+app.get("/blogs", async (req, res, next) => {
+  try {
+    await read(req, res, "SELECT * FROM blogs");
+  } catch (err) {
+    next(err);
+  }
 });
 
-app.get("/blogs/:BlogId", async (req, res) => {
+app.get("/blogs/:BlogId", async (req, res, next) => {
+  try {
+  } catch (err) {
+    next(err);
+  }
   const { BlogId } = req.params;
     await read(req, res, "SELECT * FROM blogs LEFT JOIN comments ON blogs.BlogId = comments.BlogId WHERE blogs.BlogId = ?", BlogId)
 });
 
-app.post("/blogs", async (req, res) => {
-  await create(req, res, "INSERT INTO blogs SET ?");
+app.post("/blogs", async (req, res, next) => {
+  try {
+    await create(req, res, "INSERT INTO blogs SET ?");
+  } catch (err) {
+    next(err);
+  }
 });
 
-app.delete("/blogs/:BlogId", async (req, res) => {
-  const { BlogId } = req.params;
-  await deleteRow(req, res, "DELETE FROM blogs WHERE BlogId = ?", BlogId);
+app.delete("/blogs/:BlogId", async (req, res, next) => {
+  try {
+    const { BlogId } = req.params;
+    await deleteRow(req, res, "DELETE FROM blogs WHERE BlogId = ?", BlogId);
+  } catch (err) {
+    next(err);
+  }
 });
 
-app.put("/blogs/:BlogId", async (req, res) => {
-  const { BlogId } = req.params;
-  const Title = req.body.title;
-  const Body = req.body.body;
-  const Author = req.body.author;
-  await update(
-    req,
-    res,
-    "UPDATE blogs SET Title = ?, Body = ?, Author = ? WHERE BlogId = ?",
-    BlogId,
-    Title,
-    Body,
-    Author
-  );
+app.put("/blogs/:BlogId", async (req, res, next) => {
+  try {
+    const { BlogId } = req.params;
+    const Title = req.body.title;
+    const Body = req.body.body;
+    const Author = req.body.author;
+    await update(
+      req,
+      res,
+      "UPDATE blogs SET Title = ?, Body = ?, Author = ? WHERE BlogId = ?",
+      BlogId,
+      Title,
+      Body,
+      Author
+    );
+  } catch (err) {
+    next(err);
+  }
 });
 
 console.log("hello");
@@ -213,41 +238,73 @@ app.post("/Profile", (req, res) => {
 
 
 // Comment Function
-app.get("/comments", async (req, res) => {
-  await read(req, res, "SELECT * FROM comments");
+app.get("/comments", async (req, res, next) => {
+  try {
+    await read(req, res, "SELECT * FROM comments");
+  } catch (err) {
+    next(err);
+  }
 });
 
-app.get("/comments/:BlogId", async (req, res) => {
-  const { BlogId } = req.params;
-    await read(req, res, "SELECT * FROM comments WHERE comments.BlogId = ?", BlogId)
+app.get("/comments/:BlogId", async (req, res, next) => {
+  try {
+    const { BlogId } = req.params;
+    await read(
+      req,
+      res,
+      "SELECT * FROM comments WHERE comments.BlogId = ?",
+      BlogId
+    );
+  } catch (err) {
+    next(err);
+  }
 });
 
-app.post("/comments", async (req, res) => {
-  await create(req, res, "INSERT INTO comments SET ?");
+app.post("/comments", async (req, res, next) => {
+  try {
+    await create(req, res, "INSERT INTO comments SET ?");
+  } catch (err) {
+    next(err);
+  }
 });
 
-app.delete("/comments/:CommentId", async (req, res) => {
-  const { CommentId } = req.params;
-  await deleteRow(req, res, "DELETE FROM comments WHERE CommentId = ?", CommentId);
+app.delete("/comments/:CommentId", async (req, res, next) => {
+  try {
+    const { CommentId } = req.params;
+    await deleteRow(
+      req,
+      res,
+      "DELETE FROM comments WHERE CommentId = ?",
+      CommentId
+    );
+  } catch (err) {
+    next(err);
+  }
 });
 
-app.put("/comments/:CommentId", async (req, res) => {
-  const { CommentId } = req.params;
-  const Body = req.body.Comment_Body;
-  const Author = req.body.Comment_Author;
-  const submittedDate = new Date(req.body.Comment_Date);
-  const formattedDate = submittedDate.toISOString().slice(0, 19).replace('T', ' '); // Convert to 'YYYY-MM-DD HH:MM:SS'
-  await update(
-    req,
-    res,
-    "UPDATE comments SET Comment_Body = ?, Comment_Author = ?, Comment_Date = ? WHERE CommentId = ?",
-    CommentId,
-    Body,
-    Author,
-    formattedDate
-  );
+app.put("/comments/:CommentId", async (req, res, next) => {
+  try {
+    const { CommentId } = req.params;
+    const Body = req.body.Comment_Body;
+    const Author = req.body.Comment_Author;
+    const submittedDate = new Date(req.body.Comment_Date);
+    const formattedDate = submittedDate
+      .toISOString()
+      .slice(0, 19)
+      .replace("T", " "); // Convert to 'YYYY-MM-DD HH:MM:SS'
+    await update(
+      req,
+      res,
+      "UPDATE comments SET Comment_Body = ?, Comment_Author = ?, Comment_Date = ? WHERE CommentId = ?",
+      CommentId,
+      Body,
+      Author,
+      formattedDate
+    );
+  } catch (err) {
+    next(err);
+  }
 });
-
 
 // What types of images will be accepted
 const contentTypes = {
@@ -259,110 +316,114 @@ const contentTypes = {
   webp: "image/webp",
 };
 
-
 // Image CRUD api end points
-
 
 // Create Image
 
 // I had to use Multer to be able to parse an image into a BLOB type of data into the Sql table, thats why you are seeing upload.singl("image")
 app.post("/images", upload.single("image"), async (req, res, next) => {
-  // to get the image type i needed to go into the req and find if there is a file type, then if there is, if there is an original name (what the file is named), 
-  // it will then split the name into an array and pop the final part of the array which should be just the type of file aka(png,img,jpeg)
-  const extension = req.file?.originalname?.split(".").pop();
+  try {
+    // to get the image type i needed to go into the req and find if there is a file type, then if there is, if there is an original name (what the file is named),
+    // it will then split the name into an array and pop the final part of the array which should be just the type of file aka(png,img,jpeg)
+    const extension = req.file?.originalname?.split(".").pop();
 
-  // a boolean to check if the req.file.buffer (which would be they bytes of data parsed by multer) is truthy
-  if (!req.file?.buffer) {
-    // if empty/false return an error
-    res.status(400);
-    return next("No file provided");
-  } 
-  // if there is a file loaded, it will check if the extension of the file is one that is allowed other wise it will throw an error
-    else if (!contentTypes[extension]) {
-    res.status(400);
-    return next("File type not allowed");
-  }
-
-  // at this point I am ready to assign the variables into an object that i will then send to the Sql table
-  const image = {
-    BlogId: req.body.BlogId,
-    content_type: contentTypes[extension],
-    Image_Data: req.file.buffer,
-  };
-
-  // this is the final product of sending the data to the Sql table, res.status 201 is to say that the data was succesfully added
-  connection.query(
-    "INSERT INTO images SET ?",
-    image,
-    function (err, data, fields) {
-      if (err) throw err;
-      res.status(201).send();
+    // a boolean to check if the req.file.buffer (which would be they bytes of data parsed by multer) is truthy
+    if (!req.file?.buffer) {
+      // if empty/false return an error
+      res.status(400);
+      return next("No file provided");
     }
-  );
-});
+    // if there is a file loaded, it will check if the extension of the file is one that is allowed other wise it will throw an error
+    else if (!contentTypes[extension]) {
+      res.status(400);
+      return next("File type not allowed");
+    }
 
+    // at this point I am ready to assign the variables into an object that i will then send to the Sql table
+    const image = {
+      BlogId: req.body.BlogId,
+      content_type: contentTypes[extension],
+      Image_Data: req.file.buffer,
+    };
+
+    // this is the final product of sending the data to the Sql table, res.status 201 is to say that the data was succesfully added
+    connection.query(
+      "INSERT INTO images SET ?",
+      image,
+      function (err, data, fields) {
+        if (err) throw err;
+        res.status(201).send();
+      }
+    );
+  } catch (err) {
+    next(err);
+  }
+});
 
 // Read Image
 app.get("/images/:BlogId", async (req, res, next) => {
-  const image = await connection.query(
-    "SELECT * FROM images WHERE BlogId = ?",
-    req.params.BlogId,
-    // checking if the data exists for the blog id given, otherwise error
-    (err, data, fields) => {
-      if (!data[0]) {
-        res.status(404);
-        return next("Not found");
+  try {
+    await connection.query(
+      "SELECT * FROM images WHERE BlogId = ?",
+      req.params.BlogId,
+      // checking if the data exists for the blog id given, otherwise error
+      (err, data, fields) => {
+        if (!data[0]) {
+          res.status(404);
+          return next("Not found");
+        }
+        // at this point, I need to set the Content-Type so that the front end knows how to display the bytes coming from Sql, aka (jpeg,img,png)
+        res.setHeader("Content-Type", data[0].Content_Type);
+        // once the header is set, i then send the image data
+        res.send(data[0].Image_Data);
       }
-      // at this point, I need to set the Content-Type so that the front end knows how to display the bytes coming from Sql, aka (jpeg,img,png)
-      res.setHeader("Content-Type", data[0].Content_Type);
-      // once the header is set, i then send the image data
-      res.send(data[0].Image_Data);
-    }
-  );
+    );
+  } catch (err) {
+    next(err);
+  }
 });
-
 
 // Update Image
 // I had to use Multer to be able to parse an image into a BLOB type of data into the Sql table, thats why you are seeing upload.singl("image")
 app.put("/images/:BlogId", upload.single("image"), async (req, res, next) => {
-  // to get the image type i needed to go into the req and find if there is a file type, then if there is, if there is an original name (what the file is named), 
-  // it will then split the name into an array and pop the final part of the array which should be just the type of file aka(png,img,jpeg)
-  const extension = req.file?.originalname?.split(".").pop();
-  if (!req.file?.buffer) {
-    res.status(400);
-    return next("No file provided");
-  } else if (!contentTypes[extension]) {
-    res.status(400);
-    return next("File type not allowed");
+  try {
+    // to get the image type i needed to go into the req and find if there is a file type, then if there is, if there is an original name (what the file is named),
+    // it will then split the name into an array and pop the final part of the array which should be just the type of file aka(png,img,jpeg)
+    const extension = req.file?.originalname?.split(".").pop();
+    if (!req.file?.buffer) {
+      res.status(400);
+      return next("No file provided");
+    } else if (!contentTypes[extension]) {
+      res.status(400);
+      return next("File type not allowed");
+    }
+    const updatedImage = {
+      BlogId: req.body.BlogId,
+      content_type: contentTypes[extension],
+      Image_Data: req.file.buffer,
+    };
+
+    // I needed to break my PUT request into a promise for deleting the image first in case a blog does not currently have an image assigned to it
+    await promiseQuery("DELETE FROM images WHERE BlogId = ?", [
+      updatedImage.BlogId,
+    ]);
+
+    // then I insert into the table
+    await promiseQuery("INSERT INTO images SET ?", [updatedImage]);
+    // Send a response of status 201 to know that it was added to the table
+    res.status(201).send();
+  } catch (err) {
+    next(err);
   }
-  const updatedImage = {
-    BlogId: req.body.BlogId,
-    content_type: contentTypes[extension],
-    Image_Data: req.file.buffer,
-  };
-
-
-  // I needed to break my PUT request into a promise for deleting the image first in case a blog does not currently have an image assigned to it
-  await promiseQuery("DELETE FROM images WHERE BlogId = ?", [
-    updatedImage.BlogId,
-  ]);
-
-  // then I insert into the table
-  await promiseQuery("INSERT INTO images SET ?", [
-    updatedImage
-  ]);
-  // Send a response of status 201 to know that it was added to the table
-  res.status(201).send();
 });
 
-app.delete("/images/:BlogId", async (req, res) => {
-  const { BlogId } = req.params;
-  await deleteRow(
-    req,
-    res,
-    "DELETE FROM images WHERE BlogId = ?",
-    BlogId
-  );
+app.delete("/images/:BlogId", async (req, res, next) => {
+  try {
+    const { BlogId } = req.params;
+    await deleteRow(req, res, "DELETE FROM images WHERE BlogId = ?", BlogId);
+  } catch (err) {
+    next(err);
+  }
 });
 
 
