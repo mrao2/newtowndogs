@@ -50,7 +50,7 @@ function Login() {
     if (isEmailValid && isPasswordValid) {
       login(email, password)
       .then((response) => {
-        if (response.data) {
+        if (response.message) {
           console.log(response.success);
           // setIsLoggedIn(true); //set login status to true
           console.log("Login successful!");
