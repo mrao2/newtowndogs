@@ -55,14 +55,12 @@ app.delete("/api/home/:id", async (req, res) => {
 
 //appointment functions
 app.post('/api/appointments', async (req, res) => {
-  console.log(req.body)
   await create(req, res, 'INSERT INTO appointments SET ?')
 });
 app.get("/api/appointments", async (req, res) => {
   await read(req, res, "SELECT * FROM appointments");
 });
 app.delete("/api/appointments/:appointment_id", async (req, res) => {
-  console.log(req.body);
   const { appointment_id } = req.params;
   await deleteRow(req, res, "DELETE FROM appointments WHERE appointment_id = ?", appointment_id);
 });
