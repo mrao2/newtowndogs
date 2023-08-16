@@ -9,6 +9,7 @@ import ConsultationForm from "./ConsultationForm";
 import "./BookingPage.css";
 
 const BookingPage = () => {
+  const [submit, setSubmit] = useState(false);
   const [isChecked, setIsChecked] = useState(false);
   const handleOnChange = () => {
     setIsChecked(!isChecked);
@@ -36,9 +37,12 @@ const BookingPage = () => {
           : "You are a returning customer."}
       </div>
       <br />
-      <div>{isChecked ? <ConsultationForm /> : <ReturnCustomerForm />}</div>
+      <div>{isChecked ? <ConsultationForm setSubmit={setSubmit} /> : <ReturnCustomerForm setSubmit={setSubmit} />}
+        {console.log(submit)}</div>
     </div>
   );
 };
+
+
 
 export default BookingPage;
