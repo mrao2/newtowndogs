@@ -38,7 +38,6 @@ return (
               required: true
             })} />
         </div>
-        
         <div className="form-control">
             <label>Last Name</label>
             <input type="text" name="last_name" {...register("last_name", {
@@ -71,7 +70,7 @@ return (
               required: true
             })} />
         </div>
-        <button type="submit" className="createaccount-button">Create Account</button>
+        <button type="submit" className="createaccount-button" style={{ marginTop: '10px' }}>Create Account</button>
       </form>
     </div>
     </span>

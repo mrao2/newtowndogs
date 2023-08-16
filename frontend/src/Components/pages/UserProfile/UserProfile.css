@@ -8,11 +8,12 @@
     padding-top: 100px;
 }
 
-.createaccount-button {
-    padding: 10px;
-    background-color: #f1356d;
+.savechanges-button {
+    margin-left: 15px;
+    margin-right: 5px;
+    text-decoration: none;
+    padding: 6px;
     color: white;
-    border: none;
-    cursor: pointer;
-    margin: auto;
+    background-color: #924141;
+    border-radius: 8px
 }

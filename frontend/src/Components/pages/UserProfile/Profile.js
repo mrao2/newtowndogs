@@ -2,6 +2,7 @@ import React from "react";
 import { useForm } from 'react-hook-form';
 import { useParams } from "react-router-dom";
 import useFetch from "../../useFetch";
+import "./UserProfile.css";
 
 export const Profile = () => {
   const {id} = useParams();
@@ -71,6 +72,10 @@ export const Profile = () => {
   return (
     <div className="App" style={{ paddingTop: '100px' }}>
         <form onSubmit={handleSubmit(onSubmit)}>
+
+
+
+
 
         <h1>Owner Information</h1>
         {isPending ? <div>Loading...</div> : 
@@ -151,9 +156,14 @@ export const Profile = () => {
             <input type="text" name="phone" placeholder="(xxx) xxx-xxxx" {...register("phone", {
               required: true
             })} />
+      </div>
 
-        </div>
 
+
+
+
+
+        
         <h1>Dog Information</h1>
 
         <div className="form-control">
@@ -312,13 +322,18 @@ export const Profile = () => {
         </div>
 
         <div className="form-control">
-            <button type="submit">Complete Profile</button>
+            <button type="submit" className="savechanges-button" style={{ marginTop: '10px' }}>Save Changes</button>
         </div>
+
+
+
+
+
+
+
         </span>
         }
         </form>
-    </div>
+        </div>
   );
 };
-
-
