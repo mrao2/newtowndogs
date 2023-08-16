@@ -32,7 +32,16 @@ services:
       - db_data:/var/lib/mysql
     # networks:
     #   - app_net
-
+  nginx:
+    depends_on:
+      - backend
+      - frontend
+    restart: always
+    build:
+      dockerfile: Dockerfile
+      context: ./nginx
+    ports:
+      - "3050:80"
 networks:
   app_net:
 
