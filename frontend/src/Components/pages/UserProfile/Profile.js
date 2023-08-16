@@ -70,7 +70,7 @@ export const Profile = () => {
 
 
   return (
-    <div className="App" style={{ paddingTop: '100px' }}>
+    <div className="user-profile-page" style={{ paddingTop: '100px' }}>
         <form onSubmit={handleSubmit(onSubmit)}>
 
 
@@ -82,23 +82,21 @@ export const Profile = () => {
         <span>
         <div className="form-control">
             <label>First Name</label>
-            <input 
-            type="text" 
-            name="firstName" {...register("firstName", {
+            <input className="boxSpace" type="text" name="firstName" {...register("firstName", {
               required: true
             })} />
         </div>
         
         <div className="form-control">
             <label>Last Name</label>
-            <input type="text" name="lastName" {...register("lastName", {
+            <input className="boxSpace" type="text" name="lastName" {...register("lastName", {
               required: true
             })} />
         </div>
 
         <div className="form-control">
             <label>Username</label>
-            <input type="text" name="username" {...register("username", {
+            <input className="boxSpace" type="text" name="username" {...register("username", {
               required: true
             })} />
         </div>
@@ -106,21 +104,21 @@ export const Profile = () => {
 
         <div className="form-control">
             <label>Street Address</label>
-            <input type="text" name="ownerAddress" {...register("ownerAddress", {
+            <input className="boxSpace" type="text" name="ownerAddress" {...register("ownerAddress", {
               required: true
             })} />
         </div>
 
         <div className="form-control">
             <label>City</label>
-            <input type="text" name="ownerCity" {...register("ownerCity", {
+            <input className="boxSpace" type="text" name="ownerCity" {...register("ownerCity", {
               required: true
             })} />
         </div>
         
         <div className="form-control">
             <label>State</label>
-            <input type="text" name="ownerState" {...register("ownerState", {
+            <input className="boxSpace" type="text" name="ownerState" {...register("ownerState", {
               required: true
             })} />
 
@@ -128,7 +126,7 @@ export const Profile = () => {
         
         <div className="form-control">
             <label>Zip Code</label>
-            <input type="text" name="ownerZip" {...register("ownerZip", {
+            <input className="boxSpace" type="text" name="ownerZip" {...register("ownerZip", {
               required: true,
               minLength: 5,
               maxLength: 5
@@ -138,7 +136,7 @@ export const Profile = () => {
         
         <div className="form-control">
             <label>Email Address</label>
-            <input type="text" name="email" {...register("email", {
+            <input className="boxSpace" type="text" name="email" {...register("email", {
               required: true,
               pattern: /^[^@ ]+@[^@ ]+\.[^@ .]{2,}$/
             })}
@@ -153,7 +151,7 @@ export const Profile = () => {
         
         <div className="form-control">
             <label>Phone Number</label>
-            <input type="text" name="phone" placeholder="(xxx) xxx-xxxx" {...register("phone", {
+            <input className="boxSpace" type="text" name="phone" placeholder="(xxx) xxx-xxxx" {...register("phone", {
               required: true
             })} />
       </div>
@@ -164,40 +162,40 @@ export const Profile = () => {
 
 
         
-        <h1>Dog Information</h1>
+        <h1 style={{ marginTop: '25px' }} >Dog Information</h1>
 
         <div className="form-control">
             <label>Dog's Name</label>
-            <input type="text" name="dogName" {...register("dogName", {
+            <input className="boxSpace" type="text" name="dogName" {...register("dogName", {
               required: true
           })} />
         </div>
         
         <div className="form-control">
             <label>Dog Breed</label>
-            <input type="text" name="dogBreed" {...register("dogBreed", {
+            <input className="boxSpace" type="text" name="dogBreed" {...register("dogBreed", {
               required: true
           })} />
         </div>
         
         <div className="form-control">
             <label>Dog Age</label>
-            <input type="text" name="dogAge" placeholder="age in years" {...register("dogAge")} />
+            <input className="boxSpace" type="text" name="dogAge" placeholder="age in years" {...register("dogAge")} />
         </div>
         
         <div className="form-control">
             <label>Dog Gender</label>
-            <input type="text" name="dogGender" {...register("dogGender")} />
+            <input className="boxSpace" type="text" name="dogGender" {...register("dogGender")} />
         </div>
         
         <div className="form-control">
             <label>Dog Color</label>
-            <input type="text" name="dogColor" {...register("dogColor")} />
+            <input className="boxSpace" type="text" name="dogColor" {...register("dogColor")} />
         </div>
         
         <div className="form-control">
             <label>Dog Birthdate</label>
-            <input type="text" name="dogBirthdate" placeholder="mm/dd" {...register("dogBirthdate", {
+            <input className="boxSpace" type="text" name="dogBirthdate" placeholder="mm/dd" {...register("dogBirthdate", {
               required: true
             })} />
 
@@ -210,14 +208,14 @@ export const Profile = () => {
         
         <div className="form-control">
             <label>Dog Allergies</label>
-            <input type="text" name="dogAllergies" placeholder="if none, enter 'n/a'" {...register("dogAllergies", {
+            <input className="boxSpace" type="text" name="dogAllergies" placeholder="if none, enter 'n/a'" {...register("dogAllergies", {
               required: true
             })} />
         </div>
         
         <div className="form-control">
             <label>Dog Weight</label>
-            <input type="number" name="dogWeight" placeholder="pounds" {...register("dogWeight", {
+            <input className="boxSpace" type="number" name="dogWeight" placeholder="pounds" {...register("dogWeight", {
               required: true,
               valueAsNumber: true
             })} />
@@ -226,7 +224,7 @@ export const Profile = () => {
         <div className="form-control">
           <label>Dog Friendly? </label>
           <label>
-        <input
+        <input style= {{ marginLeft: '10px' }}
           type="radio"
           label="Yes"
           value="yes"
@@ -237,7 +235,7 @@ export const Profile = () => {
         Yes
         </label>
         <label>
-        <input
+        <input style= {{ marginLeft: '10px' }}
           type="radio"
           label="No"
           value="no"
@@ -250,7 +248,7 @@ export const Profile = () => {
         <div className="form-control">
           <label>Dog Potty Trained? </label>
           <label>
-        <input
+        <input style= {{ marginLeft: '10px' }}
           type="radio"
           label="Yes"
           value="yes"
@@ -261,7 +259,7 @@ export const Profile = () => {
         Yes
         </label>
         <label>
-        <input
+        <input style= {{ marginLeft: '10px' }}
           type="radio"
           label="No"
           value="no"
@@ -273,7 +271,7 @@ export const Profile = () => {
         
         <div className="form-control">
             <label>Amount of Walks Per Day</label>
-            <input type="number" name="amtWalks" {...register("amtWalks", {
+            <input className="boxSpace" type="number" name="amtWalks" {...register("amtWalks", {
               required: true,
               valueAsNumber: true
             })} />
@@ -281,7 +279,7 @@ export const Profile = () => {
 
         <div className="form-control">
             <label>Amount of Meals Per Day</label>
-            <input type="number" name="amtMeals" {...register("amtMeals", {
+            <input className="boxSpace" type="number" name="amtMeals" {...register("amtMeals", {
               required: true,
               valueAsNumber: true
             })} />
@@ -289,7 +287,7 @@ export const Profile = () => {
         
         <div className="form-control">
             <label>Amount of Food Per Meal</label>
-            <input type="text" name="amtPerMeal" placeholder="in cups" {...register("amtPerMeal", {
+            <input className="boxSpace" type="text" name="amtPerMeal" placeholder="in cups" {...register("amtPerMeal", {
               required: true,
               valueAsNumber: true
             })} />
@@ -298,7 +296,7 @@ export const Profile = () => {
         <div className="form-control">
           <label>Dog Fixed? </label>
           <label>
-        <input
+        <input style= {{ marginLeft: '5px' }}
           type="radio"
           label="Yes"
           value="yes"
@@ -309,7 +307,7 @@ export const Profile = () => {
         Yes
         </label>
         <label>
-        <input
+        <input style= {{ marginLeft: '5px' }}
           type="radio"
           label="No"
           value="no"
@@ -321,9 +319,7 @@ export const Profile = () => {
         </label>
         </div>
 
-        <div className="form-control">
             <button type="submit" className="savechanges-button" style={{ marginTop: '10px' }}>Save Changes</button>
-        </div>
 
 
 

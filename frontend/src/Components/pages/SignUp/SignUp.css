@@ -6,16 +6,18 @@
 
 .signup-page {
     padding-top: 100px;
-    padding-left: 400px;
-    padding-right: 400px;
+    margin: auto;
+    width: 600px;
 }
 
 .createaccount-button {
-    margin-left: 15px;
-    margin-right: 5px;
     text-decoration: none;
     padding: 6px;
     color: white;
     background-color: #924141;
     border-radius: 8px
+}
+
+.boxSpace {
+    margin-left: 5px;
 }

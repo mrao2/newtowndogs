@@ -32,41 +32,39 @@ return (
       <form onSubmit={handleSubmit(onSubmit)}>
       <div className="form-control">
             <label>First Name</label>
-            <input 
-            type="text" 
-            name="first_name" {...register("first_name", {
+            <input className="boxSpace" type="text" name="first_name" {...register("first_name", {
               required: true
             })} />
         </div>
         <div className="form-control">
             <label>Last Name</label>
-            <input type="text" name="last_name" {...register("last_name", {
+            <input className="boxSpace" type="text" name="last_name" {...register("last_name", {
               required: true
             })} />
         </div>
         <div className="form-control">
             <label>Phone Number</label>
-            <input type="text" name="phone" {...register("phone", {
+            <input  className="boxSpace" type="text" name="phone" {...register("phone", {
               required: true
             })} />
         </div>
         <div className="form-control">
             <label>Username (this will be used for blog posts)</label>
-            <input type="text" name="username" {...register("username", {
+            <input className="boxSpace" type="text" name="username" {...register("username", {
               required: true
             })} />
         </div>
         
         <div className="form-control">
             <label>Email Address</label>
-            <input type="text" name="email" {...register("email", {
+            <input className="boxSpace" type="text" name="email" {...register("email", {
               required: true
             })} />
         </div>
         
         <div className="form-control">
             <label>Password</label>
-            <input type="text" name="hashed_password" {...register("hashed_password", {
+            <input className="boxSpace" type="text" name="hashed_password" {...register("hashed_password", {
               required: true
             })} />
         </div>

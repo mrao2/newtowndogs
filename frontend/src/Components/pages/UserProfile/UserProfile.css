@@ -6,14 +6,21 @@
 
 .user-profile-page {
     padding-top: 100px;
+    margin: auto;
+    width: 550px;
 }
 
 .savechanges-button {
-    margin-left: 15px;
-    margin-right: 5px;
+    width: 300px;
+    margin: auto;
     text-decoration: none;
     padding: 6px;
     color: white;
     background-color: #924141;
     border-radius: 8px
+}
+
+.boxSpace {
+    margin-left: 5px;
+    width: 200px
 }
