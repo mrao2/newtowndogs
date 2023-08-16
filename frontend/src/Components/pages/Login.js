@@ -12,7 +12,7 @@ async function login (email, password) {
       method: "POST",
       body: JSON.stringify({
       email: email,
-      password: password
+      hashed_password: password
       }),
       headers: {
         "Content-type": "application/json; charset=UTF-8"
@@ -76,11 +76,10 @@ function Login() {
           placeholder="Email"
           className="login-input"
           value={email}
-          onChange={e => setEmail(e.target.value)}
-          // onChange={(e) => {
-          //   setEmail(e.target.value);
-          //   setShowEmailAlert(false);
-          // }}
+          onChange={(e) => {
+            setEmail(e.target.value);
+            setShowEmailAlert(false);
+          }}
           // pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}"
           required
         />
@@ -93,11 +92,10 @@ function Login() {
           placeholder="Password"
           className="login-input"
           value={password}
-          onChange={e => setPassword(e.target.value)}
-          // onChange={(e) => {
-          //   setPassword(e.target.value);
-          // setShowPasswordAlert(false);
-          // }}
+          onChange={(e) => {
+            setPassword(e.target.value);
+          setShowPasswordAlert(false);
+          }}
           minLength="8"
           required
         />

@@ -18,6 +18,14 @@ const connection = mysql.createConnection({
   password: process.env.Password,
   database: process.env.Database,
 });
+try{
+ connection.connect(function(err){
+  if (err) throw err;
+  console.log("connected to mysql server!");
+ });
+} catch (error) {
+  console.error("error connecting to mysql:", error);
+}
 
 const PORT = process.env.PORT || 3001;
 
@@ -37,7 +45,7 @@ app.get("/api/home/:id", async (req, res) => {
   await read(req, res, "SELECT * FROM homepage WHERE id = ?", id);
 });
 
-app.post("api/home", async (req, res) => {
+app.post("/api/home", async (req, res) => {
   await create(req, res, "INSERT INTO homepage set ?");
 });
 
@@ -82,9 +90,13 @@ app.put("/blogs/:BlogId", async (req, res) => {
 });
 
 console.log("hello");
+const testPassword = 'hashed_password';
+const hashedPassword = bcrypt.hashSync(testPassword, 10);
+
+console.log(hashedPassword);
 app.post('/login', (req, res)=> {
   const email = req.body.email;
-  const password = req.body.password;
+  const password = req.body.hashed_password;
   console.log("Received email:", email);
   console.log("Received password:", password);
 
@@ -101,18 +113,20 @@ app.post('/login', (req, res)=> {
       } else {
 //otherwise, checks result length, makes sure theres one matching user. then retrieves stored HASHED pwd. uses compare to make sure theyre the same 
         if (result.length === 1) {
-          const storedHashedPassword = result[0].password;
+          const storedHashedPassword = result[0].hashed_password;
           bcrypt.compare(password, storedHashedPassword, (bcryptErr, bcryptResult) => {
+            console.log("Stored hashed password:", storedHashedPassword);
+            console.log("Bcrypt result:", bcryptResult);
             if (bcryptErr || !bcryptResult) {
               res.send({message: "Wrong email/password."});
           } else {
             res.send({message: "Login successful."});
           }
-          connection.end();
+          // connection.end();
         });
         } else {
           res.send({message: "Wrong email/password."});
-          connection.end();
+          // connection.end();
         }
       }
     }
