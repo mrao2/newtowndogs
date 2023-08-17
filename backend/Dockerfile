@@ -1,11 +1,3 @@
-# FROM node:alpine
-# WORKDIR /app
-# COPY package.json ./
-# COPY package-lock.json ./
-# COPY ./ ./
-# RUN npm i
-# CMD ["npm", "start"]
-
 # Start your image with a node base image
 FROM node:alpine
 
