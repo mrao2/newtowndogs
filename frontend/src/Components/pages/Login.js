@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./Login.css";
 import { useHistory } from "react-router-dom";
+
 // import useFetch from "../useFetch";
 
 // const {data: logins, isPending, error} = useFetch('/api/data');
@@ -10,8 +11,8 @@ async function login (email, password) {
     const response = await fetch("/login", {
       method: "POST",
       body: JSON.stringify({
-        email: email,
-        password: password
+      email: email,
+      hashed_password: password
       }),
       headers: {
         "Content-type": "application/json; charset=UTF-8"
@@ -25,8 +26,8 @@ async function login (email, password) {
     //.then looking for good or bad response & then updating isloggedin based on that. 
 }
 function Login() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [showPasswordAlert, setShowPasswordAlert] = useState(false);
   const [showEmailAlert, setShowEmailAlert] = useState(false);
@@ -46,17 +47,16 @@ function Login() {
   
     const isPasswordValid = password.length >= 8;
     setShowPasswordAlert(!isPasswordValid);
-  
     if (isEmailValid && isPasswordValid) {
       login(email, password)
       .then((response) => {
-        if (response.data && response.data.success) {
+        if (response.message) {
           // setIsLoggedIn(true); //set login status to true
           console.log("Login successful!");
             //redirect to home page
             history.push("/Homepage");
         } else {
-          console.log("Login unsuccessful!");
+          console.log("Login unsuccessful!!!!!");
         }
       })
       .catch((error) => {
@@ -120,9 +120,9 @@ function Login() {
   //   event.preventDefault();
   
   //   // Hash the password
-  //   const hashedPassword = await bcrypt.hash(ownerPassword, 10); // You should replace 'ownerPassword' with the actual password field's value
+  //   const hashedPassword = await bcrypt.hash(ownerPassword, 10); 
   
-  //   // create an object containing the profile data including the hashed password
+  //   // create an o2bject containing the profile data including the hashed password
   //   const profileData = {
   //     ownerFirstName,
   //     ownerLastName,
@@ -132,7 +132,7 @@ function Login() {
   //     // ... (other fields)
   //   };
   
-  //   // Send the profile data to the server
+  //   // sends profile data back
   //   try {
   //     const response = await fetch("http://localhost:3001/submit-profile", {
   //       method: "POST",
@@ -144,7 +144,6 @@ function Login() {
   
   //     if (response.ok) {
   //       console.log("Profile data submitted successfully");
-  //       // You might want to handle further actions, such as showing a success message to the user
   //     } else {
   //       console.error("Error submitting profile data");
   //     }
