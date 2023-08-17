@@ -3,6 +3,7 @@ const create = require("./SqlFunctions/Create.js");
 const deleteRow = require("./SqlFunctions/Delete.js");
 const update = require("./SqlFunctions/Update.js");
 const express = require("express");
+const multer = require("multer");
 const path = require("path");
 const dotenv = require("dotenv");
 const bcrypt = require("bcrypt");
