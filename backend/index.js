@@ -36,6 +36,7 @@ app.use(express.json());
 //Home functions
 app.get("/api/home", async (req, res) => {
   await read(req, res, "SELECT * FROM homepage");
+  console.log("backend connected");
 });
 
 app.get("/api/home/:id", async (req, res) => {
@@ -54,18 +55,23 @@ app.delete("/api/home/:id", async (req, res) => {
 });
 
 //appointment functions
-app.post('/api/appointments', async (req, res) => {
-  await create(req, res, 'INSERT INTO appointments SET ?')
+app.post("/api/appointments", async (req, res) => {
+  await create(req, res, "INSERT INTO appointments SET ?");
 });
 app.get("/api/appointments", async (req, res) => {
   await read(req, res, "SELECT * FROM appointments");
 });
 app.delete("/api/appointments/:appointment_id", async (req, res) => {
   const { appointment_id } = req.params;
-  await deleteRow(req, res, "DELETE FROM appointments WHERE appointment_id = ?", appointment_id);
+  await deleteRow(
+    req,
+    res,
+    "DELETE FROM appointments WHERE appointment_id = ?",
+    appointment_id
+  );
 });
 // app.get("/api/appointments/:appointment_id", async (req, res) => {
-//   const { appointment_id } = req.params;  
+//   const { appointment_id } = req.params;
 //   await read(req, res, 'SELECT * FROM appointments WHERE appointment_id = ?', appointment_id);});
 //   app.put('/api/appointments/:appointment_id', async (req, res) => {
 //   const { appointment_id } = req.params;

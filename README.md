@@ -1,10 +1,15 @@
 # NewTownDogs
 
-current building the docker file with this as a guide:
-https://www.section.io/engineering-education/build-and-dockerize-a-full-stack-react-app-with-nodejs-and-nginx/
+to run in docker:
+Frontend
+|
+|\_\_package.json
 
-have tried this:
-https://github.com/docker-library/mysql/issues/69
+Change line 5 from:
+"proxy": "http://localhost:3001/",
+to:
+"proxy": "http://backend:3001/",
 
-and this for examples:
-https://github.com/docker/awesome-compose/tree/master/react-express-mysql
+    This keeps the app from continuously calling itself and getting stuck in the container.
+    This now sends a request to the container called backend running on port 3001.
+    Mostly an issue because of the proxy setup.

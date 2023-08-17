@@ -21,6 +21,7 @@ services:
       - db
     networks:
       - app_net
+
   db:
     image: mariadb
     environment:
@@ -30,18 +31,21 @@ services:
       MYSQL_PASSWORD: admin
     volumes:
       - db_data:/var/lib/mysql
-    # networks:
-    #   - app_net
-  nginx:
-    depends_on:
-      - backend
-      - frontend
-    restart: always
-    build:
-      dockerfile: Dockerfile
-      context: ./nginx
+      - ./setup.sql:/docker-entrypoint-initdb.d/setup.sql
+    networks:
+      - app_net
     ports:
-      - "3050:80"
+      - "4003:3306"
+  # nginx:
+  #   depends_on:
+  #     - backend
+  #     - frontend
+  #   restart: always
+  #   build:
+  #     dockerfile: Dockerfile
+  #     context: ./nginx
+  #   ports:
+  #     - "3050:80"
 networks:
   app_net:
 

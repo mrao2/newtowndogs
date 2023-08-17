@@ -4,7 +4,7 @@ const BreedList = (props) => {
   }
 
   const listItems = props.breeds.data.map((breed) => (
-    <li key={breed.id}>{breed.title}</li>
+    <li key={breed.id}>{breed.breed}</li>
   ));
 
   return (
