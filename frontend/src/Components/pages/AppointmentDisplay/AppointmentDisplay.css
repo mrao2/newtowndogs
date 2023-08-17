@@ -1,0 +1,77 @@
+body,
+html {
+    padding: 0;
+    margin: 0 auto;
+    display: block;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-content: space-around;
+    justify-items: center;
+}
+
+.appHeader {
+    width: 100%;
+    margin: 0 auto;
+    color: #924141;
+    background-image: url(./images/appDisplayDog.jpg);
+    background-size: contain;
+    height: 13vh;
+    text-shadow: 1px 1px 2px #49343ec9;
+    font-weight: 700;
+    font-size: 32px;
+    -webkit-text-stroke: 1px rgba(0, 0, 0, 0.27);
+}
+
+.appContent {
+    border-color: #924141 !important;
+    margin: 2px;
+}
+
+.appointment_list {
+    flex-wrap: wrap;
+    justify-content: center;
+    justify-items: center;
+}
+
+.appointment-preview {
+    flex-wrap: wrap;
+    box-shadow: 4px 5px 5px 4px rgb(110, 110, 110);
+    margin: 5px;
+}
+
+.rejectApptBtn,
+.confirmApptBtn {
+    background-color: #924141;
+    border-color: black;
+    margin: 7px;
+    box-shadow: 4px 10px 10px 4px rgb(110, 110, 110);
+    color: whitesmoke;
+}
+
+.rejectApptBtn:hover {
+    background-color: red;
+}
+
+.confirmApptBtn:hover {
+    background-color: green;
+}
+
+.confirmRejectLink {
+    color: whitesmoke;
+}
+
+.trashCan {
+    margin-left: 2.5px;
+    margin-right: 2.5px;
+}
+
+.trashCan:hover {
+    color: red;
+}
+
+a {
+    color: #572727;
+}
