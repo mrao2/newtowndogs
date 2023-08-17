@@ -36,16 +36,7 @@ services:
       - app_net
     ports:
       - "4003:3306"
-  # nginx:
-  #   depends_on:
-  #     - backend
-  #     - frontend
-  #   restart: always
-  #   build:
-  #     dockerfile: Dockerfile
-  #     context: ./nginx
-  #   ports:
-  #     - "3050:80"
+
 networks:
   app_net:
 
