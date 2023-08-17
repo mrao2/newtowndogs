@@ -49,11 +49,6 @@ app.post("api/home", async (req, res) => {
   await create(req, res, "INSERT INTO homepage set ?");
 });
 
-app.delete("/api/home/:id", async (req, res) => {
-  const { id } = req.params;
-  await deleteRow(req, res, "DELETE FROM homepage WHERE id = ?", id);
-});
-
 //appointment functions
 app.post("/api/appointments", async (req, res) => {
   await create(req, res, "INSERT INTO appointments SET ?");
