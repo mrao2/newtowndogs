@@ -95,23 +95,31 @@ app.put("/blogs/:BlogId", async (req, res) => {
 
 //Sign up
 app.post("/api/sign-up", async (req, res, next) => {
-try {
   //await create(req, res, "INSERT INTO login_app SET ?");
-  await connection.query("INSERT INTO login_app SET ?", req.body, function(err, result, fields) {
-    if (err) throw err;
-    res.json({
-        id: result.insertId
-      })
-  })
-  } catch (err) {
-  next(err);
-  }
-}); 
+  connection.query(
+    "INSERT INTO login_app SET ?",
+    req.body,
+    function (err, result, fields) {
+      try {
+        if (err) throw err;
+        res.json({
+          id: result.insertId,
+        });
+            } catch (err) {
+        next(err);
+      }
+    }
+  );
+});
 
 //Fetch profile
-app.get("/api/profile/:id", async (req, res) => {
+app.get("/api/profile/:id", async (req, res, next) => {
   const { id } = req.params;
-    await read(req, res, `SELECT 
+  try {
+    await read(
+      req,
+      res,
+      `SELECT 
     la.id,
     la.username,
     la.hashed_password as "hashedPassword",
@@ -138,19 +146,26 @@ app.get("/api/profile/:id", async (req, res) => {
     up.amt_walks as "amtWalks",
     up.dog_potty_trained as "dogPottyTrained",
     up.dog_fixed as "dogFixed"
-    FROM login_app as la LEFT JOIN user_profile as up ON la.id = up.login_app_id WHERE la.id = ?;`, id)
+    FROM login_app as la LEFT JOIN user_profile as up ON la.id = up.login_app_id WHERE la.id = ?;`,
+      id
+    );
+  } catch (err) {
+    next(err);
+  }
 });
 
 //Save profile data
 app.put("/api/user/:id", async (req, res) => {
-
   const { id } = req.params;
   const username = req.body.username;
   const email = req.body.email;
   const firstName = req.body.firstName;
-  const lastName = req.body.lastName
+  const lastName = req.body.lastName;
   const phone = req.body.phone;
-  await update(req, res, `INSERT INTO login_app (id, username, email, first_name, last_name, phone)
+  await update(
+    req,
+    res,
+    `INSERT INTO login_app (id, username, email, first_name, last_name, phone)
     VALUES (?, ?, ?, ?, ?, ?) AS new
     ON DUPLICATE KEY UPDATE
         username = new.username,
@@ -164,7 +179,7 @@ app.put("/api/user/:id", async (req, res) => {
     email,
     firstName,
     lastName
-);
+  );
 });
 
 app.put("/api/profile/:id", async (req, res) => {
@@ -187,7 +202,10 @@ app.put("/api/profile/:id", async (req, res) => {
   const amtPerMeal = req.body.amtPerMeal;
   const dogPottyTrained = req.body.dogPottyTrained;
   const dogFixed = req.body.dogFixed;
-  await update(req, res, `INSERT INTO user_profile (login_app_id, owner_address, owner_city, owner_state, owner_zip, dog_name, dog_age, dog_breed, 
+  await update(
+    req,
+    res,
+    `INSERT INTO user_profile (login_app_id, owner_address, owner_city, owner_state, owner_zip, dog_name, dog_age, dog_breed, 
     dog_gender, dog_color, dog_birthdate, dog_allergies, dog_weight, dog_friendly, amt_walks, amt_meals, amt_per_meal, dog_potty_trained, dog_fixed)
   VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) AS new
   ON DUPLICATE KEY UPDATE
@@ -209,28 +227,28 @@ app.put("/api/profile/:id", async (req, res) => {
       amt_walks = new.amt_walks,
       dog_potty_trained = new.dog_potty_trained,
       dog_fixed = new.dog_fixed;`,
-  dogFixed,
-  id,
-  address,
-  city,
-  state,
-  zip,
-  dogName,
-  dogAge,
-  dogBreed,
-  dogGender,
-  dogColor,
-  dogBirthday,
-  dogAllergies,
-  dogWeight,
-  dogFriendly,
-  amtWalks,
-  amtMeals,
-  amtPerMeal,
-  dogPottyTrained
-);
+    dogFixed,
+    id,
+    address,
+    city,
+    state,
+    zip,
+    dogName,
+    dogAge,
+    dogBreed,
+    dogGender,
+    dogColor,
+    dogBirthday,
+    dogAllergies,
+    dogWeight,
+    dogFriendly,
+    amtWalks,
+    amtMeals,
+    amtPerMeal,
+    dogPottyTrained
+  );
 });
-  
+
 //login functions!!
 console.log("hello");
 app.post("/login", (req, res) => {
@@ -421,21 +439,14 @@ app.put("/images/:BlogId", upload.single("image"), async (req, res, next) => {
     updatedImage.BlogId,
   ]);
 
-  await promiseQuery("INSERT INTO images SET ?", [
-    updatedImage
-  ]);
+  await promiseQuery("INSERT INTO images SET ?", [updatedImage]);
 
   res.status(201).send();
 });
 
 app.delete("/images/:BlogId", async (req, res) => {
   const { BlogId } = req.params;
-  await deleteRow(
-    req,
-    res,
-    "DELETE FROM images WHERE BlogId = ?",
-    BlogId
-  );
+  await deleteRow(req, res, "DELETE FROM images WHERE BlogId = ?", BlogId);
 });
 
 app.listen(PORT, () => {

@@ -8,6 +8,7 @@ const SignUpPage = () => {
     const {
       register,
       handleSubmit,
+      setError,
       formState: { errors }} = useForm();
 
     // const { register, handleSubmit, formState: { errors } } = useForm();
@@ -19,7 +20,9 @@ const SignUpPage = () => {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
       }).then((resp) => {
-        return resp.json();
+        return resp.json()
+        // .catch(error => {
+        //   setError('apiError', { message: error });
       }).then((data) => {
         history.push(`/profile/${data.id}`)
       })
