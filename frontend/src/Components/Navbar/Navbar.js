@@ -15,7 +15,7 @@ function Navbar() {
         <a href="/">Home</a>
         <a href="/profile">Profile</a>
         <Link to="/aboutus">About Us</Link>
-        <Link to="/Login">Sign Up</Link>
+        <Link to="/Login">Log in</Link>
 
         <Link to="/BookingPage">Book Sitter</Link>
         <Link to="/bloghome">Blog</Link>

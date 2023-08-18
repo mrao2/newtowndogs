@@ -94,8 +94,8 @@ app.put("/blogs/:BlogId", async (req, res) => {
 });
 
 //Sign up
-app.post("/api/sign-up", async (req, res) => {
-
+app.post("/api/sign-up", async (req, res, next) => {
+try {
   //await create(req, res, "INSERT INTO login_app SET ?");
   await connection.query("INSERT INTO login_app SET ?", req.body, function(err, result, fields) {
     if (err) throw err;
@@ -103,7 +103,10 @@ app.post("/api/sign-up", async (req, res) => {
         id: result.insertId
       })
   })
-});
+  } catch (err) {
+  next(err);
+  }
+}); 
 
 //Fetch profile
 app.get("/api/profile/:id", async (req, res) => {

@@ -7,9 +7,10 @@ const SignUpPage = () => {
     const history = useHistory();
     const {
       register,
-      handleSubmit
-      //formState: { errors }
-    } = useForm();
+      handleSubmit,
+      formState: { errors }} = useForm();
+
+    // const { register, handleSubmit, formState: { errors } } = useForm();
   
     const onSubmit = (data) => {
   
@@ -36,38 +37,44 @@ return (
               required: true
             })} />
         </div>
+          {errors.first_name && <p className="error-message">Please enter a first name</p>}
         <div className="form-control">
             <label>Last Name</label>
             <input className="boxSpace" type="text" name="last_name" {...register("last_name", {
               required: true
             })} />
         </div>
+          {errors.last_name && <p className="error-message">Please enter a last name</p>}
         <div className="form-control">
             <label>Phone Number</label>
             <input  className="boxSpace" type="text" name="phone" {...register("phone", {
               required: true
             })} />
         </div>
+          {errors.phone && <p className="error-message">Please enter a phone number</p>}
         <div className="form-control">
             <label>Username (this will be used for blog posts)</label>
             <input className="boxSpace" type="text" name="username" {...register("username", {
               required: true
             })} />
         </div>
-        
+          {errors.username && <p className="error-message">Please enter a username</p>}  
         <div className="form-control">
             <label>Email Address</label>
             <input className="boxSpace" type="text" name="email" {...register("email", {
               required: true
             })} />
         </div>
-        
+          {errors.email && <p className="error-message">Please enter a valid email</p>}
         <div className="form-control">
             <label>Password</label>
             <input className="boxSpace" type="text" name="hashed_password" {...register("hashed_password", {
               required: true
             })} />
         </div>
+
+{/* add validation for comfirm password field */}
+
         <button type="submit" className="createaccount-button" style={{ marginTop: '10px' }}>Create Account</button>
       </form>
     </div>
