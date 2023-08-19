@@ -37,21 +37,25 @@ return (
       <div className="form-control">
             <label>First Name</label>
             <input className="boxSpace" type="text" name="first_name" {...register("first_name", {
-              required: true
+              required: true,
+              maxLength: 20
             })} />
         </div>
           {errors.first_name && <p className="error-message">Please enter a first name</p>}
         <div className="form-control">
             <label>Last Name</label>
             <input className="boxSpace" type="text" name="last_name" {...register("last_name", {
-              required: true
+              required: true,
+              maxLength: 20
             })} />
         </div>
           {errors.last_name && <p className="error-message">Please enter a last name</p>}
         <div className="form-control">
             <label>Phone Number</label>
             <input  className="boxSpace" type="text" name="phone" {...register("phone", {
-              required: true
+              required: true,
+              minLength: 10,
+              maxLength: 10
             })} />
         </div>
           {errors.phone && <p className="error-message">Please enter a phone number</p>}
@@ -65,7 +69,8 @@ return (
         <div className="form-control">
             <label>Email Address</label>
             <input className="boxSpace" type="text" name="email" {...register("email", {
-              required: true
+              required: true,
+              pattern: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i
             })} />
         </div>
           {errors.email && <p className="error-message">Please enter a valid email</p>}
@@ -74,6 +79,7 @@ return (
             <input className="boxSpace" type="text" name="hashed_password" {...register("hashed_password", {
               required: true
             })} />
+            {errors.hashed_password && <p className="error-message">Please enter a password</p>}
         </div>
 
 {/* add validation for comfirm password field */}
