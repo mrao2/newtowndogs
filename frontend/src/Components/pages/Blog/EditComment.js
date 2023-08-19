@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
@@ -17,6 +17,25 @@ const EditComment = ({ comment, BlogId, create }) => {
     resolver: yupResolver(schema),
     defaultValues: comment,
   });
+
+  const [isCreating, setIsCreating] = useState(false);
+
+  const startCreation = useRef(null);
+  const cancelCreation = useRef(null);
+
+  useEffect(() => {
+    if (isCreating) {
+      startCreation.current?.scrollIntoView({
+        behavior: "smooth",
+        block: "center",
+      });
+    } else if (!isCreating) {
+      cancelCreation.current?.scrollIntoView({
+        behavior: "smooth",
+        block: "center",
+      });
+    }
+  }, [isCreating]);
 
   const [isPendingUpdate, setIsPendingUpdate] = useState(false);
   const [isEditing, setIsEditing] = useState(create);
@@ -56,7 +75,7 @@ const EditComment = ({ comment, BlogId, create }) => {
   };
 
   return (
-    <div className="list-item">
+    <div className="list-item" ref={cancelCreation}>
       {isEditing ? (
         <form onSubmit={handleSubmit(onSubmit)}>
           <div>
@@ -77,7 +96,15 @@ const EditComment = ({ comment, BlogId, create }) => {
             <textarea {...register("Comment_Body")} />
             <div>{errors.Comment_Body?.message}</div>
           </div>
-          <button onClick={() => setIsEditing(false)}>Cancel</button>
+          <button
+            onClick={() => {
+              setIsEditing(false);
+              setIsCreating(false);
+            }}
+            ref={startCreation}
+          >
+            Cancel
+          </button>
           <button type="submit" disabled={isPendingUpdate}>
             {/* TODO: Clean up these conditionals, they're ugly */}
             {isPendingUpdate
@@ -128,7 +155,10 @@ const EditComment = ({ comment, BlogId, create }) => {
         <button
           className="flex"
           style={{ marginLeft: "auto", marginRight: "auto" }}
-          onClick={() => setIsEditing(true)}
+          onClick={() => {
+            setIsEditing(true);
+            setIsCreating(true);
+          }}
         >
           Create Comment
         </button>
