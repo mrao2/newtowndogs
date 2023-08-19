@@ -1,7 +1,7 @@
 import React from "react";
 import Navbar from "./Components/Navbar/Navbar";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import Create from "./Components/pages/Blog/Create";
+import Create from "./Components/pages/Blog/CreateBlog";
 import BlogDetails from "./Components/pages/Blog/BlogDetails";
 import NotFound from "./NotFound";
 import BlogHome from "./Components/pages/Blog/BlogHome";
@@ -16,6 +16,7 @@ import AppSubmitted from "./Components/pages/BookingPage/AppSubmitted";
 import AppointmentDisplay from "./Components/pages/AppointmentDisplay/AppointmentDisplay";
 import AppointmentList from "./Components/pages/AppointmentDisplay/AppointmentList";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import CreateBlog from "./Components/pages/Blog/CreateBlog";
 
 
 function App() {
@@ -38,7 +39,7 @@ function App() {
               <BlogHome />
             </Route>
             <Route exact path="/create">
-              <Create />
+              <CreateBlog />
             </Route>
             <Route exact path="/blogs/:BlogId">
               <BlogDetails />

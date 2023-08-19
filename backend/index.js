@@ -27,11 +27,11 @@ const connection = mysql.createConnection({
 // There's a chance that query refers to this, and in that case, calling promiseQuery without a bind would result in this being undefined
 const promiseQuery = promisify(connection.query).bind(connection);
 
-try{
- connection.connect(function(err){
-  if (err) throw err;
-  console.log("connected to mysql server!");
- });
+try {
+  connection.connect(function (err) {
+    if (err) throw err;
+    console.log("connected to mysql server!");
+  });
 } catch (error) {
   console.error("error connecting to mysql:", error);
 }
@@ -113,11 +113,16 @@ app.get("/blogs", async (req, res, next) => {
 
 app.get("/blogs/:BlogId", async (req, res, next) => {
   try {
+    const { BlogId } = req.params;
+    await read(
+      req,
+      res,
+      "SELECT * FROM blogs LEFT JOIN comments ON blogs.BlogId = comments.BlogId WHERE blogs.BlogId = ?",
+      BlogId
+    );
   } catch (err) {
     next(err);
   }
-  const { BlogId } = req.params;
-    await read(req, res, "SELECT * FROM blogs LEFT JOIN comments ON blogs.BlogId = comments.BlogId WHERE blogs.BlogId = ?", BlogId)
 });
 
 app.post("/blogs", async (req, res, next) => {
@@ -140,9 +145,9 @@ app.delete("/blogs/:BlogId", async (req, res, next) => {
 app.put("/blogs/:BlogId", async (req, res, next) => {
   try {
     const { BlogId } = req.params;
-    const Title = req.body.title;
-    const Body = req.body.body;
-    const Author = req.body.author;
+    const Title = req.body.Title;
+    const Body = req.body.Body;
+    const Author = req.body.Author;
     await update(
       req,
       res,
@@ -158,101 +163,92 @@ app.put("/blogs/:BlogId", async (req, res, next) => {
 });
 
 console.log("hello");
-const testPassword = 'hashed_password';
+const testPassword = "hashed_password";
 const hashedPassword = bcrypt.hashSync(testPassword, 10);
 
 console.log(hashedPassword);
-app.post('/login', (req, res)=> {
+app.post("/login", (req, res) => {
   const email = req.body.email;
   const password = req.body.hashed_password;
   console.log("Received email:", email);
   console.log("Received password:", password);
 
-
-//finds user w this email in db
+  //finds user w this email in db
   connection.query(
     "SELECT * FROM login_app WHERE email = ?",
     [email],
     (err, result) => {
-//if err in query, status code & err message returned
-      if(err) {
+      //if err in query, status code & err message returned
+      if (err) {
         console.error("Database error:", err);
-        res.status(500).send({err: err});
+        res.status(500).send({ err: err });
       } else {
-//otherwise, checks result length, makes sure theres one matching user. then retrieves stored HASHED pwd. uses compare to make sure theyre the same 
+        //otherwise, checks result length, makes sure theres one matching user. then retrieves stored HASHED pwd. uses compare to make sure theyre the same
         if (result.length === 1) {
           const storedHashedPassword = result[0].hashed_password;
-          bcrypt.compare(password, storedHashedPassword, (bcryptErr, bcryptResult) => {
-            console.log("Stored hashed password:", storedHashedPassword);
-            console.log("Bcrypt result:", bcryptResult);
-            if (bcryptErr || !bcryptResult) {
-              res.send({message: "Wrong email/password."});
-          } else {
-            res.send({message: "Login successful."});
-          }
-          // connection.end();
-        });
+          bcrypt.compare(
+            password,
+            storedHashedPassword,
+            (bcryptErr, bcryptResult) => {
+              console.log("Stored hashed password:", storedHashedPassword);
+              console.log("Bcrypt result:", bcryptResult);
+              if (bcryptErr || !bcryptResult) {
+                res.send({ message: "Wrong email/password." });
+              } else {
+                res.send({ message: "Login successful." });
+              }
+              // connection.end();
+            }
+          );
         } else {
-          res.send({message: "Wrong email/password."});
+          res.send({ message: "Wrong email/password." });
           // connection.end();
         }
       }
     }
   );
-}); 
-
-
-
+});
 
 //registration functions!
 
-app.post("/Profile", (req, res) => {
-  const email = req.body.email;
-  const password = req.body.password;
-  //hashes the password, 10 salt rounds
-  bcrypt.hash(password, 10, (hashErr, hashedPassword) => {
-    //if there's an error, its console logged
-    if (hashErr) {
-      console.error(hashErr);
-      //error status code
-      res.status(500).json({ message: "Error hashing password." });
-    } else {
-      //store pwd and em in db
-      db.query(
-        "INSERT INTO login_app (email, password) VALUES (?,?)",
-        [email, hashedPassword],
-        (dbErr, dbResult) => {
-          //db errors
-          if (dbErr) {
-            console.error(dbErr);
-            res.status(500).json({ message: "Error storing user data." });
-          } else {
-            //yay!! success code
-            res.status(201).json({ message: "Registration successful." });
-          }
-        }
-      );
-    }
-  });
-});
-
+// app.post("/Profile", (req, res) => {
+//   const email = req.body.email;
+//   const password = req.body.password;
+//   //hashes the password, 10 salt rounds
+//   bcrypt.hash(password, 10, (hashErr, hashedPassword) => {
+//     //if there's an error, its console logged
+//     if (hashErr) {
+//       console.error(hashErr);
+//       //error status code
+//       res.status(500).json({ message: "Error hashing password." });
+//     } else {
+//       //store pwd and em in db
+//       db.query(
+//         "INSERT INTO login_app (email, password) VALUES (?,?)",
+//         [email, hashedPassword],
+//         (dbErr, dbResult) => {
+//           //db errors
+//           if (dbErr) {
+//             console.error(dbErr);
+//             res.status(500).json({ message: "Error storing user data." });
+//           } else {
+//             //yay!! success code
+//             res.status(201).json({ message: "Registration successful." });
+//           }
+//         }
+//       );
+//     }
+//   });
+// });
 
 // Comment Function
-app.get("/comments", async (req, res, next) => {
-  try {
-    await read(req, res, "SELECT * FROM comments");
-  } catch (err) {
-    next(err);
-  }
-});
-
 app.get("/comments/:BlogId", async (req, res, next) => {
   try {
     const { BlogId } = req.params;
     await read(
       req,
       res,
-      "SELECT * FROM comments WHERE comments.BlogId = ?",
+      "SELECT * FROM comments WHERE comments.BlogId = ? ORDER BY comments.Comment_Date ASC",
       BlogId
     );
   } catch (err) {
@@ -261,6 +257,8 @@ app.get("/comments/:BlogId", async (req, res, next) => {
 });
 
 app.post("/comments", async (req, res, next) => {
+  req.body.Comment_Date = new Date();
+  // .toISOString().slice(0, 19).replace("T", " ")
   try {
     await create(req, res, "INSERT INTO comments SET ?");
   } catch (err) {
@@ -288,10 +286,6 @@ app.put("/comments/:CommentId", async (req, res, next) => {
     const Body = req.body.Comment_Body;
     const Author = req.body.Comment_Author;
     const submittedDate = new Date(req.body.Comment_Date);
-    const formattedDate = submittedDate
-      .toISOString()
-      .slice(0, 19)
-      .replace("T", " "); // Convert to 'YYYY-MM-DD HH:MM:SS'
     await update(
       req,
       res,
@@ -299,7 +293,7 @@ app.put("/comments/:CommentId", async (req, res, next) => {
       CommentId,
       Body,
       Author,
-      formattedDate
+      submittedDate
     );
   } catch (err) {
     next(err);
@@ -347,14 +341,8 @@ app.post("/images", upload.single("image"), async (req, res, next) => {
     };
 
     // this is the final product of sending the data to the Sql table, res.status 201 is to say that the data was succesfully added
-    connection.query(
-      "INSERT INTO images SET ?",
-      image,
-      function (err, data, fields) {
-        if (err) throw err;
-        res.status(201).send();
-      }
-    );
+    await promiseQuery("INSERT INTO images SET ?", image);
+    res.status(201).send();
   } catch (err) {
     next(err);
   }
@@ -425,7 +413,6 @@ app.delete("/images/:BlogId", async (req, res, next) => {
     next(err);
   }
 });
-
 
 app.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`);
