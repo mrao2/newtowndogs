@@ -1,12 +1,11 @@
 import React from "react";
-import Navbar from "./Components/Navbar/Navbar";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import Create from "./Components/pages/Blog/CreateBlog";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Navbar from "./Components/Navbar/Navbar";
 import BlogDetails from "./Components/pages/Blog/BlogDetails";
 import NotFound from "./NotFound";
 import BlogHome from "./Components/pages/Blog/BlogHome";
 import Homepage from "./Components/pages/Homepage/Homepage";
-import "./App.css";
 import Login from "./Components/pages/Login";
 import BookingPage from "./Components/pages/BookingPage/BookingPage";
 import Profile from "./Components/pages/Profile";
@@ -15,9 +14,8 @@ import CommentList from "./Components/pages/Blog/CommentList";
 import AppSubmitted from "./Components/pages/BookingPage/AppSubmitted";
 import AppointmentDisplay from "./Components/pages/AppointmentDisplay/AppointmentDisplay";
 import AppointmentList from "./Components/pages/AppointmentDisplay/AppointmentList";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import CreateBlog from "./Components/pages/Blog/CreateBlog";
-
+import "./App.css";
 
 function App() {
   return (
@@ -56,9 +54,9 @@ function App() {
             <Route exact path="/AppSubmitted">
               <AppSubmitted />
             </Route>
-            <Route exact path="/AppointmentDisplay" >
+            <Route exact path="/AppointmentDisplay">
               <AppointmentDisplay />
-              <Route/>
+              <Route />
               <Route path="/appointments/:appointment_id">
                 <AppointmentList />
               </Route>

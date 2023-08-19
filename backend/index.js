@@ -27,15 +27,6 @@ const connection = mysql.createConnection({
 // There's a chance that query refers to this, and in that case, calling promiseQuery without a bind would result in this being undefined
 const promiseQuery = promisify(connection.query).bind(connection);
 
-try {
-  connection.connect(function (err) {
-    if (err) throw err;
-    console.log("connected to mysql server!");
-  });
-} catch (error) {
-  console.error("error connecting to mysql:", error);
-}
-
 const PORT = process.env.PORT || 3001;
 
 const app = express();
@@ -162,16 +153,12 @@ app.put("/blogs/:BlogId", async (req, res, next) => {
   }
 });
 
-console.log("hello");
 const testPassword = "hashed_password";
 const hashedPassword = bcrypt.hashSync(testPassword, 10);
 
-console.log(hashedPassword);
 app.post("/login", (req, res) => {
   const email = req.body.email;
   const password = req.body.hashed_password;
-  console.log("Received email:", email);
-  console.log("Received password:", password);
 
   //finds user w this email in db
   connection.query(
@@ -190,8 +177,6 @@ app.post("/login", (req, res) => {
             password,
             storedHashedPassword,
             (bcryptErr, bcryptResult) => {
-              console.log("Stored hashed password:", storedHashedPassword);
-              console.log("Bcrypt result:", bcryptResult);
               if (bcryptErr || !bcryptResult) {
                 res.send({ message: "Wrong email/password." });
               } else {

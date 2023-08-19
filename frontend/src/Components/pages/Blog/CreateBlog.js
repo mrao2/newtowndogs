@@ -30,7 +30,6 @@ const CreateBlog = ({ selectedBlog, BlogId }) => {
 
   const onSubmit = (data) => {
     const { Image_Data: image, ...blog } = data;
-    console.log(data);
     setIsPending(true);
 
     fetch(selectedBlog ? `/blogs/${BlogId}` : "/blogs/", {
@@ -43,7 +42,6 @@ const CreateBlog = ({ selectedBlog, BlogId }) => {
       }),
     }).then(async (res) => {
       const blogData = await res.json();
-      console.log(image);
       if (image instanceof FileList && (blogData?.data?.insertId || BlogId)) {
         const imageData = new FormData();
         imageData.append("BlogId", blogData?.data?.insertId || BlogId);
