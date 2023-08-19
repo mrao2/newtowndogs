@@ -157,6 +157,163 @@ app.put("/blogs/:BlogId", async (req, res, next) => {
   }
 });
 
+//Sign up
+app.post("/api/sign-up", async (req, res, next) => {
+  //await create(req, res, "INSERT INTO login_app SET ?");
+  connection.query(
+    "INSERT INTO login_app SET ?",
+    req.body,
+    function (err, result, fields) {
+      try {
+        if (err) throw err;
+        res.json({
+          id: result.insertId,
+        });
+            } catch (err) {
+        next(err);
+      }
+    }
+  );
+});
+
+//Fetch profile
+app.get("/api/profile/:id", async (req, res, next) => {
+  const { id } = req.params;
+  try {
+    await read(
+      req,
+      res,
+      `SELECT 
+    la.id,
+    la.username,
+    la.hashed_password as "hashedPassword",
+    la.email,
+    la.first_name as "firstName",
+    la.last_name as "lastName",
+    la.phone,
+    up.id as "userProfileId",
+    up.owner_address as "ownerAddress",
+    up.owner_city as "ownerCity",
+    up.owner_state as "ownerState",
+    up.owner_zip as "ownerZip",
+    up.dog_name as "dogName",
+    up.dog_age as "dogAge",
+    up.dog_breed as "dogBreed",
+    up.dog_gender as "dogGender",
+    up.dog_color as "dogColor",
+    up.dog_birthdate as "dogBirthdate",
+    up.dog_allergies as "dogAllergies",
+    up.dog_weight as "dogWeight",
+    up.dog_friendly as "dogFriendly",
+    up.amt_meals as "amtMeals",
+    up.amt_per_meal as "amtPerMeal",
+    up.amt_walks as "amtWalks",
+    up.dog_potty_trained as "dogPottyTrained",
+    up.dog_fixed as "dogFixed"
+    FROM login_app as la LEFT JOIN user_profile as up ON la.id = up.login_app_id WHERE la.id = ?;`,
+      id
+    );
+  } catch (err) {
+    next(err);
+  }
+});
+
+//Save profile data
+app.put("/api/user/:id", async (req, res) => {
+  const { id } = req.params;
+  const username = req.body.username;
+  const email = req.body.email;
+  const firstName = req.body.firstName;
+  const lastName = req.body.lastName;
+  const phone = req.body.phone;
+  await update(
+    req,
+    res,
+    `INSERT INTO login_app (id, username, email, first_name, last_name, phone)
+    VALUES (?, ?, ?, ?, ?, ?) AS new
+    ON DUPLICATE KEY UPDATE
+        username = new.username,
+        email = new.email,
+        first_name = new.first_name,
+        last_name = new.last_name,
+        phone = new.phone;`,
+    phone,
+    id,
+    username,
+    email,
+    firstName,
+    lastName
+  );
+});
+
+app.put("/api/profile/:id", async (req, res) => {
+  const { id } = req.params;
+  const address = req.body.ownerAddress;
+  const city = req.body.ownerCity;
+  const state = req.body.ownerState;
+  const zip = req.body.ownerZip;
+  const dogName = req.body.dogName;
+  const dogAge = req.body.dogAge;
+  const dogBreed = req.body.dogBreed;
+  const dogGender = req.body.dogGender;
+  const dogColor = req.body.dogColor;
+  const dogBirthday = req.body.dogBirthday;
+  const dogAllergies = req.body.dogAllergies;
+  const dogWeight = req.body.dogWeight;
+  const dogFriendly = req.body.dogFriendly;
+  const amtMeals = req.body.amtMeals;
+  const amtWalks = req.body.amtWalks;
+  const amtPerMeal = req.body.amtPerMeal;
+  const dogPottyTrained = req.body.dogPottyTrained;
+  const dogFixed = req.body.dogFixed;
+  await update(
+    req,
+    res,
+    `INSERT INTO user_profile (login_app_id, owner_address, owner_city, owner_state, owner_zip, dog_name, dog_age, dog_breed, 
+    dog_gender, dog_color, dog_birthdate, dog_allergies, dog_weight, dog_friendly, amt_walks, amt_meals, amt_per_meal, dog_potty_trained, dog_fixed)
+  VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) AS new
+  ON DUPLICATE KEY UPDATE
+      owner_address = new.owner_address,
+      owner_city = new.owner_city,
+      owner_state = new.owner_state,
+      owner_zip = new.owner_zip,
+      dog_name = new.dog_name,
+      dog_age = new.dog_age,
+      dog_breed = new.dog_breed,
+      dog_gender = new.dog_gender,
+      dog_color =  new.dog_color,
+      dog_birthdate = new.dog_birthdate,
+      dog_allergies = new.dog_allergies,
+      dog_weight = new.dog_weight,
+      dog_friendly = new.dog_friendly,
+      amt_meals = new.amt_meals,
+      amt_per_meal = new.amt_per_meal,
+      amt_walks = new.amt_walks,
+      dog_potty_trained = new.dog_potty_trained,
+      dog_fixed = new.dog_fixed;`,
+    dogFixed,
+    id,
+    address,
+    city,
+    state,
+    zip,
+    dogName,
+    dogAge,
+    dogBreed,
+    dogGender,
+    dogColor,
+    dogBirthday,
+    dogAllergies,
+    dogWeight,
+    dogFriendly,
+    amtWalks,
+    amtMeals,
+    amtPerMeal,
+    dogPottyTrained
+  );
+});
+
+//login functions!!
 console.log("hello");
 const testPassword = 'hashed_password';
 const hashedPassword = bcrypt.hashSync(testPassword, 10);
@@ -205,7 +362,6 @@ app.post('/login', (req, res)=> {
 
 
 //registration functions!
-
 app.post("/Profile", (req, res) => {
   const email = req.body.email;
   const password = req.body.password;

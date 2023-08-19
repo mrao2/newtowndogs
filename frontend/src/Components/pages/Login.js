@@ -67,6 +67,7 @@ function Login() {
   }
 
   return (
+    //<span>
     <div className="login-page">
       <h1>Login Page</h1>
       <form className="login-form" onSubmit={handleSubmit}>
@@ -112,6 +113,15 @@ function Login() {
         </button>
       </form>
     </div>
+
+// {/* <div className="login-page">
+// <br />
+// Don't have an account? 
+// <Link to="/signup">
+//   <button className="signup-button">Sign up!</button>
+// </Link>
+// </div>
+// </span> */}
   );
   }
 
