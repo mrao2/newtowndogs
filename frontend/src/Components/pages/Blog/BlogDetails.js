@@ -9,11 +9,7 @@ const BlogDetails = () => {
   const { BlogId } = useParams();
   const history = useHistory();
   const { data: blog, isPending, error } = useFetch(`/blogs/${BlogId}`);
-  const {
-    data: comments,
-    isPending: isCommentsPending,
-    error: commentsError,
-  } = useFetch(`/comments/${BlogId}`);
+  const { data: comments } = useFetch(`/comments/${BlogId}`);
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
   const [author, setAuthor] = useState("");
@@ -43,16 +39,16 @@ const BlogDetails = () => {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(updatedBlog),
     })
-      .then( async () => {
-      if (image instanceof File) {
-        const imageData = new FormData();
-        imageData.append("BlogId", BlogId);
-        imageData.append("image", image);
-        await fetch("/images/" + BlogId, {
-          method: "PUT",
-          body: imageData,
-        });
-      }
+      .then(async () => {
+        if (image instanceof File) {
+          const imageData = new FormData();
+          imageData.append("BlogId", BlogId);
+          imageData.append("image", image);
+          await fetch("/images/" + BlogId, {
+            method: "PUT",
+            body: imageData,
+          });
+        }
         setIsPendingUpdate(false);
         setIsEditing(false);
         window.location.reload();
@@ -62,8 +58,6 @@ const BlogDetails = () => {
         setIsPendingUpdate(false);
       });
   };
-
-
 
   const handleDeleteBlog = () => {
     fetch("/blogs/" + BlogId, {
@@ -76,7 +70,6 @@ const BlogDetails = () => {
         console.error("Error deleting blog:", error);
       });
   };
-  
 
   return (
     <div className="blog-details">
@@ -86,14 +79,15 @@ const BlogDetails = () => {
         <article className="single-blog">
           {!isEditing && <h2>{blog.data[0].Title}</h2>}
           {!isEditing && (
-            <div><BlogImage
-            BlogId={BlogId}
-            BlogTitle={title}
-            showDeleteButton={true}
-            style={{ maxWidth: "100%" }}
-            className=""
-          />
-          </div>
+            <div>
+              <BlogImage
+                BlogId={BlogId}
+                BlogTitle={title}
+                showDeleteButton={true}
+                style={{ maxWidth: "100%" }}
+                className=""
+              />
+            </div>
           )}
           {!isEditing && <p>Written by {blog.data[0].Author}</p>}
           {!isEditing && <div>{blog.data[0].Body}</div>}

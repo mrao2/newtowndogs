@@ -134,3 +134,7 @@
 .create.content {
   margin-top: 66px;
 }
+
+.hidden {
+  display: none!important;
+}

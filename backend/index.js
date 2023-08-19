@@ -7,6 +7,8 @@ const multer = require("multer");
 const path = require("path");
 const dotenv = require("dotenv");
 const bcrypt = require("bcrypt");
+
+// promisify is a node.js component in the latest editions useful when you have three inputs and the final one being a call back function. I use this later when using connection.query
 const { promisify } = require("util");
 dotenv.config();
 const upload = multer();
@@ -21,10 +23,18 @@ const connection = mysql.createConnection({
   password: process.env.Password,
   database: process.env.Database,
 });
-
 // Needs the .bind so that the this keyword always refers to the connection variable, as if it were called as connection.query
 // There's a chance that query refers to this, and in that case, calling promiseQuery without a bind would result in this being undefined
 const promiseQuery = promisify(connection.query).bind(connection);
+
+try{
+ connection.connect(function(err){
+  if (err) throw err;
+  console.log("connected to mysql server!");
+ });
+} catch (error) {
+  console.error("error connecting to mysql:", error);
+}
 
 const PORT = process.env.PORT || 3001;
 
@@ -44,7 +54,7 @@ app.get("/api/home/:id", async (req, res) => {
   await read(req, res, "SELECT * FROM homepage WHERE id = ?", id);
 });
 
-app.post("api/home", async (req, res) => {
+app.post("/api/home", async (req, res) => {
   await create(req, res, "INSERT INTO homepage set ?");
 });
 
@@ -53,44 +63,98 @@ app.delete("/api/home/:id", async (req, res) => {
   await deleteRow(req, res, "DELETE FROM homepage WHERE id = ?", id);
 });
 
+//appointment functions
+app.post("/api/appointments", async (req, res) => {
+  await create(req, res, "INSERT INTO appointments SET ?");
+});
+app.get("/api/appointments", async (req, res) => {
+  await read(req, res, "SELECT * FROM appointments");
+});
+app.delete("/api/appointments/:appointment_id", async (req, res) => {
+  const { appointment_id } = req.params;
+  await deleteRow(
+    req,
+    res,
+    "DELETE FROM appointments WHERE appointment_id = ?",
+    appointment_id
+  );
+});
+// app.get("/api/appointments/:appointment_id", async (req, res) => {
+//   const { appointment_id } = req.params;
+//   await read(req, res, 'SELECT * FROM appointments WHERE appointment_id = ?', appointment_id);});
+//   app.put('/api/appointments/:appointment_id', async (req, res) => {
+//   const { appointment_id } = req.params;
+//   const description = req.body.description;
+//   const email = req.body.email;
+//   const end_date = req.body.end_date;
+//   const end_time = req.body.end_time;
+//   const first_name = req.body.first_name;
+//   const id = req.body.id;
+//   const is_confirmed = req.body.is_confirmed;
+//   const is_consultation = req.body.is_consultation;
+//   const is_rejected = req.body.is_rejected;
+//   const last_name = req.body.last_name;
+//   const start_date = req.body.start_date;
+//   const start_time = req.body.start_time;
+//   const username = req.body.username;
+//   await update(req, res, 'UPDATE appointments SET description = ?, email = ?, end_date = ?, end_time = ?, first_name = ?, id = ?, is_confirmed = ?, is_consultation = ?, is_rejected = ?, last_name = ?, start_date = ?, start_date = ?, username = ? WHERE appointment_id = ?', appointment_id, description, email, end_date, end_time, first_name, id, is_confirmed, is_consultation, is_rejected, last_name, start_date, start_time, username)
+// })
+
+//end appointment functions
+
 // Blog Functions!
-app.get("/blogs", async (req, res) => {
-  await read(req, res, "SELECT * FROM blogs");
+app.get("/blogs", async (req, res, next) => {
+  try {
+    await read(req, res, "SELECT * FROM blogs");
+  } catch (err) {
+    next(err);
+  }
 });
 
-app.get("/blogs/:BlogId", async (req, res) => {
+app.get("/blogs/:BlogId", async (req, res, next) => {
+  try {
+  } catch (err) {
+    next(err);
+  }
   const { BlogId } = req.params;
-  await read(
-    req,
-    res,
-    "SELECT * FROM blogs LEFT JOIN comments ON blogs.BlogId = comments.BlogId WHERE blogs.BlogId = ?",
-    BlogId
-  );
+    await read(req, res, "SELECT * FROM blogs LEFT JOIN comments ON blogs.BlogId = comments.BlogId WHERE blogs.BlogId = ?", BlogId)
 });
 
-app.post("/blogs", async (req, res) => {
-  await create(req, res, "INSERT INTO blogs SET ?");
+app.post("/blogs", async (req, res, next) => {
+  try {
+    await create(req, res, "INSERT INTO blogs SET ?");
+  } catch (err) {
+    next(err);
+  }
 });
 
-app.delete("/blogs/:BlogId", async (req, res) => {
-  const { BlogId } = req.params;
-  await deleteRow(req, res, "DELETE FROM blogs WHERE BlogId = ?", BlogId);
+app.delete("/blogs/:BlogId", async (req, res, next) => {
+  try {
+    const { BlogId } = req.params;
+    await deleteRow(req, res, "DELETE FROM blogs WHERE BlogId = ?", BlogId);
+  } catch (err) {
+    next(err);
+  }
 });
 
-app.put("/blogs/:BlogId", async (req, res) => {
-  const { BlogId } = req.params;
-  const Title = req.body.title;
-  const Body = req.body.body;
-  const Author = req.body.author;
-  await update(
-    req,
-    res,
-    "UPDATE blogs SET Title = ?, Body = ?, Author = ? WHERE BlogId = ?",
-    BlogId,
-    Title,
-    Body,
-    Author
-  );
+app.put("/blogs/:BlogId", async (req, res, next) => {
+  try {
+    const { BlogId } = req.params;
+    const Title = req.body.title;
+    const Body = req.body.body;
+    const Author = req.body.author;
+    await update(
+      req,
+      res,
+      "UPDATE blogs SET Title = ?, Body = ?, Author = ? WHERE BlogId = ?",
+      BlogId,
+      Title,
+      Body,
+      Author
+    );
+  } catch (err) {
+    next(err);
+  }
 });
 
 //Sign up
@@ -251,51 +315,51 @@ app.put("/api/profile/:id", async (req, res) => {
 
 //login functions!!
 console.log("hello");
-app.post("/login", (req, res) => {
+const testPassword = 'hashed_password';
+const hashedPassword = bcrypt.hashSync(testPassword, 10);
+
+console.log(hashedPassword);
+app.post('/login', (req, res)=> {
   const email = req.body.email;
-  const password = req.body.password;
+  const password = req.body.hashed_password;
   console.log("Received email:", email);
   console.log("Received password:", password);
 
-  const connection = mysql.createConnection({
-    host: process.env.Host,
-    user: process.env.User,
-    password: process.env.Password,
-    database: process.env.Database,
-  });
-  //finds user w this email in db
+
+//finds user w this email in db
   connection.query(
     "SELECT * FROM login_app WHERE email = ?",
     [email],
     (err, result) => {
-      //if err in query, status code & err message returned
-      if (err) {
+//if err in query, status code & err message returned
+      if(err) {
         console.error("Database error:", err);
-        res.status(500).send({ err: err });
+        res.status(500).send({err: err});
       } else {
-        //otherwise, checks result length, makes sure theres one matching user. then retrieves stored HASHED pwd. uses compare to make sure theyre the same
+//otherwise, checks result length, makes sure theres one matching user. then retrieves stored HASHED pwd. uses compare to make sure theyre the same 
         if (result.length === 1) {
-          const storedHashedPassword = result[0].password;
-          bcrypt.compare(
-            password,
-            storedHashedPassword,
-            (bcryptErr, bcryptResult) => {
-              if (bcryptErr || !bcryptResult) {
-                res.send({ message: "Wrong email/password." });
-              } else {
-                res.send({ message: "Login successful." });
-              }
-              connection.end();
-            }
-          );
+          const storedHashedPassword = result[0].hashed_password;
+          bcrypt.compare(password, storedHashedPassword, (bcryptErr, bcryptResult) => {
+            console.log("Stored hashed password:", storedHashedPassword);
+            console.log("Bcrypt result:", bcryptResult);
+            if (bcryptErr || !bcryptResult) {
+              res.send({message: "Wrong email/password."});
+          } else {
+            res.send({message: "Login successful."});
+          }
+          // connection.end();
+        });
         } else {
-          res.send({ message: "Wrong email/password." });
-          connection.end();
+          res.send({message: "Wrong email/password."});
+          // connection.end();
         }
       }
     }
   );
-});
+}); 
+
+
+
 
 //registration functions!
 app.post("/Profile", (req, res) => {
@@ -328,49 +392,77 @@ app.post("/Profile", (req, res) => {
   });
 });
 
+
 // Comment Function
-app.get("/comments", async (req, res) => {
-  await read(req, res, "SELECT * FROM comments");
+app.get("/comments", async (req, res, next) => {
+  try {
+    await read(req, res, "SELECT * FROM comments");
+  } catch (err) {
+    next(err);
+  }
 });
 
-app.get("/comments/:BlogId", async (req, res) => {
-  const { BlogId } = req.params;
-  await read(
-    req,
-    res,
-    "SELECT * FROM comments WHERE comments.BlogId = ?",
-    BlogId
-  );
+app.get("/comments/:BlogId", async (req, res, next) => {
+  try {
+    const { BlogId } = req.params;
+    await read(
+      req,
+      res,
+      "SELECT * FROM comments WHERE comments.BlogId = ?",
+      BlogId
+    );
+  } catch (err) {
+    next(err);
+  }
 });
 
-app.post("/comments", async (req, res) => {
-  await create(req, res, "INSERT INTO comments SET ?");
+app.post("/comments", async (req, res, next) => {
+  try {
+    await create(req, res, "INSERT INTO comments SET ?");
+  } catch (err) {
+    next(err);
+  }
 });
 
-app.delete("/comments/:CommentId", async (req, res) => {
-  const { CommentId } = req.params;
-  await deleteRow(
-    req,
-    res,
-    "DELETE FROM comments WHERE CommentId = ?",
-    CommentId
-  );
+app.delete("/comments/:CommentId", async (req, res, next) => {
+  try {
+    const { CommentId } = req.params;
+    await deleteRow(
+      req,
+      res,
+      "DELETE FROM comments WHERE CommentId = ?",
+      CommentId
+    );
+  } catch (err) {
+    next(err);
+  }
 });
 
-app.put("/comments/:CommentId", async (req, res) => {
-  const { CommentId } = req.params;
-  const Body = req.body.Comment_Body;
-  const Author = req.body.Comment_Author;
-  await update(
-    req,
-    res,
-    "UPDATE comments SET Comment_Body = ?, Comment_Author = ? WHERE CommentId = ?",
-    CommentId,
-    Body,
-    Author
-  );
+app.put("/comments/:CommentId", async (req, res, next) => {
+  try {
+    const { CommentId } = req.params;
+    const Body = req.body.Comment_Body;
+    const Author = req.body.Comment_Author;
+    const submittedDate = new Date(req.body.Comment_Date);
+    const formattedDate = submittedDate
+      .toISOString()
+      .slice(0, 19)
+      .replace("T", " "); // Convert to 'YYYY-MM-DD HH:MM:SS'
+    await update(
+      req,
+      res,
+      "UPDATE comments SET Comment_Body = ?, Comment_Author = ?, Comment_Date = ? WHERE CommentId = ?",
+      CommentId,
+      Body,
+      Author,
+      formattedDate
+    );
+  } catch (err) {
+    next(err);
+  }
 });
 
+// What types of images will be accepted
 const contentTypes = {
   png: "image/png",
   jpg: "image/jpeg",
@@ -380,74 +472,116 @@ const contentTypes = {
   webp: "image/webp",
 };
 
+// Image CRUD api end points
+
+// Create Image
+
+// I had to use Multer to be able to parse an image into a BLOB type of data into the Sql table, thats why you are seeing upload.singl("image")
 app.post("/images", upload.single("image"), async (req, res, next) => {
-  const extension = req.file?.originalname?.split(".").pop();
-  if (!req.file?.buffer) {
-    res.status(400);
-    return next("No file provided");
-  } else if (!contentTypes[extension]) {
-    res.status(400);
-    return next("File type not allowed");
-  }
-  const image = {
-    BlogId: req.body.BlogId,
-    content_type: contentTypes[extension],
-    Image_Data: req.file.buffer,
-  };
+  try {
+    // to get the image type i needed to go into the req and find if there is a file type, then if there is, if there is an original name (what the file is named),
+    // it will then split the name into an array and pop the final part of the array which should be just the type of file aka(png,img,jpeg)
+    const extension = req.file?.originalname?.split(".").pop();
 
-  connection.query(
-    "INSERT INTO images SET ?",
-    image,
-    function (err, data, fields) {
-      if (err) throw err;
-      res.status(201).send();
+    // a boolean to check if the req.file.buffer (which would be they bytes of data parsed by multer) is truthy
+    if (!req.file?.buffer) {
+      // if empty/false return an error
+      res.status(400);
+      return next("No file provided");
     }
-  );
-});
+    // if there is a file loaded, it will check if the extension of the file is one that is allowed other wise it will throw an error
+    else if (!contentTypes[extension]) {
+      res.status(400);
+      return next("File type not allowed");
+    }
 
-app.get("/images/:BlogId", async (req, res, next) => {
-  const image = await connection.query(
-    "SELECT * FROM images WHERE BlogId = ?",
-    req.params.BlogId,
-    (err, data, fields) => {
-      if (!data[0]) {
-        res.status(404);
-        return next("Not found");
+    // at this point I am ready to assign the variables into an object that i will then send to the Sql table
+    const image = {
+      BlogId: req.body.BlogId,
+      content_type: contentTypes[extension],
+      Image_Data: req.file.buffer,
+    };
+
+    // this is the final product of sending the data to the Sql table, res.status 201 is to say that the data was succesfully added
+    connection.query(
+      "INSERT INTO images SET ?",
+      image,
+      function (err, data, fields) {
+        if (err) throw err;
+        res.status(201).send();
       }
-      res.setHeader("Content-Type", data[0].Content_Type);
-      res.send(data[0].Image_Data);
-    }
-  );
-});
-
-app.put("/images/:BlogId", upload.single("image"), async (req, res, next) => {
-  const extension = req.file?.originalname?.split(".").pop();
-  if (!req.file?.buffer) {
-    res.status(400);
-    return next("No file provided");
-  } else if (!contentTypes[extension]) {
-    res.status(400);
-    return next("File type not allowed");
+    );
+  } catch (err) {
+    next(err);
   }
-  const updatedImage = {
-    BlogId: req.body.BlogId,
-    content_type: contentTypes[extension],
-    Image_Data: req.file.buffer,
-  };
-
-  await promiseQuery("DELETE FROM images WHERE BlogId = ?", [
-    updatedImage.BlogId,
-  ]);
-
-  await promiseQuery("INSERT INTO images SET ?", [updatedImage]);
-
-  res.status(201).send();
 });
 
-app.delete("/images/:BlogId", async (req, res) => {
-  const { BlogId } = req.params;
-  await deleteRow(req, res, "DELETE FROM images WHERE BlogId = ?", BlogId);
+// Read Image
+app.get("/images/:BlogId", async (req, res, next) => {
+  try {
+    await connection.query(
+      "SELECT * FROM images WHERE BlogId = ?",
+      req.params.BlogId,
+      // checking if the data exists for the blog id given, otherwise error
+      (err, data, fields) => {
+        if (!data[0]) {
+          res.status(404);
+          return next("Not found");
+        }
+        // at this point, I need to set the Content-Type so that the front end knows how to display the bytes coming from Sql, aka (jpeg,img,png)
+        res.setHeader("Content-Type", data[0].Content_Type);
+        // once the header is set, i then send the image data
+        res.send(data[0].Image_Data);
+      }
+    );
+  } catch (err) {
+    next(err);
+  }
 });
+
+// Update Image
+// I had to use Multer to be able to parse an image into a BLOB type of data into the Sql table, thats why you are seeing upload.single("image")
+app.put("/images/:BlogId", upload.single("image"), async (req, res, next) => {
+  try {
+    // to get the image type i needed to go into the req and find if there is a file type, then if there is, if there is an original name (what the file is named),
+    // it will then split the name into an array and pop the final part of the array which should be just the type of file aka(png,img,jpeg)
+    const extension = req.file?.originalname?.split(".").pop();
+    if (!req.file?.buffer) {
+      res.status(400);
+      return next("No file provided");
+    } else if (!contentTypes[extension]) {
+      res.status(400);
+      return next("File type not allowed");
+    }
+    const updatedImage = {
+      BlogId: req.body.BlogId,
+      content_type: contentTypes[extension],
+      Image_Data: req.file.buffer,
+    };
+
+    // I needed to break my PUT request into a promise for deleting the image first in case a blog does not currently have an image assigned to it
+    await promiseQuery("DELETE FROM images WHERE BlogId = ?", [
+      updatedImage.BlogId,
+    ]);
+
+    // then I insert into the table
+    await promiseQuery("INSERT INTO images SET ?", [updatedImage]);
+    // Send a response of status 201 to know that it was added to the table
+    res.status(201).send();
+  } catch (err) {
+    next(err);
+  }
+});
+
+app.delete("/images/:BlogId", async (req, res, next) => {
+  try {
+    const { BlogId } = req.params;
+    await deleteRow(req, res, "DELETE FROM images WHERE BlogId = ?", BlogId);
+  } catch (err) {
+    next(err);
+  }
+});
+
 
 app.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`);
