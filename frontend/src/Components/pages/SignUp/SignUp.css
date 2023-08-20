@@ -1,0 +1,27 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
+
+*{
+    font-family: 'Quicksand';
+}
+
+.signup-page {
+    padding-top: 100px;
+    margin: auto;
+    width: 600px;
+}
+
+.createaccount-button {
+    text-decoration: none;
+    padding: 6px;
+    color: white;
+    background-color: #924141;
+    border-radius: 8px
+}
+
+.boxSpace {
+    margin-left: 5px;
+}
+
+.error-message {
+    color: red;
+}

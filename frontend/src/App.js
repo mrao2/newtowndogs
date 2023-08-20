@@ -7,9 +7,10 @@ import NotFound from "./NotFound";
 import BlogHome from "./Components/pages/Blog/BlogHome";
 import Homepage from "./Components/pages/Homepage/Homepage";
 import "./App.css";
-import Login from "./Components/pages/Login";
+import Login from "./Components/pages/LoginPage/Login";
 import BookingPage from "./Components/pages/BookingPage/BookingPage";
-import Profile from "./Components/pages/Profile";
+import SignUpPage from "./Components/pages/SignUp/SignUpPage";
+import { Profile } from "./Components/pages/UserProfile/Profile";
 import AboutUs from "./Components/pages/AboutUs/AboutUs";
 import CommentList from "./Components/pages/Blog/CommentList";
 import AppSubmitted from "./Components/pages/BookingPage/AppSubmitted";
@@ -28,8 +29,11 @@ function App() {
             <Route exact path="/">
               <Homepage />
             </Route>
-            <Route exact path="/profile">
+            <Route exact path="/profile/:id">
               <Profile />
+            </Route>
+            <Route exact path="/signup">
+              <SignUpPage />
             </Route>
             <Route exact path="/aboutus">
               <AboutUs />
