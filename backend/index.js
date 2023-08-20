@@ -362,38 +362,6 @@ app.post('/login', (req, res)=> {
 
 
 //registration functions!
-<<<<<<< HEAD
-
-// app.post("/Profile", (req, res) => {
-//   const email = req.body.email;
-//   const password = req.body.password;
-//   //hashes the password, 10 salt rounds
-//   bcrypt.hash(password, 10, (hashErr, hashedPassword) => {
-//     //if there's an error, its console logged
-//     if (hashErr) {
-//       console.error(hashErr);
-//       //error status code
-//       res.status(500).json({ message: "Error hashing password." });
-//     } else {
-//       //store pwd and em in db
-//       db.query(
-//         "INSERT INTO login_app (email, password) VALUES (?,?)",
-//         [email, hashedPassword],
-//         (dbErr, dbResult) => {
-//           //db errors
-//           if (dbErr) {
-//             console.error(dbErr);
-//             res.status(500).json({ message: "Error storing user data." });
-//           } else {
-//             //yay!! success code
-//             res.status(201).json({ message: "Registration successful." });
-//           }
-//         }
-//       );
-//     }
-//   });
-// });
-=======
 app.post("/Profile", (req, res) => {
   const email = req.body.email;
   const password = req.body.password;
@@ -423,7 +391,6 @@ app.post("/Profile", (req, res) => {
     }
   });
 });
->>>>>>> main
 
 
 // Comment Function
