@@ -1,7 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
 
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
+
 *{
     font-family: 'Quicksand';
+}
+
+.header {
+    margin-top: 100px;
+    color: black;
 }
 
 .login-page {
@@ -13,27 +20,34 @@
 
 .login-form {
     display: flex;
-    flex-direction: column;
     align-items: center;
-    width: 300px;
-    padding: 20px;
+    justify-content: center;
+    min-height: 10vh;
+    /* width: 300px;
+      padding: 20px; */
     border: 1px solid #ccc;
     border-radius: 4px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-top: 0px;
 }
 
 .login-input {
+    margin-top: 10px;
     margin-bottom: 10px;
     padding: 10px;
-    width: 200px;
+    width: 250px;
+    border-radius: 10px;
 }
 
 .login-button {
-    padding: 10px;
-    background-color: #f1356d;
+    width: 100px;
+    margin-top: 10px;
+    text-decoration: none;
+    padding: 6px;
     color: white;
-    border: none;
-    cursor: pointer;
-    margin: auto;
+    background-color: #924141;
+    border-radius: 8px
 }
 
 .login-show {
@@ -42,10 +56,12 @@
 }
 
 .signup-button {
-    padding: 10px;
-    background-color: #f1356d;
+    width: 300px;
+    margin-top: 10px;
+    text-decoration: none;
+    padding: 6px;
     color: white;
-    border: none;
-    cursor: pointer;
-    margin: auto;
+    background-color: #924141;
+    border-radius: 8px
 }
+
