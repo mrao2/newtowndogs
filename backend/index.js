@@ -304,7 +304,7 @@ app.put("/api/profile/:id", async (req, res) => {
 });
 
 //login functions!!
-console.log("hello");
+// console.log("hello");
 const testPassword = "hashed_password";
 const hashedPassword = bcrypt.hashSync(testPassword, 10);
 
