@@ -44,7 +44,6 @@ app.use(express.json());
 //Home functions
 app.get("/api/home", async (req, res) => {
   await read(req, res, "SELECT * FROM homepage");
-  console.log("backend connected");
 });
 
 //appointment functions
@@ -126,11 +125,11 @@ app.put("/blogs/:BlogId", async (req, res) => {
   );
 });
 
-console.log("hello");
+// console.log("hello");
 const testPassword = "hashed_password";
 const hashedPassword = bcrypt.hashSync(testPassword, 10);
 
-console.log(hashedPassword);
+// console.log(hashedPassword);
 app.post("/login", (req, res) => {
   const email = req.body.email;
   const password = req.body.hashed_password;
