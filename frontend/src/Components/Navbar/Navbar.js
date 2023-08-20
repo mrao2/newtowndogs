@@ -16,7 +16,9 @@ function Navbar() {
       <div className="links">
         <a href="/">Home</a>
         <a href="/profile">Profile</a>
-        <Link to="/Login">Sign Up</Link>
+        <Link to="/aboutus">About Us</Link>
+        <Link to="/Login">Log in</Link>
+
         <Link to="/BookingPage">Book Sitter</Link>
         <Link to="/AppointmentDisplay">Appointment Requests</Link>
         <Link to="/bloghome">Blog</Link>

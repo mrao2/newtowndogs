@@ -4,6 +4,7 @@ CREATE TABLE comments (
   Comment_Author VARCHAR(255),
   Comment_Body VARCHAR(4000),
   username VARCHAR (45),
+  Comment_Date DATETIME,
    INDEX (username),
    INDEX (BlogId),
   FOREIGN KEY (username) REFERENCES login_app(username),

@@ -1,10 +1,8 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import "./Login.css";
 import { useHistory } from "react-router-dom";
 
-// import useFetch from "../useFetch";
-
-// const {data: logins, isPending, error} = useFetch('/api/data');
 
 async function login (email, password) {
   try {
@@ -25,6 +23,7 @@ async function login (email, password) {
   }
     //.then looking for good or bad response & then updating isloggedin based on that. 
 }
+
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -38,7 +37,7 @@ function Login() {
     setShowPassword(!showPassword);
   };
 
-  function handleSubmit(event) {
+function handleSubmit(event) {
     event.preventDefault();
 
     const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
@@ -67,8 +66,9 @@ function Login() {
   }
 
   return (
+    <span>
     <div className="login-page">
-      <h1>Login Page</h1>
+      <h1 className="header">Log In</h1>
       <form className="login-form" onSubmit={handleSubmit}>
         <input
           type="email"
@@ -112,44 +112,17 @@ function Login() {
         </button>
       </form>
     </div>
+
+
+    <div className="login-page">
+    <br />
+    Don't have an account? 
+    <Link to="/signup">
+      <button className="signup-button">Sign up!</button>
+    </Link>
+    </div>
+    </span>
   );
-  }
-
-
-  // const handleSubmit = async (event) => {
-  //   event.preventDefault();
-  
-  //   // Hash the password
-  //   const hashedPassword = await bcrypt.hash(ownerPassword, 10); 
-  
-  //   // create an o2bject containing the profile data including the hashed password
-  //   const profileData = {
-  //     ownerFirstName,
-  //     ownerLastName,
-  //     // ... (other fields)
-  //     ownerEmail,
-  //     ownerPassword: hashedPassword,
-  //     // ... (other fields)
-  //   };
-  
-  //   // sends profile data back
-  //   try {
-  //     const response = await fetch("http://localhost:3001/submit-profile", {
-  //       method: "POST",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //       body: JSON.stringify(profileData),
-  //     });
-  
-  //     if (response.ok) {
-  //       console.log("Profile data submitted successfully");
-  //     } else {
-  //       console.error("Error submitting profile data");
-  //     }
-  //   } catch (error) {
-  //     console.error("Error submitting profile data", error);
-  //   }
-  // };
+}
 
 export default Login;

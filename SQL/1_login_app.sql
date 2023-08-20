@@ -7,7 +7,7 @@ CREATE TABLE `login_app` (
   email varchar(100) DEFAULT NULL,
   first_name varchar(45),
   last_name varchar(45),
-  phone int,
+  phone BIGINT,
   UNIQUE KEY username_UNIQUE (username),
   UNIQUE KEY phone_UNIQUE (phone),
   PRIMARY KEY (id),
