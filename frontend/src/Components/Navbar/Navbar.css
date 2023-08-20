@@ -1,7 +1,7 @@
 .navbar {
   display: flex;
   flex-wrap: wrap;
-  background-color: #221f14;
+  background-color: #222b1b;
   width: 100%;
   position: fixed;
   top: 0;
@@ -38,7 +38,7 @@
   text-decoration: none;
   padding: 6px;
   color: white;
-  background-color: #924141;
+  background-color: #045812;
   border-radius: 8px;
 }
 
@@ -70,7 +70,7 @@
 
   .dropbtn {
     color: white;
-    background-color: #924141;
+    background-color: #045812;
     padding: 10px;
     font-size: 16px;
     border: none;
@@ -111,6 +111,6 @@
   }
 
   .dropdown:hover .dropbtn {
-    background-color: #924141;
+    background-color: #045812;
   }
 }

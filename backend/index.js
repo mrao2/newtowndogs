@@ -25,11 +25,11 @@ const connection = mysql.createConnection({
 // There's a chance that query refers to this, and in that case, calling promiseQuery without a bind would result in this being undefined
 const promiseQuery = promisify(connection.query).bind(connection);
 
-try{
- connection.connect(function(err){
-  if (err) throw err;
-  console.log("connected to mysql server!");
- });
+try {
+  connection.connect(function (err) {
+    if (err) throw err;
+    console.log("connected to mysql server!");
+  });
 } catch (error) {
   console.error("error connecting to mysql:", error);
 }
@@ -45,16 +45,6 @@ app.use(express.json());
 app.get("/api/home", async (req, res) => {
   await read(req, res, "SELECT * FROM homepage");
   console.log("backend connected");
-});
-
-app.get("/api/home/:id", async (req, res) => {
-  const { id } = req.params;
-
-  await read(req, res, "SELECT * FROM homepage WHERE id = ?", id);
-});
-
-app.post("/api/home", async (req, res) => {
-  await create(req, res, "INSERT INTO homepage set ?");
 });
 
 //appointment functions
@@ -103,7 +93,12 @@ app.get("/blogs", async (req, res) => {
 
 app.get("/blogs/:BlogId", async (req, res) => {
   const { BlogId } = req.params;
-    await read(req, res, "SELECT * FROM blogs LEFT JOIN comments ON blogs.BlogId = comments.BlogId WHERE blogs.BlogId = ?", BlogId)
+  await read(
+    req,
+    res,
+    "SELECT * FROM blogs LEFT JOIN comments ON blogs.BlogId = comments.BlogId WHERE blogs.BlogId = ?",
+    BlogId
+  );
 });
 
 app.post("/blogs", async (req, res) => {
@@ -132,51 +127,51 @@ app.put("/blogs/:BlogId", async (req, res) => {
 });
 
 console.log("hello");
-const testPassword = 'hashed_password';
+const testPassword = "hashed_password";
 const hashedPassword = bcrypt.hashSync(testPassword, 10);
 
 console.log(hashedPassword);
-app.post('/login', (req, res)=> {
+app.post("/login", (req, res) => {
   const email = req.body.email;
   const password = req.body.hashed_password;
   console.log("Received email:", email);
   console.log("Received password:", password);
 
-
-//finds user w this email in db
+  //finds user w this email in db
   connection.query(
     "SELECT * FROM login_app WHERE email = ?",
     [email],
     (err, result) => {
-//if err in query, status code & err message returned
-      if(err) {
+      //if err in query, status code & err message returned
+      if (err) {
         console.error("Database error:", err);
-        res.status(500).send({err: err});
+        res.status(500).send({ err: err });
       } else {
-//otherwise, checks result length, makes sure theres one matching user. then retrieves stored HASHED pwd. uses compare to make sure theyre the same 
+        //otherwise, checks result length, makes sure theres one matching user. then retrieves stored HASHED pwd. uses compare to make sure theyre the same
         if (result.length === 1) {
           const storedHashedPassword = result[0].hashed_password;
-          bcrypt.compare(password, storedHashedPassword, (bcryptErr, bcryptResult) => {
-            console.log("Stored hashed password:", storedHashedPassword);
-            console.log("Bcrypt result:", bcryptResult);
-            if (bcryptErr || !bcryptResult) {
-              res.send({message: "Wrong email/password."});
-          } else {
-            res.send({message: "Login successful."});
-          }
-          // connection.end();
-        });
+          bcrypt.compare(
+            password,
+            storedHashedPassword,
+            (bcryptErr, bcryptResult) => {
+              console.log("Stored hashed password:", storedHashedPassword);
+              console.log("Bcrypt result:", bcryptResult);
+              if (bcryptErr || !bcryptResult) {
+                res.send({ message: "Wrong email/password." });
+              } else {
+                res.send({ message: "Login successful." });
+              }
+              // connection.end();
+            }
+          );
         } else {
-          res.send({message: "Wrong email/password."});
+          res.send({ message: "Wrong email/password." });
           // connection.end();
         }
       }
     }
   );
-}); 
-
-
-
+});
 
 //registration functions!
 
@@ -210,7 +205,6 @@ app.post("/Profile", (req, res) => {
   });
 });
 
-
 // Comment Function
 app.get("/comments", async (req, res) => {
   await read(req, res, "SELECT * FROM comments");
@@ -218,7 +212,12 @@ app.get("/comments", async (req, res) => {
 
 app.get("/comments/:BlogId", async (req, res) => {
   const { BlogId } = req.params;
-    await read(req, res, "SELECT * FROM comments WHERE comments.BlogId = ?", BlogId)
+  await read(
+    req,
+    res,
+    "SELECT * FROM comments WHERE comments.BlogId = ?",
+    BlogId
+  );
 });
 
 app.post("/comments", async (req, res) => {
@@ -227,7 +226,12 @@ app.post("/comments", async (req, res) => {
 
 app.delete("/comments/:CommentId", async (req, res) => {
   const { CommentId } = req.params;
-  await deleteRow(req, res, "DELETE FROM comments WHERE CommentId = ?", CommentId);
+  await deleteRow(
+    req,
+    res,
+    "DELETE FROM comments WHERE CommentId = ?",
+    CommentId
+  );
 });
 
 app.put("/comments/:CommentId", async (req, res) => {
@@ -321,7 +325,6 @@ app.delete("/images/:BlogId", async (req, res) => {
   const { BlogId } = req.params;
   await deleteRow(req, res, "DELETE FROM images WHERE BlogId = ?", BlogId);
 });
-
 
 app.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`);

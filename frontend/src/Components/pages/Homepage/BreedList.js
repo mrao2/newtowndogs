@@ -9,7 +9,7 @@ const BreedList = (props) => {
 
   return (
     <div className="breed_list">
-      <p>Add your favorite dog breed to the list!</p>
+      <p>Dog breeds</p>
       <input type="text" />
       <ul> {listItems}</ul>
     </div>
