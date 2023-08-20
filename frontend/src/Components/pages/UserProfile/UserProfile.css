@@ -1,26 +1,26 @@
-@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap");
 
-*{
-    font-family: 'Quicksand';
+* {
+  font-family: "Quicksand";
 }
 
 .user-profile-page {
-    padding-top: 100px;
-    margin: auto;
-    width: 550px;
+  padding-top: 100px;
+  margin: auto;
+  width: 550px;
 }
 
 .savechanges-button {
-    width: 300px;
-    margin: auto;
-    text-decoration: none;
-    padding: 6px;
-    color: white;
-    background-color: #924141;
-    border-radius: 8px
+  width: 300px;
+  margin: auto;
+  text-decoration: none;
+  padding: 6px;
+  color: white;
+  background-color: #045812;
+  border-radius: 8px;
 }
 
 .boxSpace {
-    margin-left: 5px;
-    width: 200px
+  margin-left: 5px;
+  width: 200px;
 }
