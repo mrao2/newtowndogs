@@ -3,6 +3,7 @@ import "./SignUp.css";
 import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
 
+
 const SignUpPage = () => {
   const history = useHistory();
   const {
@@ -15,13 +16,6 @@ const SignUpPage = () => {
   // const { register, handleSubmit, formState: { errors } } = useForm();
 
   const onSubmit = (data) => {
-    bcrypt.hash(data.hashed_password, 10, (hashErr, hashedPassword) => {
-      if (hashErr) {
-        console.error(hashErr);
-        return;
-      }
-      data.hashed_password = hashedPassword;
-
       fetch("/api/sign-up", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -35,7 +29,6 @@ const SignUpPage = () => {
         .then((data) => {
           history.push(`/profile/${data.id}`);
         });
-    });
   };
 
   return (

@@ -12,7 +12,6 @@ const bcrypt = require("bcrypt");
 const { promisify } = require("util");
 dotenv.config();
 const upload = multer();
-
 var mysql = require("mysql");
 const e = require("express");
 const { connect } = require("http2");
@@ -149,10 +148,20 @@ app.put("/blogs/:BlogId", async (req, res, next) => {
 
 //Sign up
 app.post("/api/sign-up", async (req, res, next) => {
+  const { first_name, last_name, phone, username, email, hashed_password } = req.body;
+  const hashedPassword = bcrypt.hashSync(hashed_password, 10);
+  const user = {
+    firstname: req.body.first_name,
+    lastname: req.body.last_name,
+    phone: req.body.phone,
+    username: req.body.username,
+    email: req.body.email,
+    hashed_password: hashedPassword, // Use the hashed password
+  };
   //await create(req, res, "INSERT INTO login_app SET ?");
   connection.query(
     "INSERT INTO login_app SET ?",
-    req.body,
+    user,
     function (err, result, fields) {
       try {
         if (err) throw err;
@@ -352,35 +361,37 @@ app.post("/login", (req, res) => {
 });
 
 //registration functions!
-app.post("/Profile", (req, res) => {
-  const email = req.body.email;
-  const password = req.body.password;
-  //hashes the password, 10 salt rounds
-  bcrypt.hash(password, 10, (hashErr, hashedPassword) => {
-    //if there's an error, its console logged
-    if (hashErr) {
-      console.error(hashErr);
-      //error status code
-      res.status(500).json({ message: "Error hashing password." });
-    } else {
-      //store pwd and em in db
-      db.query(
-        "INSERT INTO login_app (email, password) VALUES (?,?)",
-        [email, hashedPassword],
-        (dbErr, dbResult) => {
-          //db errors
-          if (dbErr) {
-            console.error(dbErr);
-            res.status(500).json({ message: "Error storing user data." });
-          } else {
-            //yay!! success code
-            res.status(201).json({ message: "Registration successful." });
-          }
-        }
-      );
-    }
-  });
-});
+// app.post("/api/sign-up", (req, res) => {
+//   const email = req.body.email;
+//   const password = req.body.hashed_password;
+//   console.log("Received email:", email);
+//   console.log("Received password:", password);
+//   //hashes the password, 10 salt rounds
+//   bcrypt.hash(password, 10, (hashErr, hashedPassword) => {
+//     //if there's an error, its console logged
+//     if (hashErr) {
+//       console.error(hashErr);
+//       //error status code
+//       res.status(500).json({ message: "Error hashing password." });
+//     } else {
+//       //store pwd and em in db
+//       connection.query(
+//           "INSERT INTO login_app (first_name, last_name, phone, username, email, hashed_password) VALUES (?, ?, ?, ?, ?, ?)",
+//           [firstName, lastName, phone, username, email, hashedPassword],
+//         (dbErr, dbResult) => {
+//           //db errors
+//           if (dbErr) {
+//             console.error(dbErr);
+//             res.status(500).json({ message: "Error storing user data." });
+//           } else {
+//             //yay!! success code
+//             res.status(201).json({ message: "Registration successful." });
+//           }
+//         }
+//       );
+//     }
+//   });
+// });
 
 // Comment Function
 app.get("/comments", async (req, res, next) => {
