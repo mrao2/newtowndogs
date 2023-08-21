@@ -1,8 +1,8 @@
 .navbar {
   display: flex;
   flex-wrap: wrap;
-  background-color: #221f14;
-  width: 100vw;
+  background-color: #222b1b;
+  width: 100%;
   position: fixed;
   top: 0;
   z-index: 1;
@@ -30,6 +30,7 @@
 
 .links {
   margin-left: auto;
+  margin-right: 10px;
 }
 
 .navbar a {
@@ -38,7 +39,7 @@
   text-decoration: none;
   padding: 6px;
   color: white;
-  background-color: #924141;
+  background-color: #045812;
   border-radius: 8px;
 }
 
@@ -70,7 +71,7 @@
 
   .dropbtn {
     color: white;
-    background-color: #924141;
+    background-color: #045812;
     padding: 10px;
     font-size: 16px;
     border: none;
@@ -91,11 +92,11 @@
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     padding: 2px;
     z-index: 1;
-    text-align: center;   
+    text-align: center;
   }
 
   .dropdown-content a {
-    color:#f1f1f1;
+    color: #f1f1f1;
     margin: 2px auto;
     width: 130px;
     text-decoration: none;
@@ -111,6 +112,6 @@
   }
 
   .dropdown:hover .dropbtn {
-    background-color: #924141;
+    background-color: #045812;
   }
 }

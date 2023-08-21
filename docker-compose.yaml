@@ -1,0 +1,44 @@
+version: "3.8"
+services:
+  frontend:
+    build:
+      context: ./frontend
+    ports:
+      - "4001:3000"
+    networks:
+      - app_net
+  backend:
+    build:
+      context: ./backend
+    environment:
+      - User=newtowndogs
+      - Host=db
+      - Password=admin
+      - Database=newtowndogs
+    ports:
+      - "4002:3001"
+    depends_on:
+      - db
+    networks:
+      - app_net
+
+  db:
+    image: mariadb
+    environment:
+      MYSQL_ROOT_PASSWORD: admin
+      MYSQL_DATABASE: newtowndogs
+      MYSQL_USER: newtowndogs
+      MYSQL_PASSWORD: admin
+    volumes:
+      - db_data:/var/lib/mysql
+      - ./setup.sql:/docker-entrypoint-initdb.d/setup.sql
+    networks:
+      - app_net
+    ports:
+      - "4003:3306"
+
+networks:
+  app_net:
+
+volumes:
+  db_data: {}
