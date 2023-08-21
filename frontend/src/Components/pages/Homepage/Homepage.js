@@ -17,10 +17,17 @@ function Homepage() {
       <br />
       <br />
       <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
       <h1 className="title">{project.title}</h1>
       <p>Located at 4811 Delmar Blvd, St. Louis, MO 63108</p>
       <p>Phone number: 555-444-1234</p>
-      <BreedList breeds={breeds} />
+      <br />
+
+      <BreedList className="breeds" breeds={breeds} />
     </div>
   );
 }

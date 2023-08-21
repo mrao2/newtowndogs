@@ -21,3 +21,8 @@
 .breeds {
   font-size: 500px;
 }
+.breed_list {
+  margin: auto;
+  width: 50%;
+  padding: 100px;
+}
