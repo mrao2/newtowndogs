@@ -15,19 +15,27 @@ const SignUpPage = () => {
   // const { register, handleSubmit, formState: { errors } } = useForm();
 
   const onSubmit = (data) => {
-    fetch("/api/sign-up", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(data),
-    })
-      .then((resp) => {
-        return resp.json();
-        // .catch(error => {
-        //   setError('apiError', { message: error });
+    bcrypt.hash(data.hashed_password, 10, (hashErr, hashedPassword) => {
+      if (hashErr) {
+        console.error(hashErr);
+        return;
+      }
+      data.hashed_password = hashedPassword;
+
+      fetch("/api/sign-up", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
       })
-      .then((data) => {
-        history.push(`/profile/${data.id}`);
-      });
+        .then((resp) => {
+          return resp.json();
+          // .catch(error => {
+          //   setError('apiError', { message: error });
+        })
+        .then((data) => {
+          history.push(`/profile/${data.id}`);
+        });
+    });
   };
 
   return (
@@ -114,7 +122,7 @@ const SignUpPage = () => {
             <label>Password</label>
             <input
               className="boxSpace"
-              type="text"
+              type="password"
               name="hashed_password"
               {...register("hashed_password", {
                 required: true,
