@@ -41,8 +41,6 @@ const BreedList = (props) => {
   };
 
   const updateBreed = (breedid, updatedbreed) => {
-    console.log("breed.breedid", breedid);
-    console.log("updatedbreed", updatedbreed);
     fetch("/api/breeds/" + breedid, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
@@ -63,16 +61,11 @@ const BreedList = (props) => {
           <input
             type="text"
             onChange={(e) => {
-              console.log(breed.breedid);
               setNewBreed(e.target.value);
-              console.log(breed.breedid);
             }}
             onKeyDown={(e) => {
               if (e.key === "Enter") {
-                console.log(breed.breedid);
                 updateBreed(breed.breedid, newBreed);
-                console.log("newbreed", newBreed);
-                console.log(breed.breedid);
               }
             }}
           />
