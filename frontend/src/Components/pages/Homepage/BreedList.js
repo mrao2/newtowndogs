@@ -1,11 +1,16 @@
+import { useState } from "react";
 import "./BreedList.css";
 
 const BreedList = (props) => {
+  const [isEditing, setIsEditing] = useState(false);
+  const [newBreed, setNewBreed] = useState("");
+
   if (!props.breeds || !props.breeds.data) {
     return <p>Loading...</p>;
   }
 
   const handleDelete = (breed) => {
+    console.log("breed", breed, "breed.breedid", breed.breedid);
     fetch("/api/breeds/" + breed.breedid, {
       method: "DELETE",
     })
@@ -17,36 +22,10 @@ const BreedList = (props) => {
       });
   };
 
-  const updateBreed = (breed) => {
-    fetch("api/breeds" + breed.breedid, {
-      method: "PUT",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(breed),
-    })
-      .then(() => {
-        window.location.reload();
-      })
-      .catch((error) => {
-        console.log("Error updating breed:", error);
-      });
-  };
-
-  const listItems = props.breeds.data.map((breed) => (
-    <li key={breed.breedid}>
-      {breed.breed}
-      <button className="deleteButton" onClick={() => handleDelete(breed)}>
-        <i className="bi bi-trash"></i>
-      </button>
-      <button className="updateButton" onClick={() => updateBreed(breed)}>
-        <i className="bi bi-pen"></i>
-      </button>
-    </li>
-  ));
-
   const handleKeyDown = (event) => {
     if (event.key === "Enter") {
       const enteredBreed = { breed: event.target.value };
-      fetch("api/home", {
+      fetch("/api/home", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(enteredBreed),
@@ -60,6 +39,57 @@ const BreedList = (props) => {
       event.target.value = "";
     }
   };
+
+  const updateBreed = (breedid, updatedbreed) => {
+    console.log("breed.breedid", breedid);
+    console.log("updatedbreed", updatedbreed);
+    fetch("/api/breeds/" + breedid, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ breed: updatedbreed }),
+    })
+      .then(() => {
+        window.location.reload();
+      })
+      .catch((error) => {
+        console.log("Error updating breed:", error);
+      });
+  };
+
+  const listItems = props.breeds.data.map((breed) => (
+    <li key={breed.breedid}>
+      {isEditing ? (
+        <>
+          <input
+            type="text"
+            onChange={(e) => {
+              console.log(breed.breedid);
+              setNewBreed(e.target.value);
+              console.log(breed.breedid);
+            }}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                console.log(breed.breedid);
+                updateBreed(breed.breedid, newBreed);
+                console.log("newbreed", newBreed);
+                console.log(breed.breedid);
+              }
+            }}
+          />
+        </>
+      ) : (
+        <>
+          {breed.breed}
+          <button className="deleteButton" onClick={() => handleDelete(breed)}>
+            <i className="bi bi-trash"></i>
+          </button>
+          <button className="updateButton" onClick={() => setIsEditing(true)}>
+            <i className="bi bi-pencil"></i>
+          </button>
+        </>
+      )}
+    </li>
+  ));
 
   return (
     <div className="breed_list">

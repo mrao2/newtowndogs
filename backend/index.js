@@ -70,7 +70,7 @@ app.post("/api/home", async (req, res, next) => {
   }
 });
 
-app.get("/api/breeds/:breedid", async (req, res, next) => {
+app.put("/api/breeds/:breedid", async (req, res, next) => {
   try {
     const { breedid } = req.params;
     const breed = req.body.breed;
