@@ -98,8 +98,8 @@ CREATE TABLE IF NOT EXISTS comments (
 
 CREATE TABLE IF NOT EXISTS homepage (
   breedid int AUTO_INCREMENT PRIMARY Key,
-  title VARCHAR(255) NOT NULL,
-  description VARCHAR(255) NOT NULL,
+  title VARCHAR(255),
+  description VARCHAR(255),
   breed VARCHAR (255)
 ); 
 
